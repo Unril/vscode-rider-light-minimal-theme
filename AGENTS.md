@@ -10,9 +10,9 @@ Published to the VS Code Marketplace and Open VSX as `NikolaiFedorov.vscode-ride
 
 ### Goals
 
-- Consistent syntax colors across all supported languages (Kotlin, Java, TypeScript, JavaScript, Python, Markdown, YAML, JSON, HTML, CSS, shell scripts) -- a class is always purple, a function always green, regardless of language
+- Consistent syntax colors across all supported languages (Kotlin, Java, C#, TypeScript, JavaScript, Python, Markdown, YAML, JSON, HTML, CSS, shell scripts) -- a class is always purple, a function always green, regardless of language
 - WCAG AA contrast (4.5:1 minimum) for all syntax colors on the background
-- Dedicated semantic highlighting scopes for Kotlin LSP and basedpyright
+- Dedicated semantic highlighting scopes for Kotlin LSP, Roslyn (C#), and basedpyright
 - 523 UI colors covering editor, terminal, debug, testing, VCS, and more
 - Full 16-color ANSI terminal palette at perceptually uniform lightness
 - Themed markdown preview (colored headings, highlighted code blocks, styled tables, lists, blockquotes)
@@ -129,7 +129,7 @@ vscode-rider-light-minimal-theme/
       base.py  # BaseSyntax: shared TextMate rules across all languages
       registry.py  # LanguageRegistry: merges all rules into final lists
       semantic.py  # GlobalSemanticTokens: cross-language semantic rules
-      java.py, kotlin.py, python.py, js.py, ts.py,
+      java.py, kotlin.py, csharp.py, python.py, js.py, ts.py,
       css.py, html.py, markdown.py, yaml.py, json_lang.py, script.py
     ui/
       protocol.py  # UISection protocol: build(theme) -> dict[str, TCol]

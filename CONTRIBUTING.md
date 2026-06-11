@@ -74,6 +74,7 @@ vsce package
 Install the resulting `.vsix` locally for a smoke test:
 
 ```bash
+code --uninstall-extension nikolaifedorov.vscode-rider-light-minimal-theme
 code --install-extension vscode-rider-light-minimal-theme-*.vsix
 ```
 

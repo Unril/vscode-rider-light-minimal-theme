@@ -5,6 +5,7 @@ from typing import TYPE_CHECKING
 import pytest
 
 from lang.base import BaseSyntax
+from lang.csharp import CSharpLang
 from lang.css import CssLang
 from lang.html import HtmlLang
 from lang.java import JavaLang
@@ -66,6 +67,7 @@ def generate_theme_dict(*, is_dark: bool = False) -> dict[str, object]:
         BaseSyntax,
         JavaLang,
         KotlinLang,
+        CSharpLang,
         PythonLang,
         JavaScriptLang,
         TypeScriptLang,

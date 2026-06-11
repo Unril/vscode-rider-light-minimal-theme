@@ -25,6 +25,7 @@ from pathlib import Path
 
 from css.markdown_variables import build_css as build_markdown_css
 from lang.base import BaseSyntax
+from lang.csharp import CSharpLang
 from lang.css import CssLang
 from lang.html import HtmlLang
 from lang.java import JavaLang
@@ -68,6 +69,7 @@ _LANG_CLASSES: list[Callable[[], Language]] = [
     BaseSyntax,
     JavaLang,
     KotlinLang,
+    CSharpLang,
     PythonLang,
     JavaScriptLang,
     TypeScriptLang,

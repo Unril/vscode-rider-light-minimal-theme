@@ -1,0 +1,107 @@
+root = true
+
+[*]
+indent_style = space
+indent_size = 4
+tab_width = 4
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+max_line_length = 120
+
+[*.cs]
+csharp_style_var_for_built_in_types = true:suggestion
+csharp_style_var_when_type_is_apparent = true:suggestion
+csharp_style_var_elsewhere = false:suggestion
+csharp_style_expression_bodied_methods = when_on_single_line:suggestion
+csharp_style_expression_bodied_constructors = when_on_single_line:suggestion
+csharp_style_expression_bodied_operators = when_on_single_line:suggestion
+csharp_style_expression_bodied_properties = true:suggestion
+csharp_style_expression_bodied_accessors = true:suggestion
+csharp_style_expression_bodied_local_functions = when_on_single_line:suggestion
+csharp_style_namespace_declarations = file_scoped:warning
+resharper_csharp_brace_style = end_of_line
+csharp_new_line_before_else = false
+csharp_new_line_before_catch = false
+csharp_new_line_before_finally = false
+resharper_csharp_braces_for_ifelse = required
+resharper_csharp_braces_for_for = required
+resharper_csharp_braces_for_foreach = required
+resharper_csharp_braces_for_while = required
+resharper_csharp_braces_for_dowhile = required
+resharper_enforce_if_statement_braces_highlighting = warning
+resharper_enforce_for_statement_braces_highlighting = warning
+resharper_enforce_foreach_statement_braces_highlighting = warning
+resharper_enforce_while_statement_braces_highlighting = warning
+resharper_enforce_do_statement_braces_highlighting = warning
+dotnet_diagnostic.CS8600.severity = warning
+dotnet_diagnostic.CS8602.severity = warning
+dotnet_diagnostic.CS8603.severity = warning
+dotnet_diagnostic.CS8618.severity = warning
+resharper_possible_null_reference_exception_highlighting = error
+resharper_expression_is_always_null_highlighting = warning
+resharper_condition_is_always_true_or_false_highlighting = warning
+resharper_check_namespace_highlighting = none
+resharper_unused_parameter_global_highlighting = suggestion
+resharper_not_accessed_positional_property_global_highlighting = suggestion
+resharper_merge_into_pattern_highlighting = hint
+resharper_access_to_modified_closure_highlighting = warning
+resharper_access_to_disposed_closure_highlighting = warning
+resharper_async_void_method_highlighting = warning
+resharper_async_void_lambda_highlighting = warning
+resharper_async_method_without_await_highlighting = warning
+resharper_heuristic_unreachable_code_highlighting = warning
+resharper_not_accessed_variable_highlighting = warning
+resharper_unused_variable_highlighting = warning
+resharper_unused_local_function_highlighting = warning
+resharper_unused_member_local_highlighting = warning
+resharper_unused_member_global_highlighting = suggestion
+resharper_class_never_instantiated_global_highlighting = suggestion
+resharper_redundant_using_directive_global_highlighting = warning
+resharper_csharp_wrap_lines = true
+resharper_csharp_wrap_arguments_style = wrap_if_long
+resharper_csharp_wrap_parameters_style = wrap_if_long
+resharper_csharp_wrap_chained_method_calls = wrap_if_long
+resharper_csharp_wrap_chained_binary_expressions = wrap_if_long
+resharper_csharp_wrap_array_initializer_style = wrap_if_long
+resharper_csharp_wrap_object_and_collection_initializer_style = wrap_if_long
+resharper_suggest_discard_declaration_var_style = remove
+resharper_arguments_can_be_made_positional_highlighting = do_not_show
+resharper_csharp_keep_blank_lines_in_declarations = 1
+resharper_csharp_keep_blank_lines_in_code = 1
+resharper_csharp_remove_blank_lines_near_braces_in_declarations = true
+resharper_csharp_remove_blank_lines_near_braces_in_code = true
+resharper_csharp_blank_lines_around_single_line_field = 0
+resharper_csharp_blank_lines_around_single_line_property = 0
+resharper_csharp_blank_lines_around_single_line_invocable = 0
+resharper_csharp_blank_lines_around_field = 0
+resharper_csharp_blank_lines_around_auto_property = 0
+resharper_csharp_blank_lines_around_property = 1
+resharper_csharp_blank_lines_around_invocable = 1
+resharper_xmldoc_indent_text = zero_indent
+resharper_xmldoc_indent_child_elements = zero_indent
+resharper_xmldoc_space_before_self_closing = false
+resharper_xmldoc_max_blank_lines_between_tags = 0
+resharper_xmldoc_linebreak_before_singleline_elements = false
+resharper_xmldoc_space_after_last_attribute = false
+
+[**/Generated/**.cs]
+generated_code = true
+dotnet_diagnostic.CS8618.severity = none
+dotnet_diagnostic.CS8669.severity = none
+dotnet_diagnostic.CS3021.severity = none
+
+[*.{g,generated}.cs]
+generated_code = true
+dotnet_diagnostic.CS8618.severity = none
+dotnet_diagnostic.CS8669.severity = none
+dotnet_diagnostic.CS3021.severity = none
+
+[*.{csproj,props,targets}]
+indent_size = 2
+
+[*.{json,yaml,yml}]
+indent_size = 2
+
+[*.tscn]
+indent_style = tab

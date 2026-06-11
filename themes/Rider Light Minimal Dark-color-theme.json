@@ -1430,6 +1430,83 @@
       }
     },
     {
+      "name": "C# namespace names",
+      "scope": [
+        "entity.name.type.namespace.cs"
+      ],
+      "settings": {
+        "foreground": "#C29CDF"
+      }
+    },
+    {
+      "name": "C# preprocessor",
+      "scope": [
+        "keyword.preprocessor.if.cs",
+        "keyword.preprocessor.else.cs",
+        "keyword.preprocessor.elif.cs",
+        "keyword.preprocessor.endif.cs",
+        "keyword.preprocessor.define.cs",
+        "keyword.preprocessor.undef.cs",
+        "keyword.preprocessor.region.cs",
+        "keyword.preprocessor.endregion.cs",
+        "keyword.preprocessor.nullable.cs",
+        "keyword.preprocessor.pragma.cs",
+        "entity.name.variable.preprocessor.symbol.cs"
+      ],
+      "settings": {
+        "foreground": "#6492FF"
+      }
+    },
+    {
+      "name": "C# field and property declarations",
+      "scope": [
+        "entity.name.variable.field.cs",
+        "entity.name.variable.property.cs",
+        "entity.name.variable.event.cs"
+      ],
+      "settings": {
+        "foreground": "#339CB9"
+      }
+    },
+    {
+      "name": "C# enum members",
+      "scope": [
+        "entity.name.variable.enum-member.cs"
+      ],
+      "settings": {
+        "foreground": "#3AA2BF"
+      }
+    },
+    {
+      "name": "C# interpolation punctuation",
+      "scope": [
+        "punctuation.definition.interpolation.begin.cs"
+      ],
+      "settings": {
+        "foreground": "#6492FF"
+      }
+    },
+    {
+      "name": "C# interpolation end",
+      "scope": [
+        "punctuation.definition.interpolation.end.cs"
+      ],
+      "settings": {
+        "foreground": "#6492FF"
+      }
+    },
+    {
+      "name": "C# XML doc comment tags",
+      "scope": [
+        "entity.name.tag.localname.cs",
+        "punctuation.definition.tag.cs"
+      ],
+      "settings": {
+        "foreground": "#7A9B56",
+        "fontStyle": "italic"
+      }
+    },
+    {
       "name": "Python import keywords",
       "scope": [
         "keyword.control.import.python",
@@ -2288,6 +2365,34 @@
       "foreground": "#57BCA4",
       "fontStyle": "italic bold"
     },
-    "operator.abstract:kotlin": "#6492FF"
+    "operator.abstract:kotlin": "#6492FF",
+    "method:csharp": {
+      "foreground": "#57BCA4",
+      "fontStyle": "bold"
+    },
+    "extensionMethod:csharp": {
+      "foreground": "#3FA68E",
+      "fontStyle": "italic"
+    },
+    "delegate:csharp": "#D190FF",
+    "recordClass:csharp": "#D190FF",
+    "recordStruct:csharp": "#D190FF",
+    "stringVerbatim:csharp": "#B88573",
+    "stringEscapeCharacter:csharp": "#B481D9",
+    "preprocessorKeyword:csharp": "#6492FF",
+    "preprocessorText:csharp": "#C7C7C7",
+    "excludedCode:csharp": "#7A9B56",
+    "controlKeyword:csharp": "#6492FF",
+    "operatorOverloaded:csharp": "#3FA68E",
+    "xmlDocCommentAttributeName:csharp": "#339CB9",
+    "xmlDocCommentAttributeQuotes:csharp": "#B88573",
+    "xmlDocCommentAttributeValue:csharp": "#B88573",
+    "xmlDocCommentComment:csharp": {
+      "foreground": "#7A9B56",
+      "fontStyle": "italic"
+    },
+    "xmlDocCommentDelimiter:csharp": "#7A9B56",
+    "xmlDocCommentName:csharp": "#D190FF",
+    "xmlDocCommentText:csharp": "#7A9B56"
   }
 }

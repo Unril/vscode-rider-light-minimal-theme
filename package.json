@@ -1,6 +1,6 @@
 {
   "name": "vscode-rider-light-minimal-theme",
-  "displayName": "Rider light minimal",
+  "displayName": "Rider Light Minimal",
   "description": "Light and dark color themes for VS Code. Consistent syntax highlighting across languages with a themed markdown preview style. Inspired by JetBrains Rider.",
   "version": "0.3.2",
   "publisher": "NikolaiFedorov",
@@ -19,7 +19,7 @@
     "theme": "light"
   },
   "engines": {
-    "vscode": "^1.90.0"
+    "vscode": "^1.110.0"
   },
   "categories": [
     "Themes"
@@ -37,8 +37,8 @@
     "color-theme",
     "rider",
     "jetbrains",
-    "vscode",
     "kotlin",
+    "csharp",
     "basedpyright",
     "markdown-preview",
     "markdown-style",
@@ -53,12 +53,12 @@
       "./styles/markdown-highlight.css"
     ],
     "configuration": {
-      "title": "Rider light minimal",
+      "title": "Rider Light Minimal",
       "properties": {
         "rider-light-minimal.markdownPreview.enabled": {
           "type": "boolean",
           "default": true,
-          "description": "Apply Rider light minimal styling to the Markdown preview. Disable to use the default VS Code preview style."
+          "description": "Apply Rider Light Minimal styling to the Markdown preview. Disable to use the default VS Code preview style."
         }
       }
     },

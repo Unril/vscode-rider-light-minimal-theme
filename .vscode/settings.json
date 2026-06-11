@@ -1,3 +1,4 @@
 {
-  "basedpyright.analysis.configFilePath": "${workspaceFolder}/theme_gen"
+  "basedpyright.analysis.configFilePath": "${workspaceFolder}/theme_gen/pyproject.toml",
+  "python.venvPath": "${workspaceFolder}/theme_gen/.venv",
 }

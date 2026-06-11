@@ -1,0 +1,3088 @@
+schema: token-scope-export/v1
+note: Semantic tokens come from VS Code built-in semantic-token commands. TextMate scopes are re-tokenized from the contributed grammar.
+positionEncoding: { lines: 1-based, columns: 0-based, endColumn: exclusive }
+exportedAt: 2026-06-11T20:49:45.387Z
+source:
+  languageId: csharp
+  version: 7
+  path: /Volumes/workplace/kiro-ext/vscode-rider-light-minimal-theme/examples/src/main/csharp/Generic.cs
+grammar: source.cs
+semanticLegend:
+  tokenTypes:
+    - namespace
+    - type
+    - class
+    - enum
+    - interface
+    - struct
+    - typeParameter
+    - parameter
+    - variable
+    - property
+    - enumMember
+    - event
+    - function
+    - method
+    - macro
+    - keyword
+    - modifier
+    - comment
+    - string
+    - number
+    - regexp
+    - operator
+    - decorator
+  tokenModifiers:
+    - declaration
+    - definition
+    - readonly
+    - static
+    - deprecated
+    - abstract
+    - async
+    - modification
+    - documentation
+    - defaultLibrary
+stats: { lineCount: 134, semanticTokenCount: 181, textmateTokenCount: 1268, exportedSegmentCount: 847 }
+lines:
+  - lineNumber: 1
+    sourceText: using System;
+    segments:
+      - text: using
+        textmate: { scope: keyword.other.directive.using.cs, rest: [ source.cs ] }
+        span: [ 0, 5 ]
+      - text: System
+        textmate: { scope: entity.name.type.namespace.cs, rest: [ source.cs ] }
+        span: [ 6, 12 ]
+        semantic: { type: namespace }
+      - text: ;
+        textmate: { scope: punctuation.terminator.statement.cs, rest: [ source.cs ] }
+        span: [ 12, 13 ]
+  - lineNumber: 2
+    sourceText: using System.Collections.Generic;
+    segments:
+      - text: using
+        textmate: { scope: keyword.other.directive.using.cs, rest: [ source.cs ] }
+        span: [ 0, 5 ]
+      - text: System
+        textmate: { scope: entity.name.type.namespace.cs, rest: [ source.cs ] }
+        span: [ 6, 12 ]
+        semantic: { type: namespace }
+      - text: .
+        textmate: { scope: punctuation.accessor.cs, rest: [ source.cs ] }
+        span: [ 12, 13 ]
+      - text: Collections
+        textmate: { scope: entity.name.type.namespace.cs, rest: [ source.cs ] }
+        span: [ 13, 24 ]
+        semantic: { type: namespace }
+      - text: .
+        textmate: { scope: punctuation.accessor.cs, rest: [ source.cs ] }
+        span: [ 24, 25 ]
+      - text: Generic
+        textmate: { scope: entity.name.type.namespace.cs, rest: [ source.cs ] }
+        span: [ 25, 32 ]
+        semantic: { type: namespace }
+      - text: ;
+        textmate: { scope: punctuation.terminator.statement.cs, rest: [ source.cs ] }
+        span: [ 32, 33 ]
+  - lineNumber: 3
+    sourceText: using System.Linq;
+    segments:
+      - text: using
+        textmate: { scope: keyword.other.directive.using.cs, rest: [ source.cs ] }
+        span: [ 0, 5 ]
+      - text: System
+        textmate: { scope: entity.name.type.namespace.cs, rest: [ source.cs ] }
+        span: [ 6, 12 ]
+        semantic: { type: namespace }
+      - text: .
+        textmate: { scope: punctuation.accessor.cs, rest: [ source.cs ] }
+        span: [ 12, 13 ]
+      - text: Linq
+        textmate: { scope: entity.name.type.namespace.cs, rest: [ source.cs ] }
+        span: [ 13, 17 ]
+        semantic: { type: namespace }
+      - text: ;
+        textmate: { scope: punctuation.terminator.statement.cs, rest: [ source.cs ] }
+        span: [ 17, 18 ]
+  - lineNumber: 4
+    sourceText: using System.Threading.Tasks;
+    segments:
+      - text: using
+        textmate: { scope: keyword.other.directive.using.cs, rest: [ source.cs ] }
+        span: [ 0, 5 ]
+      - text: System
+        textmate: { scope: entity.name.type.namespace.cs, rest: [ source.cs ] }
+        span: [ 6, 12 ]
+        semantic: { type: namespace }
+      - text: .
+        textmate: { scope: punctuation.accessor.cs, rest: [ source.cs ] }
+        span: [ 12, 13 ]
+      - text: Threading
+        textmate: { scope: entity.name.type.namespace.cs, rest: [ source.cs ] }
+        span: [ 13, 22 ]
+        semantic: { type: namespace }
+      - text: .
+        textmate: { scope: punctuation.accessor.cs, rest: [ source.cs ] }
+        span: [ 22, 23 ]
+      - text: Tasks
+        textmate: { scope: entity.name.type.namespace.cs, rest: [ source.cs ] }
+        span: [ 23, 28 ]
+        semantic: { type: namespace }
+      - text: ;
+        textmate: { scope: punctuation.terminator.statement.cs, rest: [ source.cs ] }
+        span: [ 28, 29 ]
+  - lineNumber: 6
+    sourceText: namespace Examples;
+    segments:
+      - text: namespace
+        textmate: { scope: storage.type.namespace.cs, rest: [ source.cs ] }
+        span: [ 0, 9 ]
+      - text: Examples
+        textmate: { scope: entity.name.type.namespace.cs, rest: [ source.cs ] }
+        span: [ 10, 18 ]
+        semantic: { type: namespace }
+      - text: ;
+        textmate: { scope: punctuation.terminator.statement.cs, rest: [ source.cs ] }
+        span: [ 18, 19 ]
+  - lineNumber: 8
+    sourceText: /// <summary>Tracking attribute.</summary>
+    segments:
+      - text: ///
+        textmate: { scope: punctuation.definition.comment.cs, rest: [ source.cs, comment.block.documentation.cs ] }
+        span: [ 0, 3 ]
+      - text: <
+        textmate: { scope: punctuation.definition.tag.cs, rest: [ source.cs, comment.block.documentation.cs, meta.tag.cs ] }
+        span: [ 4, 5 ]
+      - text: summary
+        textmate: { scope: entity.name.tag.localname.cs, rest: [ source.cs, comment.block.documentation.cs, meta.tag.cs, entity.name.tag.cs ] }
+        span: [ 5, 12 ]
+      - text: '>'
+        textmate: { scope: punctuation.definition.tag.cs, rest: [ source.cs, comment.block.documentation.cs, meta.tag.cs ] }
+        span: [ 12, 13 ]
+      - text: Tracking attribute.
+        textmate: { scope: comment.block.documentation.cs, rest: [ source.cs ] }
+        span: [ 13, 32 ]
+      - text: </
+        textmate: { scope: punctuation.definition.tag.cs, rest: [ source.cs, comment.block.documentation.cs, meta.tag.cs ] }
+        span: [ 32, 34 ]
+      - text: summary
+        textmate: { scope: entity.name.tag.localname.cs, rest: [ source.cs, comment.block.documentation.cs, meta.tag.cs, entity.name.tag.cs ] }
+        span: [ 34, 41 ]
+      - text: '>'
+        textmate: { scope: punctuation.definition.tag.cs, rest: [ source.cs, comment.block.documentation.cs, meta.tag.cs ] }
+        span: [ 41, 42 ]
+  - lineNumber: 9
+    sourceText: '[AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]'
+    segments:
+      - text: '['
+        textmate: { scope: punctuation.squarebracket.open.cs, rest: [ source.cs ] }
+        span: [ 0, 1 ]
+      - text: AttributeUsage
+        textmate: { scope: entity.name.type.cs, rest: [ source.cs ] }
+        span: [ 1, 15 ]
+        semantic: { type: class }
+      - text: (
+        textmate: { scope: punctuation.parenthesis.open.cs, rest: [ source.cs ] }
+        span: [ 15, 16 ]
+      - text: AttributeTargets
+        textmate: { scope: variable.other.object.cs, rest: [ source.cs ] }
+        span: [ 16, 32 ]
+        semantic: { type: enum }
+      - text: .
+        textmate: { scope: punctuation.accessor.cs, rest: [ source.cs ] }
+        span: [ 32, 33 ]
+      - text: Class
+        textmate: { scope: variable.other.object.property.cs, rest: [ source.cs ] }
+        span: [ 33, 38 ]
+      - text: '|'
+        textmate: { scope: keyword.operator.bitwise.cs, rest: [ source.cs ] }
+        span: [ 39, 40 ]
+      - text: AttributeTargets
+        textmate: { scope: variable.other.object.cs, rest: [ source.cs ] }
+        span: [ 41, 57 ]
+        semantic: { type: enum }
+      - text: .
+        textmate: { scope: punctuation.accessor.cs, rest: [ source.cs ] }
+        span: [ 57, 58 ]
+      - text: Method
+        textmate: { scope: variable.other.object.property.cs, rest: [ source.cs ] }
+        span: [ 58, 64 ]
+      - text: )
+        textmate: { scope: punctuation.parenthesis.close.cs, rest: [ source.cs ] }
+        span: [ 64, 65 ]
+      - text: ']'
+        textmate: { scope: punctuation.squarebracket.close.cs, rest: [ source.cs ] }
+        span: [ 65, 66 ]
+  - lineNumber: 10
+    sourceText: 'sealed class TrackedAttribute(string label = "") : Attribute {'
+    segments:
+      - text: sealed
+        textmate: { scope: storage.modifier.sealed.cs, rest: [ source.cs ] }
+        span: [ 0, 6 ]
+      - text: class
+        textmate: { scope: storage.type.class.cs, rest: [ source.cs ] }
+        span: [ 7, 12 ]
+      - text: TrackedAttribute
+        textmate: { scope: entity.name.type.class.cs, rest: [ source.cs ] }
+        span: [ 13, 29 ]
+      - text: (
+        textmate: { scope: punctuation.parenthesis.open.cs, rest: [ source.cs ] }
+        span: [ 29, 30 ]
+      - text: string
+        textmate: { scope: keyword.type.string.cs, rest: [ source.cs ] }
+        span: [ 30, 36 ]
+      - text: label
+        textmate: { scope: entity.name.variable.parameter.cs, rest: [ source.cs ] }
+        span: [ 37, 42 ]
+        semantic: { type: parameter }
+      - text: =
+        textmate: { scope: keyword.operator.assignment.cs, rest: [ source.cs ] }
+        span: [ 43, 44 ]
+      - text: '"'
+        textmate: { scope: punctuation.definition.string.begin.cs, rest: [ source.cs, string.quoted.double.cs ] }
+        span: [ 45, 46 ]
+      - text: '"'
+        textmate: { scope: punctuation.definition.string.end.cs, rest: [ source.cs, string.quoted.double.cs ] }
+        span: [ 46, 47 ]
+      - text: )
+        textmate: { scope: punctuation.parenthesis.close.cs, rest: [ source.cs ] }
+        span: [ 47, 48 ]
+      - text: ':'
+        textmate: { scope: punctuation.separator.colon.cs, rest: [ source.cs ] }
+        span: [ 49, 50 ]
+      - text: Attribute
+        textmate: { scope: entity.name.type.cs, rest: [ source.cs ] }
+        span: [ 51, 60 ]
+        semantic: { type: class }
+      - text: '{'
+        textmate: { scope: punctuation.curlybrace.open.cs, rest: [ source.cs ] }
+        span: [ 61, 62 ]
+  - lineNumber: 11
+    sourceText: '    public string Label { get; } = label;'
+    segments:
+      - text: public
+        textmate: { scope: storage.modifier.public.cs, rest: [ source.cs ] }
+        span: [ 4, 10 ]
+      - text: string
+        textmate: { scope: keyword.type.string.cs, rest: [ source.cs ] }
+        span: [ 11, 17 ]
+      - text: Label
+        textmate: { scope: entity.name.variable.property.cs, rest: [ source.cs ] }
+        span: [ 18, 23 ]
+        semantic: { type: property }
+      - text: '{'
+        textmate: { scope: punctuation.curlybrace.open.cs, rest: [ source.cs ] }
+        span: [ 24, 25 ]
+      - text: get
+        textmate: { scope: storage.type.accessor.get.cs, rest: [ source.cs ] }
+        span: [ 26, 29 ]
+        semantic: { type: method }
+      - text: ;
+        textmate: { scope: punctuation.terminator.statement.cs, rest: [ source.cs ] }
+        span: [ 29, 30 ]
+      - text: '}'
+        textmate: { scope: punctuation.curlybrace.close.cs, rest: [ source.cs ] }
+        span: [ 31, 32 ]
+      - text: =
+        textmate: { scope: keyword.operator.assignment.cs, rest: [ source.cs ] }
+        span: [ 33, 34 ]
+      - text: label
+        textmate: { scope: variable.other.readwrite.cs, rest: [ source.cs ] }
+        span: [ 35, 40 ]
+        semantic: { type: parameter }
+      - text: ;
+        textmate: { scope: punctuation.terminator.statement.cs, rest: [ source.cs ] }
+        span: [ 40, 41 ]
+  - lineNumber: 12
+    sourceText: '}'
+    segments:
+      - text: '}'
+        textmate: { scope: punctuation.curlybrace.close.cs, rest: [ source.cs ] }
+        span: [ 0, 1 ]
+  - lineNumber: 14
+    sourceText: enum Role {
+    segments:
+      - text: enum
+        textmate: { scope: storage.type.enum.cs, rest: [ source.cs ] }
+        span: [ 0, 4 ]
+      - text: Role
+        textmate: { scope: entity.name.type.enum.cs, rest: [ source.cs ] }
+        span: [ 5, 9 ]
+        semantic: { type: enum }
+      - text: '{'
+        textmate: { scope: punctuation.curlybrace.open.cs, rest: [ source.cs ] }
+        span: [ 10, 11 ]
+  - lineNumber: 15
+    sourceText: '    Admin,'
+    segments:
+      - text: Admin
+        textmate: { scope: entity.name.variable.enum-member.cs, rest: [ source.cs ] }
+        span: [ 4, 9 ]
+      - text: ','
+        textmate: { scope: punctuation.separator.comma.cs, rest: [ source.cs ] }
+        span: [ 9, 10 ]
+  - lineNumber: 16
+    sourceText: '    Editor,'
+    segments:
+      - text: Editor
+        textmate: { scope: entity.name.variable.enum-member.cs, rest: [ source.cs ] }
+        span: [ 4, 10 ]
+      - text: ','
+        textmate: { scope: punctuation.separator.comma.cs, rest: [ source.cs ] }
+        span: [ 10, 11 ]
+  - lineNumber: 17
+    sourceText: '    Viewer'
+    segments:
+      - text: Viewer
+        textmate: { scope: entity.name.variable.enum-member.cs, rest: [ source.cs ] }
+        span: [ 4, 10 ]
+  - lineNumber: 18
+    sourceText: '}'
+    segments:
+      - text: '}'
+        textmate: { scope: punctuation.curlybrace.close.cs, rest: [ source.cs ] }
+        span: [ 0, 1 ]
+  - lineNumber: 20
+    sourceText: interface IRepository<in TId, out T> {
+    segments:
+      - text: interface
+        textmate: { scope: storage.type.interface.cs, rest: [ source.cs ] }
+        span: [ 0, 9 ]
+      - text: IRepository
+        textmate: { scope: entity.name.type.interface.cs, rest: [ source.cs ] }
+        span: [ 10, 21 ]
+      - text: <
+        textmate: { scope: punctuation.definition.typeparameters.begin.cs, rest: [ source.cs ] }
+        span: [ 21, 22 ]
+      - text: in
+        textmate: { scope: storage.modifier.in.cs, rest: [ source.cs ] }
+        span: [ 22, 24 ]
+      - text: TId
+        textmate: { scope: entity.name.type.type-parameter.cs, rest: [ source.cs ] }
+        span: [ 25, 28 ]
+        semantic: { type: typeParameter }
+      - text: ','
+        textmate: { scope: punctuation.separator.comma.cs, rest: [ source.cs ] }
+        span: [ 28, 29 ]
+      - text: out
+        textmate: { scope: storage.modifier.out.cs, rest: [ source.cs ] }
+        span: [ 30, 33 ]
+      - text: T
+        textmate: { scope: entity.name.type.type-parameter.cs, rest: [ source.cs ] }
+        span: [ 34, 35 ]
+        semantic: { type: typeParameter }
+      - text: '>'
+        textmate: { scope: punctuation.definition.typeparameters.end.cs, rest: [ source.cs ] }
+        span: [ 35, 36 ]
+      - text: '{'
+        textmate: { scope: punctuation.curlybrace.open.cs, rest: [ source.cs ] }
+        span: [ 37, 38 ]
+  - lineNumber: 21
+    sourceText: '    T? FindById(TId id);'
+    segments:
+      - text: T
+        textmate: { scope: entity.name.type.cs, rest: [ source.cs ] }
+        span: [ 4, 5 ]
+        semantic: { type: typeParameter }
+      - text: '?'
+        textmate: { scope: punctuation.separator.question-mark.cs, rest: [ source.cs ] }
+        span: [ 5, 6 ]
+      - text: FindById
+        textmate: { scope: entity.name.function.cs, rest: [ source.cs ] }
+        span: [ 7, 15 ]
+      - text: (
+        textmate: { scope: punctuation.parenthesis.open.cs, rest: [ source.cs ] }
+        span: [ 15, 16 ]
+      - text: TId
+        textmate: { scope: entity.name.type.cs, rest: [ source.cs ] }
+        span: [ 16, 19 ]
+        semantic: { type: typeParameter }
+      - text: id
+        textmate: { scope: entity.name.variable.parameter.cs, rest: [ source.cs ] }
+        span: [ 20, 22 ]
+        semantic: { type: parameter }
+      - text: )
+        textmate: { scope: punctuation.parenthesis.close.cs, rest: [ source.cs ] }
+        span: [ 22, 23 ]
+      - text: ;
+        textmate: { scope: punctuation.terminator.statement.cs, rest: [ source.cs ] }
+        span: [ 23, 24 ]
+  - lineNumber: 22
+    sourceText: '    IEnumerable<T> FindAll();'
+    segments:
+      - text: IEnumerable
+        textmate: { scope: entity.name.type.cs, rest: [ source.cs ] }
+        span: [ 4, 15 ]
+        semantic: { type: interface }
+      - text: <
+        textmate: { scope: punctuation.definition.typeparameters.begin.cs, rest: [ source.cs ] }
+        span: [ 15, 16 ]
+      - text: T
+        textmate: { scope: entity.name.type.cs, rest: [ source.cs ] }
+        span: [ 16, 17 ]
+        semantic: { type: typeParameter }
+      - text: '>'
+        textmate: { scope: punctuation.definition.typeparameters.end.cs, rest: [ source.cs ] }
+        span: [ 17, 18 ]
+      - text: FindAll
+        textmate: { scope: entity.name.function.cs, rest: [ source.cs ] }
+        span: [ 19, 26 ]
+      - text: (
+        textmate: { scope: punctuation.parenthesis.open.cs, rest: [ source.cs ] }
+        span: [ 26, 27 ]
+      - text: )
+        textmate: { scope: punctuation.parenthesis.close.cs, rest: [ source.cs ] }
+        span: [ 27, 28 ]
+      - text: ;
+        textmate: { scope: punctuation.terminator.statement.cs, rest: [ source.cs ] }
+        span: [ 28, 29 ]
+  - lineNumber: 23
+    sourceText: '}'
+    segments:
+      - text: '}'
+        textmate: { scope: punctuation.curlybrace.close.cs, rest: [ source.cs ] }
+        span: [ 0, 1 ]
+  - lineNumber: 25
+    sourceText: delegate TResult Transform<in T, out TResult>(T arg);
+    segments:
+      - text: delegate
+        textmate: { scope: storage.type.delegate.cs, rest: [ source.cs ] }
+        span: [ 0, 8 ]
+      - text: TResult
+        textmate: { scope: entity.name.type.cs, rest: [ source.cs ] }
+        span: [ 9, 16 ]
+        semantic: { type: typeParameter }
+      - text: Transform
+        textmate: { scope: entity.name.type.delegate.cs, rest: [ source.cs ] }
+        span: [ 17, 26 ]
+      - text: <
+        textmate: { scope: punctuation.definition.typeparameters.begin.cs, rest: [ source.cs ] }
+        span: [ 26, 27 ]
+      - text: in
+        textmate: { scope: storage.modifier.in.cs, rest: [ source.cs ] }
+        span: [ 27, 29 ]
+      - text: T
+        textmate: { scope: entity.name.type.type-parameter.cs, rest: [ source.cs ] }
+        span: [ 30, 31 ]
+        semantic: { type: typeParameter }
+      - text: ','
+        textmate: { scope: punctuation.separator.comma.cs, rest: [ source.cs ] }
+        span: [ 31, 32 ]
+      - text: out
+        textmate: { scope: storage.modifier.out.cs, rest: [ source.cs ] }
+        span: [ 33, 36 ]
+      - text: TResult
+        textmate: { scope: entity.name.type.type-parameter.cs, rest: [ source.cs ] }
+        span: [ 37, 44 ]
+        semantic: { type: typeParameter }
+      - text: '>'
+        textmate: { scope: punctuation.definition.typeparameters.end.cs, rest: [ source.cs ] }
+        span: [ 44, 45 ]
+      - text: (
+        textmate: { scope: punctuation.parenthesis.open.cs, rest: [ source.cs ] }
+        span: [ 45, 46 ]
+      - text: T
+        textmate: { scope: entity.name.type.cs, rest: [ source.cs ] }
+        span: [ 46, 47 ]
+        semantic: { type: typeParameter }
+      - text: arg
+        textmate: { scope: entity.name.variable.parameter.cs, rest: [ source.cs ] }
+        span: [ 48, 51 ]
+        semantic: { type: parameter }
+      - text: )
+        textmate: { scope: punctuation.parenthesis.close.cs, rest: [ source.cs ] }
+        span: [ 51, 52 ]
+      - text: ;
+        textmate: { scope: punctuation.terminator.statement.cs, rest: [ source.cs ] }
+        span: [ 52, 53 ]
+  - lineNumber: 27
+    sourceText: record User(long Id, string Name, HashSet<Role> Roles) {
+    segments:
+      - text: record
+        textmate: { scope: storage.type.record.cs, rest: [ source.cs ] }
+        span: [ 0, 6 ]
+      - text: User
+        textmate: { scope: entity.name.type.class.cs, rest: [ source.cs ] }
+        span: [ 7, 11 ]
+      - text: (
+        textmate: { scope: punctuation.parenthesis.open.cs, rest: [ source.cs ] }
+        span: [ 11, 12 ]
+      - text: long
+        textmate: { scope: keyword.type.long.cs, rest: [ source.cs ] }
+        span: [ 12, 16 ]
+      - text: Id
+        textmate: { scope: entity.name.variable.parameter.cs, rest: [ source.cs ] }
+        span: [ 17, 19 ]
+        semantic: { type: parameter }
+      - text: ','
+        textmate: { scope: punctuation.separator.comma.cs, rest: [ source.cs ] }
+        span: [ 19, 20 ]
+      - text: string
+        textmate: { scope: keyword.type.string.cs, rest: [ source.cs ] }
+        span: [ 21, 27 ]
+      - text: Name
+        textmate: { scope: entity.name.variable.parameter.cs, rest: [ source.cs ] }
+        span: [ 28, 32 ]
+        semantic: { type: parameter }
+      - text: ','
+        textmate: { scope: punctuation.separator.comma.cs, rest: [ source.cs ] }
+        span: [ 32, 33 ]
+      - text: HashSet
+        textmate: { scope: entity.name.type.cs, rest: [ source.cs ] }
+        span: [ 34, 41 ]
+        semantic: { type: class }
+      - text: <
+        textmate: { scope: punctuation.definition.typeparameters.begin.cs, rest: [ source.cs ] }
+        span: [ 41, 42 ]
+      - text: Role
+        textmate: { scope: entity.name.type.cs, rest: [ source.cs ] }
+        span: [ 42, 46 ]
+        semantic: { type: enum }
+      - text: '>'
+        textmate: { scope: punctuation.definition.typeparameters.end.cs, rest: [ source.cs ] }
+        span: [ 46, 47 ]
+      - text: Roles
+        textmate: { scope: entity.name.variable.parameter.cs, rest: [ source.cs ] }
+        span: [ 48, 53 ]
+        semantic: { type: parameter }
+      - text: )
+        textmate: { scope: punctuation.parenthesis.close.cs, rest: [ source.cs ] }
+        span: [ 53, 54 ]
+      - text: '{'
+        textmate: { scope: punctuation.curlybrace.open.cs, rest: [ source.cs ] }
+        span: [ 55, 56 ]
+  - lineNumber: 28
+    sourceText: '    public User(long id, string name) : this(id, name, []) {'
+    segments:
+      - text: public
+        textmate: { scope: storage.modifier.public.cs, rest: [ source.cs ] }
+        span: [ 4, 10 ]
+      - text: User
+        textmate: { scope: entity.name.function.cs, rest: [ source.cs ] }
+        span: [ 11, 15 ]
+      - text: (
+        textmate: { scope: punctuation.parenthesis.open.cs, rest: [ source.cs ] }
+        span: [ 15, 16 ]
+      - text: long
+        textmate: { scope: keyword.type.long.cs, rest: [ source.cs ] }
+        span: [ 16, 20 ]
+      - text: id
+        textmate: { scope: entity.name.variable.parameter.cs, rest: [ source.cs ] }
+        span: [ 21, 23 ]
+        semantic: { type: parameter }
+      - text: ','
+        textmate: { scope: punctuation.separator.comma.cs, rest: [ source.cs ] }
+        span: [ 23, 24 ]
+      - text: string
+        textmate: { scope: keyword.type.string.cs, rest: [ source.cs ] }
+        span: [ 25, 31 ]
+      - text: name
+        textmate: { scope: entity.name.variable.parameter.cs, rest: [ source.cs ] }
+        span: [ 32, 36 ]
+        semantic: { type: parameter }
+      - text: )
+        textmate: { scope: punctuation.parenthesis.close.cs, rest: [ source.cs ] }
+        span: [ 36, 37 ]
+      - text: ':'
+        textmate: { scope: punctuation.separator.colon.cs, rest: [ source.cs ] }
+        span: [ 38, 39 ]
+      - text: this
+        textmate: { scope: variable.language.this.cs, rest: [ source.cs ] }
+        span: [ 40, 44 ]
+      - text: (
+        textmate: { scope: punctuation.parenthesis.open.cs, rest: [ source.cs ] }
+        span: [ 44, 45 ]
+      - text: id
+        textmate: { scope: variable.other.readwrite.cs, rest: [ source.cs ] }
+        span: [ 45, 47 ]
+        semantic: { type: parameter }
+      - text: ','
+        textmate: { scope: punctuation.separator.comma.cs, rest: [ source.cs ] }
+        span: [ 47, 48 ]
+      - text: name
+        textmate: { scope: variable.other.readwrite.cs, rest: [ source.cs ] }
+        span: [ 49, 53 ]
+        semantic: { type: parameter }
+      - text: ','
+        textmate: { scope: punctuation.separator.comma.cs, rest: [ source.cs ] }
+        span: [ 53, 54 ]
+      - text: '['
+        textmate: { scope: punctuation.squarebracket.open.cs, rest: [ source.cs ] }
+        span: [ 55, 56 ]
+      - text: ']'
+        textmate: { scope: punctuation.squarebracket.close.cs, rest: [ source.cs ] }
+        span: [ 56, 57 ]
+      - text: )
+        textmate: { scope: punctuation.parenthesis.close.cs, rest: [ source.cs ] }
+        span: [ 57, 58 ]
+      - text: '{'
+        textmate: { scope: punctuation.curlybrace.open.cs, rest: [ source.cs ] }
+        span: [ 59, 60 ]
+  - lineNumber: 29
+    sourceText: '    }'
+    segments:
+      - text: '}'
+        textmate: { scope: punctuation.curlybrace.close.cs, rest: [ source.cs ] }
+        span: [ 4, 5 ]
+  - lineNumber: 31
+    sourceText: '    public string DisplayName => $"{Name} (id={Id})";'
+    segments:
+      - text: public
+        textmate: { scope: storage.modifier.public.cs, rest: [ source.cs ] }
+        span: [ 4, 10 ]
+      - text: string
+        textmate: { scope: keyword.type.string.cs, rest: [ source.cs ] }
+        span: [ 11, 17 ]
+      - text: DisplayName
+        textmate: { scope: entity.name.variable.property.cs, rest: [ source.cs ] }
+        span: [ 18, 29 ]
+        semantic: { type: property }
+      - text: =>
+        textmate: { scope: keyword.operator.arrow.cs, rest: [ source.cs ] }
+        span: [ 30, 32 ]
+      - text: $"
+        textmate: { scope: punctuation.definition.string.begin.cs, rest: [ source.cs, meta.accessor.getter.cs, string.quoted.double.cs ] }
+        span: [ 33, 35 ]
+      - text: '{'
+        textmate: { scope: punctuation.definition.interpolation.begin.cs, rest: [ source.cs, meta.accessor.getter.cs, string.quoted.double.cs, meta.embedded.interpolation.cs ] }
+        span: [ 35, 36 ]
+      - text: Name
+        textmate: { scope: variable.other.readwrite.cs, rest: [ source.cs, meta.accessor.getter.cs, string.quoted.double.cs, meta.embedded.interpolation.cs ] }
+        span: [ 36, 40 ]
+        semantic: { type: property }
+      - text: '}'
+        textmate: { scope: punctuation.definition.interpolation.end.cs, rest: [ source.cs, meta.accessor.getter.cs, string.quoted.double.cs, meta.embedded.interpolation.cs ] }
+        span: [ 40, 41 ]
+      - text: ' (id='
+        textmate: { scope: string.quoted.double.cs, rest: [ source.cs, meta.accessor.getter.cs ] }
+        span: [ 41, 46 ]
+      - text: '{'
+        textmate: { scope: punctuation.definition.interpolation.begin.cs, rest: [ source.cs, meta.accessor.getter.cs, string.quoted.double.cs, meta.embedded.interpolation.cs ] }
+        span: [ 46, 47 ]
+      - text: Id
+        textmate: { scope: variable.other.readwrite.cs, rest: [ source.cs, meta.accessor.getter.cs, string.quoted.double.cs, meta.embedded.interpolation.cs ] }
+        span: [ 47, 49 ]
+        semantic: { type: property }
+      - text: '}'
+        textmate: { scope: punctuation.definition.interpolation.end.cs, rest: [ source.cs, meta.accessor.getter.cs, string.quoted.double.cs, meta.embedded.interpolation.cs ] }
+        span: [ 49, 50 ]
+      - text: )
+        textmate: { scope: string.quoted.double.cs, rest: [ source.cs, meta.accessor.getter.cs ] }
+        span: [ 50, 51 ]
+      - text: '"'
+        textmate: { scope: punctuation.definition.string.end.cs, rest: [ source.cs, meta.accessor.getter.cs, string.quoted.double.cs ] }
+        span: [ 51, 52 ]
+      - text: ;
+        textmate: { scope: punctuation.terminator.statement.cs, rest: [ source.cs ] }
+        span: [ 52, 53 ]
+  - lineNumber: 32
+    sourceText: '}'
+    segments:
+      - text: '}'
+        textmate: { scope: punctuation.curlybrace.close.cs, rest: [ source.cs ] }
+        span: [ 0, 1 ]
+  - lineNumber: 34
+    sourceText: record struct Point(double X, double Y);
+    segments:
+      - text: record
+        textmate: { scope: storage.type.record.cs, rest: [ source.cs ] }
+        span: [ 0, 6 ]
+      - text: struct
+        textmate: { scope: storage.type.struct.cs, rest: [ source.cs ] }
+        span: [ 7, 13 ]
+      - text: Point
+        textmate: { scope: entity.name.type.struct.cs, rest: [ source.cs ] }
+        span: [ 14, 19 ]
+        semantic: { type: struct }
+      - text: (
+        textmate: { scope: punctuation.parenthesis.open.cs, rest: [ source.cs ] }
+        span: [ 19, 20 ]
+      - text: double
+        textmate: { scope: keyword.type.double.cs, rest: [ source.cs ] }
+        span: [ 20, 26 ]
+      - text: X
+        textmate: { scope: entity.name.variable.parameter.cs, rest: [ source.cs ] }
+        span: [ 27, 28 ]
+        semantic: { type: parameter }
+      - text: ','
+        textmate: { scope: punctuation.separator.comma.cs, rest: [ source.cs ] }
+        span: [ 28, 29 ]
+      - text: double
+        textmate: { scope: keyword.type.double.cs, rest: [ source.cs ] }
+        span: [ 30, 36 ]
+      - text: Y
+        textmate: { scope: entity.name.variable.parameter.cs, rest: [ source.cs ] }
+        span: [ 37, 38 ]
+        semantic: { type: parameter }
+      - text: )
+        textmate: { scope: punctuation.parenthesis.close.cs, rest: [ source.cs ] }
+        span: [ 38, 39 ]
+      - text: ;
+        textmate: { scope: punctuation.terminator.statement.cs, rest: [ source.cs ] }
+        span: [ 39, 40 ]
+  - lineNumber: 36
+    sourceText: readonly struct UserId(long value) {
+    segments:
+      - text: readonly
+        textmate: { scope: storage.modifier.readonly.cs, rest: [ source.cs ] }
+        span: [ 0, 8 ]
+      - text: struct
+        textmate: { scope: storage.type.struct.cs, rest: [ source.cs ] }
+        span: [ 9, 15 ]
+      - text: UserId
+        textmate: { scope: entity.name.type.struct.cs, rest: [ source.cs ] }
+        span: [ 16, 22 ]
+        semantic: { type: struct }
+      - text: (
+        textmate: { scope: punctuation.parenthesis.open.cs, rest: [ source.cs ] }
+        span: [ 22, 23 ]
+      - text: long
+        textmate: { scope: keyword.type.long.cs, rest: [ source.cs ] }
+        span: [ 23, 27 ]
+      - text: value
+        textmate: { scope: entity.name.variable.parameter.cs, rest: [ source.cs ] }
+        span: [ 28, 33 ]
+        semantic: { type: parameter }
+      - text: )
+        textmate: { scope: punctuation.parenthesis.close.cs, rest: [ source.cs ] }
+        span: [ 33, 34 ]
+      - text: '{'
+        textmate: { scope: punctuation.curlybrace.open.cs, rest: [ source.cs ] }
+        span: [ 35, 36 ]
+  - lineNumber: 37
+    sourceText: '    public long Value { get; } = value > 0'
+    segments:
+      - text: public
+        textmate: { scope: storage.modifier.public.cs, rest: [ source.cs ] }
+        span: [ 4, 10 ]
+      - text: long
+        textmate: { scope: keyword.type.long.cs, rest: [ source.cs ] }
+        span: [ 11, 15 ]
+      - text: Value
+        textmate: { scope: entity.name.variable.property.cs, rest: [ source.cs ] }
+        span: [ 16, 21 ]
+        semantic: { type: property }
+      - text: '{'
+        textmate: { scope: punctuation.curlybrace.open.cs, rest: [ source.cs ] }
+        span: [ 22, 23 ]
+      - text: get
+        textmate: { scope: storage.type.accessor.get.cs, rest: [ source.cs ] }
+        span: [ 24, 27 ]
+        semantic: { type: method }
+      - text: ;
+        textmate: { scope: punctuation.terminator.statement.cs, rest: [ source.cs ] }
+        span: [ 27, 28 ]
+      - text: '}'
+        textmate: { scope: punctuation.curlybrace.close.cs, rest: [ source.cs ] }
+        span: [ 29, 30 ]
+      - text: =
+        textmate: { scope: keyword.operator.assignment.cs, rest: [ source.cs ] }
+        span: [ 31, 32 ]
+      - text: value
+        textmate: { scope: variable.other.value.cs, rest: [ source.cs ] }
+        span: [ 33, 38 ]
+        semantic: { type: parameter }
+      - text: '>'
+        textmate: { scope: keyword.operator.relational.cs, rest: [ source.cs ] }
+        span: [ 39, 40 ]
+      - text: '0'
+        textmate: { scope: constant.numeric.decimal.cs, rest: [ source.cs ] }
+        span: [ 41, 42 ]
+  - lineNumber: 38
+    sourceText: '        ? value'
+    segments:
+      - text: '?'
+        textmate: { scope: keyword.operator.conditional.question-mark.cs, rest: [ source.cs ] }
+        span: [ 8, 9 ]
+      - text: value
+        textmate: { scope: variable.other.value.cs, rest: [ source.cs ] }
+        span: [ 10, 15 ]
+        semantic: { type: parameter }
+  - lineNumber: 39
+    sourceText: '        : throw new ArgumentOutOfRangeException(nameof(value));'
+    segments:
+      - text: ':'
+        textmate: { scope: keyword.operator.conditional.colon.cs, rest: [ source.cs ] }
+        span: [ 8, 9 ]
+      - text: throw
+        textmate: { scope: keyword.control.flow.throw.cs, rest: [ source.cs ] }
+        span: [ 10, 15 ]
+      - text: new
+        textmate: { scope: keyword.operator.expression.new.cs, rest: [ source.cs ] }
+        span: [ 16, 19 ]
+      - text: ArgumentOutOfRangeException
+        textmate: { scope: entity.name.type.cs, rest: [ source.cs ] }
+        span: [ 20, 47 ]
+        semantic: { type: class }
+      - text: (
+        textmate: { scope: punctuation.parenthesis.open.cs, rest: [ source.cs ] }
+        span: [ 47, 48 ]
+      - text: nameof
+        textmate: { scope: keyword.operator.expression.nameof.cs, rest: [ source.cs ] }
+        span: [ 48, 54 ]
+      - text: (
+        textmate: { scope: punctuation.parenthesis.open.cs, rest: [ source.cs ] }
+        span: [ 54, 55 ]
+      - text: value
+        textmate: { scope: variable.other.value.cs, rest: [ source.cs ] }
+        span: [ 55, 60 ]
+        semantic: { type: parameter }
+      - text: )
+        textmate: { scope: punctuation.parenthesis.close.cs, rest: [ source.cs ] }
+        span: [ 60, 61 ]
+      - text: )
+        textmate: { scope: punctuation.parenthesis.close.cs, rest: [ source.cs ] }
+        span: [ 61, 62 ]
+      - text: ;
+        textmate: { scope: punctuation.terminator.statement.cs, rest: [ source.cs ] }
+        span: [ 62, 63 ]
+  - lineNumber: 40
+    sourceText: '}'
+    segments:
+      - text: '}'
+        textmate: { scope: punctuation.curlybrace.close.cs, rest: [ source.cs ] }
+        span: [ 0, 1 ]
+  - lineNumber: 42
+    sourceText: '[Tracked(label: "repository")]'
+    segments:
+      - text: '['
+        textmate: { scope: punctuation.squarebracket.open.cs, rest: [ source.cs ] }
+        span: [ 0, 1 ]
+      - text: Tracked
+        textmate: { scope: entity.name.type.cs, rest: [ source.cs ] }
+        span: [ 1, 8 ]
+        semantic: { type: class }
+      - text: (
+        textmate: { scope: punctuation.parenthesis.open.cs, rest: [ source.cs ] }
+        span: [ 8, 9 ]
+      - text: label
+        textmate: { scope: variable.other.readwrite.cs, rest: [ source.cs ] }
+        span: [ 9, 14 ]
+        semantic: { type: parameter }
+      - text: ':'
+        textmate: { scope: keyword.operator.conditional.colon.cs, rest: [ source.cs ] }
+        span: [ 14, 15 ]
+      - text: '"'
+        textmate: { scope: punctuation.definition.string.begin.cs, rest: [ source.cs, string.quoted.double.cs ] }
+        span: [ 16, 17 ]
+      - text: repository
+        textmate: { scope: string.quoted.double.cs, rest: [ source.cs ] }
+        span: [ 17, 27 ]
+      - text: '"'
+        textmate: { scope: punctuation.definition.string.end.cs, rest: [ source.cs, string.quoted.double.cs ] }
+        span: [ 27, 28 ]
+      - text: )
+        textmate: { scope: punctuation.parenthesis.close.cs, rest: [ source.cs ] }
+        span: [ 28, 29 ]
+      - text: ']'
+        textmate: { scope: punctuation.squarebracket.close.cs, rest: [ source.cs ] }
+        span: [ 29, 30 ]
+  - lineNumber: 43
+    sourceText: 'class UserRepository : IRepository<UserId, User>, IDisposable {'
+    segments:
+      - text: class
+        textmate: { scope: storage.type.class.cs, rest: [ source.cs ] }
+        span: [ 0, 5 ]
+      - text: UserRepository
+        textmate: { scope: entity.name.type.class.cs, rest: [ source.cs ] }
+        span: [ 6, 20 ]
+      - text: ':'
+        textmate: { scope: punctuation.separator.colon.cs, rest: [ source.cs ] }
+        span: [ 21, 22 ]
+      - text: IRepository
+        textmate: { scope: entity.name.type.cs, rest: [ source.cs ] }
+        span: [ 23, 34 ]
+        semantic: { type: interface }
+      - text: <
+        textmate: { scope: punctuation.definition.typeparameters.begin.cs, rest: [ source.cs ] }
+        span: [ 34, 35 ]
+      - text: UserId
+        textmate: { scope: entity.name.type.cs, rest: [ source.cs ] }
+        span: [ 35, 41 ]
+        semantic: { type: struct }
+      - text: ','
+        textmate: { scope: punctuation.separator.comma.cs, rest: [ source.cs ] }
+        span: [ 41, 42 ]
+      - text: User
+        textmate: { scope: entity.name.type.cs, rest: [ source.cs ] }
+        span: [ 43, 47 ]
+      - text: '>'
+        textmate: { scope: punctuation.definition.typeparameters.end.cs, rest: [ source.cs ] }
+        span: [ 47, 48 ]
+      - text: ','
+        textmate: { scope: punctuation.separator.comma.cs, rest: [ source.cs ] }
+        span: [ 48, 49 ]
+      - text: IDisposable
+        textmate: { scope: entity.name.type.cs, rest: [ source.cs ] }
+        span: [ 50, 61 ]
+        semantic: { type: interface }
+      - text: '{'
+        textmate: { scope: punctuation.curlybrace.open.cs, rest: [ source.cs ] }
+        span: [ 62, 63 ]
+  - lineNumber: 44
+    sourceText: '    private readonly Dictionary<long, User> _store = new();'
+    segments:
+      - text: private
+        textmate: { scope: storage.modifier.private.cs, rest: [ source.cs ] }
+        span: [ 4, 11 ]
+      - text: readonly
+        textmate: { scope: storage.modifier.readonly.cs, rest: [ source.cs ] }
+        span: [ 12, 20 ]
+      - text: Dictionary
+        textmate: { scope: entity.name.type.cs, rest: [ source.cs ] }
+        span: [ 21, 31 ]
+        semantic: { type: class }
+      - text: <
+        textmate: { scope: punctuation.definition.typeparameters.begin.cs, rest: [ source.cs ] }
+        span: [ 31, 32 ]
+      - text: long
+        textmate: { scope: keyword.type.long.cs, rest: [ source.cs ] }
+        span: [ 32, 36 ]
+      - text: ','
+        textmate: { scope: punctuation.separator.comma.cs, rest: [ source.cs ] }
+        span: [ 36, 37 ]
+      - text: User
+        textmate: { scope: entity.name.type.cs, rest: [ source.cs ] }
+        span: [ 38, 42 ]
+      - text: '>'
+        textmate: { scope: punctuation.definition.typeparameters.end.cs, rest: [ source.cs ] }
+        span: [ 42, 43 ]
+      - text: _store
+        textmate: { scope: entity.name.variable.field.cs, rest: [ source.cs ] }
+        span: [ 44, 50 ]
+      - text: =
+        textmate: { scope: keyword.operator.assignment.cs, rest: [ source.cs ] }
+        span: [ 51, 52 ]
+      - text: new
+        textmate: { scope: keyword.operator.expression.new.cs, rest: [ source.cs ] }
+        span: [ 53, 56 ]
+      - text: (
+        textmate: { scope: punctuation.parenthesis.open.cs, rest: [ source.cs ] }
+        span: [ 56, 57 ]
+      - text: )
+        textmate: { scope: punctuation.parenthesis.close.cs, rest: [ source.cs ] }
+        span: [ 57, 58 ]
+      - text: ;
+        textmate: { scope: punctuation.terminator.statement.cs, rest: [ source.cs ] }
+        span: [ 58, 59 ]
+  - lineNumber: 45
+    sourceText: '    private bool _disposed;'
+    segments:
+      - text: private
+        textmate: { scope: storage.modifier.private.cs, rest: [ source.cs ] }
+        span: [ 4, 11 ]
+      - text: bool
+        textmate: { scope: keyword.type.bool.cs, rest: [ source.cs ] }
+        span: [ 12, 16 ]
+      - text: _disposed
+        textmate: { scope: entity.name.variable.field.cs, rest: [ source.cs ] }
+        span: [ 17, 26 ]
+      - text: ;
+        textmate: { scope: punctuation.terminator.statement.cs, rest: [ source.cs ] }
+        span: [ 26, 27 ]
+  - lineNumber: 47
+    sourceText: '    public const string TableName = "users";'
+    segments:
+      - text: public
+        textmate: { scope: storage.modifier.public.cs, rest: [ source.cs ] }
+        span: [ 4, 10 ]
+      - text: const
+        textmate: { scope: storage.modifier.const.cs, rest: [ source.cs ] }
+        span: [ 11, 16 ]
+      - text: string
+        textmate: { scope: keyword.type.string.cs, rest: [ source.cs ] }
+        span: [ 17, 23 ]
+      - text: TableName
+        textmate: { scope: entity.name.variable.field.cs, rest: [ source.cs ] }
+        span: [ 24, 33 ]
+      - text: =
+        textmate: { scope: keyword.operator.assignment.cs, rest: [ source.cs ] }
+        span: [ 34, 35 ]
+      - text: '"'
+        textmate: { scope: punctuation.definition.string.begin.cs, rest: [ source.cs, string.quoted.double.cs ] }
+        span: [ 36, 37 ]
+      - text: users
+        textmate: { scope: string.quoted.double.cs, rest: [ source.cs ] }
+        span: [ 37, 42 ]
+      - text: '"'
+        textmate: { scope: punctuation.definition.string.end.cs, rest: [ source.cs, string.quoted.double.cs ] }
+        span: [ 42, 43 ]
+      - text: ;
+        textmate: { scope: punctuation.terminator.statement.cs, rest: [ source.cs ] }
+        span: [ 43, 44 ]
+  - lineNumber: 48
+    sourceText: '    public static readonly int MaxRetries = 3;'
+    segments:
+      - text: public
+        textmate: { scope: storage.modifier.public.cs, rest: [ source.cs ] }
+        span: [ 4, 10 ]
+      - text: static
+        textmate: { scope: storage.modifier.static.cs, rest: [ source.cs ] }
+        span: [ 11, 17 ]
+      - text: readonly
+        textmate: { scope: storage.modifier.readonly.cs, rest: [ source.cs ] }
+        span: [ 18, 26 ]
+      - text: int
+        textmate: { scope: keyword.type.int.cs, rest: [ source.cs ] }
+        span: [ 27, 30 ]
+      - text: MaxRetries
+        textmate: { scope: entity.name.variable.field.cs, rest: [ source.cs ] }
+        span: [ 31, 41 ]
+      - text: =
+        textmate: { scope: keyword.operator.assignment.cs, rest: [ source.cs ] }
+        span: [ 42, 43 ]
+      - text: '3'
+        textmate: { scope: constant.numeric.decimal.cs, rest: [ source.cs ] }
+        span: [ 44, 45 ]
+      - text: ;
+        textmate: { scope: punctuation.terminator.statement.cs, rest: [ source.cs ] }
+        span: [ 45, 46 ]
+  - lineNumber: 49
+    sourceText: '    public event EventHandler<User>? UserSaved;'
+    segments:
+      - text: public
+        textmate: { scope: storage.modifier.public.cs, rest: [ source.cs ] }
+        span: [ 4, 10 ]
+      - text: event
+        textmate: { scope: storage.type.event.cs, rest: [ source.cs ] }
+        span: [ 11, 16 ]
+      - text: EventHandler
+        textmate: { scope: entity.name.type.cs, rest: [ source.cs ] }
+        span: [ 17, 29 ]
+      - text: <
+        textmate: { scope: punctuation.definition.typeparameters.begin.cs, rest: [ source.cs ] }
+        span: [ 29, 30 ]
+      - text: User
+        textmate: { scope: entity.name.type.cs, rest: [ source.cs ] }
+        span: [ 30, 34 ]
+      - text: '>'
+        textmate: { scope: punctuation.definition.typeparameters.end.cs, rest: [ source.cs ] }
+        span: [ 34, 35 ]
+      - text: '?'
+        textmate: { scope: punctuation.separator.question-mark.cs, rest: [ source.cs ] }
+        span: [ 35, 36 ]
+      - text: UserSaved
+        textmate: { scope: entity.name.variable.event.cs, rest: [ source.cs ] }
+        span: [ 37, 46 ]
+        semantic: { type: event }
+      - text: ;
+        textmate: { scope: punctuation.terminator.statement.cs, rest: [ source.cs ] }
+        span: [ 46, 47 ]
+  - lineNumber: 51
+    sourceText: '    public User? FindById(UserId id) {'
+    segments:
+      - text: public
+        textmate: { scope: storage.modifier.public.cs, rest: [ source.cs ] }
+        span: [ 4, 10 ]
+      - text: User
+        textmate: { scope: entity.name.type.cs, rest: [ source.cs ] }
+        span: [ 11, 15 ]
+      - text: '?'
+        textmate: { scope: punctuation.separator.question-mark.cs, rest: [ source.cs ] }
+        span: [ 15, 16 ]
+      - text: FindById
+        textmate: { scope: entity.name.function.cs, rest: [ source.cs ] }
+        span: [ 17, 25 ]
+      - text: (
+        textmate: { scope: punctuation.parenthesis.open.cs, rest: [ source.cs ] }
+        span: [ 25, 26 ]
+      - text: UserId
+        textmate: { scope: entity.name.type.cs, rest: [ source.cs ] }
+        span: [ 26, 32 ]
+        semantic: { type: struct }
+      - text: id
+        textmate: { scope: entity.name.variable.parameter.cs, rest: [ source.cs ] }
+        span: [ 33, 35 ]
+        semantic: { type: parameter }
+      - text: )
+        textmate: { scope: punctuation.parenthesis.close.cs, rest: [ source.cs ] }
+        span: [ 35, 36 ]
+      - text: '{'
+        textmate: { scope: punctuation.curlybrace.open.cs, rest: [ source.cs ] }
+        span: [ 37, 38 ]
+  - lineNumber: 52
+    sourceText: '        return _store.GetValueOrDefault(id.Value);'
+    segments:
+      - text: return
+        textmate: { scope: keyword.control.flow.return.cs, rest: [ source.cs ] }
+        span: [ 8, 14 ]
+      - text: _store
+        textmate: { scope: variable.other.object.cs, rest: [ source.cs ] }
+        span: [ 15, 21 ]
+      - text: .
+        textmate: { scope: punctuation.accessor.cs, rest: [ source.cs ] }
+        span: [ 21, 22 ]
+      - text: GetValueOrDefault
+        textmate: { scope: entity.name.function.cs, rest: [ source.cs ] }
+        span: [ 22, 39 ]
+      - text: (
+        textmate: { scope: punctuation.parenthesis.open.cs, rest: [ source.cs ] }
+        span: [ 39, 40 ]
+      - text: id
+        textmate: { scope: variable.other.object.cs, rest: [ source.cs ] }
+        span: [ 40, 42 ]
+        semantic: { type: parameter }
+      - text: .
+        textmate: { scope: punctuation.accessor.cs, rest: [ source.cs ] }
+        span: [ 42, 43 ]
+      - text: Value
+        textmate: { scope: variable.other.object.property.cs, rest: [ source.cs ] }
+        span: [ 43, 48 ]
+        semantic: { type: property }
+      - text: )
+        textmate: { scope: punctuation.parenthesis.close.cs, rest: [ source.cs ] }
+        span: [ 48, 49 ]
+      - text: ;
+        textmate: { scope: punctuation.terminator.statement.cs, rest: [ source.cs ] }
+        span: [ 49, 50 ]
+  - lineNumber: 53
+    sourceText: '    }'
+    segments:
+      - text: '}'
+        textmate: { scope: punctuation.curlybrace.close.cs, rest: [ source.cs ] }
+        span: [ 4, 5 ]
+  - lineNumber: 55
+    sourceText: '    public IEnumerable<User> FindAll() => _store.Values;'
+    segments:
+      - text: public
+        textmate: { scope: storage.modifier.public.cs, rest: [ source.cs ] }
+        span: [ 4, 10 ]
+      - text: IEnumerable
+        textmate: { scope: entity.name.type.cs, rest: [ source.cs ] }
+        span: [ 11, 22 ]
+        semantic: { type: interface }
+      - text: <
+        textmate: { scope: punctuation.definition.typeparameters.begin.cs, rest: [ source.cs ] }
+        span: [ 22, 23 ]
+      - text: User
+        textmate: { scope: entity.name.type.cs, rest: [ source.cs ] }
+        span: [ 23, 27 ]
+      - text: '>'
+        textmate: { scope: punctuation.definition.typeparameters.end.cs, rest: [ source.cs ] }
+        span: [ 27, 28 ]
+      - text: FindAll
+        textmate: { scope: entity.name.function.cs, rest: [ source.cs ] }
+        span: [ 29, 36 ]
+      - text: (
+        textmate: { scope: punctuation.parenthesis.open.cs, rest: [ source.cs ] }
+        span: [ 36, 37 ]
+      - text: )
+        textmate: { scope: punctuation.parenthesis.close.cs, rest: [ source.cs ] }
+        span: [ 37, 38 ]
+      - text: =>
+        textmate: { scope: keyword.operator.arrow.cs, rest: [ source.cs ] }
+        span: [ 39, 41 ]
+      - text: _store
+        textmate: { scope: variable.other.object.cs, rest: [ source.cs ] }
+        span: [ 42, 48 ]
+      - text: .
+        textmate: { scope: punctuation.accessor.cs, rest: [ source.cs ] }
+        span: [ 48, 49 ]
+      - text: Values
+        textmate: { scope: variable.other.object.property.cs, rest: [ source.cs ] }
+        span: [ 49, 55 ]
+        semantic: { type: property }
+      - text: ;
+        textmate: { scope: punctuation.terminator.statement.cs, rest: [ source.cs ] }
+        span: [ 55, 56 ]
+  - lineNumber: 57
+    sourceText: '    public void Save(User user) {'
+    segments:
+      - text: public
+        textmate: { scope: storage.modifier.public.cs, rest: [ source.cs ] }
+        span: [ 4, 10 ]
+      - text: void
+        textmate: { scope: keyword.type.void.cs, rest: [ source.cs ] }
+        span: [ 11, 15 ]
+      - text: Save
+        textmate: { scope: entity.name.function.cs, rest: [ source.cs ] }
+        span: [ 16, 20 ]
+        semantic: { type: method }
+      - text: (
+        textmate: { scope: punctuation.parenthesis.open.cs, rest: [ source.cs ] }
+        span: [ 20, 21 ]
+      - text: User
+        textmate: { scope: entity.name.type.cs, rest: [ source.cs ] }
+        span: [ 21, 25 ]
+      - text: user
+        textmate: { scope: entity.name.variable.parameter.cs, rest: [ source.cs ] }
+        span: [ 26, 30 ]
+        semantic: { type: parameter }
+      - text: )
+        textmate: { scope: punctuation.parenthesis.close.cs, rest: [ source.cs ] }
+        span: [ 30, 31 ]
+      - text: '{'
+        textmate: { scope: punctuation.curlybrace.open.cs, rest: [ source.cs ] }
+        span: [ 32, 33 ]
+  - lineNumber: 58
+    sourceText: '        _store[user.Id] = user;'
+    segments:
+      - text: _store
+        textmate: { scope: variable.other.object.property.cs, rest: [ source.cs ] }
+        span: [ 8, 14 ]
+      - text: '['
+        textmate: { scope: punctuation.squarebracket.open.cs, rest: [ source.cs ] }
+        span: [ 14, 15 ]
+      - text: user
+        textmate: { scope: variable.other.object.cs, rest: [ source.cs ] }
+        span: [ 15, 19 ]
+        semantic: { type: parameter }
+      - text: .
+        textmate: { scope: punctuation.accessor.cs, rest: [ source.cs ] }
+        span: [ 19, 20 ]
+      - text: Id
+        textmate: { scope: variable.other.object.property.cs, rest: [ source.cs ] }
+        span: [ 20, 22 ]
+        semantic: { type: property }
+      - text: ']'
+        textmate: { scope: punctuation.squarebracket.close.cs, rest: [ source.cs ] }
+        span: [ 22, 23 ]
+      - text: =
+        textmate: { scope: keyword.operator.assignment.cs, rest: [ source.cs ] }
+        span: [ 24, 25 ]
+      - text: user
+        textmate: { scope: variable.other.readwrite.cs, rest: [ source.cs ] }
+        span: [ 26, 30 ]
+        semantic: { type: parameter }
+      - text: ;
+        textmate: { scope: punctuation.terminator.statement.cs, rest: [ source.cs ] }
+        span: [ 30, 31 ]
+  - lineNumber: 59
+    sourceText: '        UserSaved?.Invoke(this, user);'
+    segments:
+      - text: UserSaved
+        textmate: { scope: variable.other.object.cs, rest: [ source.cs ] }
+        span: [ 8, 17 ]
+        semantic: { type: event }
+      - text: '?'
+        textmate: { scope: keyword.operator.null-conditional.cs, rest: [ source.cs ] }
+        span: [ 17, 18 ]
+      - text: .
+        textmate: { scope: punctuation.accessor.cs, rest: [ source.cs ] }
+        span: [ 18, 19 ]
+      - text: Invoke
+        textmate: { scope: entity.name.function.cs, rest: [ source.cs ] }
+        span: [ 19, 25 ]
+      - text: (
+        textmate: { scope: punctuation.parenthesis.open.cs, rest: [ source.cs ] }
+        span: [ 25, 26 ]
+      - text: this
+        textmate: { scope: variable.language.this.cs, rest: [ source.cs ] }
+        span: [ 26, 30 ]
+      - text: ','
+        textmate: { scope: punctuation.separator.comma.cs, rest: [ source.cs ] }
+        span: [ 30, 31 ]
+      - text: user
+        textmate: { scope: variable.other.readwrite.cs, rest: [ source.cs ] }
+        span: [ 32, 36 ]
+        semantic: { type: parameter }
+      - text: )
+        textmate: { scope: punctuation.parenthesis.close.cs, rest: [ source.cs ] }
+        span: [ 36, 37 ]
+      - text: ;
+        textmate: { scope: punctuation.terminator.statement.cs, rest: [ source.cs ] }
+        span: [ 37, 38 ]
+  - lineNumber: 60
+    sourceText: '    }'
+    segments:
+      - text: '}'
+        textmate: { scope: punctuation.curlybrace.close.cs, rest: [ source.cs ] }
+        span: [ 4, 5 ]
+  - lineNumber: 62
+    sourceText: '    public void Dispose() {'
+    segments:
+      - text: public
+        textmate: { scope: storage.modifier.public.cs, rest: [ source.cs ] }
+        span: [ 4, 10 ]
+      - text: void
+        textmate: { scope: keyword.type.void.cs, rest: [ source.cs ] }
+        span: [ 11, 15 ]
+      - text: Dispose
+        textmate: { scope: entity.name.function.cs, rest: [ source.cs ] }
+        span: [ 16, 23 ]
+      - text: (
+        textmate: { scope: punctuation.parenthesis.open.cs, rest: [ source.cs ] }
+        span: [ 23, 24 ]
+      - text: )
+        textmate: { scope: punctuation.parenthesis.close.cs, rest: [ source.cs ] }
+        span: [ 24, 25 ]
+      - text: '{'
+        textmate: { scope: punctuation.curlybrace.open.cs, rest: [ source.cs ] }
+        span: [ 26, 27 ]
+  - lineNumber: 63
+    sourceText: '        if (_disposed) return;'
+    segments:
+      - text: if
+        textmate: { scope: keyword.control.conditional.if.cs, rest: [ source.cs ] }
+        span: [ 8, 10 ]
+      - text: (
+        textmate: { scope: punctuation.parenthesis.open.cs, rest: [ source.cs ] }
+        span: [ 11, 12 ]
+      - text: _disposed
+        textmate: { scope: variable.other.readwrite.cs, rest: [ source.cs ] }
+        span: [ 12, 21 ]
+      - text: )
+        textmate: { scope: punctuation.parenthesis.close.cs, rest: [ source.cs ] }
+        span: [ 21, 22 ]
+      - text: return
+        textmate: { scope: keyword.control.flow.return.cs, rest: [ source.cs ] }
+        span: [ 23, 29 ]
+      - text: ;
+        textmate: { scope: punctuation.terminator.statement.cs, rest: [ source.cs ] }
+        span: [ 29, 30 ]
+  - lineNumber: 64
+    sourceText: '        _store.Clear();'
+    segments:
+      - text: _store
+        textmate: { scope: variable.other.object.cs, rest: [ source.cs ] }
+        span: [ 8, 14 ]
+      - text: .
+        textmate: { scope: punctuation.accessor.cs, rest: [ source.cs ] }
+        span: [ 14, 15 ]
+      - text: Clear
+        textmate: { scope: entity.name.function.cs, rest: [ source.cs ] }
+        span: [ 15, 20 ]
+      - text: (
+        textmate: { scope: punctuation.parenthesis.open.cs, rest: [ source.cs ] }
+        span: [ 20, 21 ]
+      - text: )
+        textmate: { scope: punctuation.parenthesis.close.cs, rest: [ source.cs ] }
+        span: [ 21, 22 ]
+      - text: ;
+        textmate: { scope: punctuation.terminator.statement.cs, rest: [ source.cs ] }
+        span: [ 22, 23 ]
+  - lineNumber: 65
+    sourceText: '        _disposed = true;'
+    segments:
+      - text: _disposed
+        textmate: { scope: variable.other.readwrite.cs, rest: [ source.cs ] }
+        span: [ 8, 17 ]
+      - text: =
+        textmate: { scope: keyword.operator.assignment.cs, rest: [ source.cs ] }
+        span: [ 18, 19 ]
+      - text: 'true'
+        textmate: { scope: constant.language.boolean.true.cs, rest: [ source.cs ] }
+        span: [ 20, 24 ]
+      - text: ;
+        textmate: { scope: punctuation.terminator.statement.cs, rest: [ source.cs ] }
+        span: [ 24, 25 ]
+  - lineNumber: 66
+    sourceText: '        GC.SuppressFinalize(this);'
+    segments:
+      - text: GC
+        textmate: { scope: variable.other.object.cs, rest: [ source.cs ] }
+        span: [ 8, 10 ]
+        semantic: { type: class, modifiers: [ static ] }
+      - text: .
+        textmate: { scope: punctuation.accessor.cs, rest: [ source.cs ] }
+        span: [ 10, 11 ]
+      - text: SuppressFinalize
+        textmate: { scope: entity.name.function.cs, rest: [ source.cs ] }
+        span: [ 11, 27 ]
+      - text: (
+        textmate: { scope: punctuation.parenthesis.open.cs, rest: [ source.cs ] }
+        span: [ 27, 28 ]
+      - text: this
+        textmate: { scope: variable.language.this.cs, rest: [ source.cs ] }
+        span: [ 28, 32 ]
+      - text: )
+        textmate: { scope: punctuation.parenthesis.close.cs, rest: [ source.cs ] }
+        span: [ 32, 33 ]
+      - text: ;
+        textmate: { scope: punctuation.terminator.statement.cs, rest: [ source.cs ] }
+        span: [ 33, 34 ]
+  - lineNumber: 67
+    sourceText: '    }'
+    segments:
+      - text: '}'
+        textmate: { scope: punctuation.curlybrace.close.cs, rest: [ source.cs ] }
+        span: [ 4, 5 ]
+  - lineNumber: 68
+    sourceText: '}'
+    segments:
+      - text: '}'
+        textmate: { scope: punctuation.curlybrace.close.cs, rest: [ source.cs ] }
+        span: [ 0, 1 ]
+  - lineNumber: 70
+    sourceText: static class UserExtensions {
+    segments:
+      - text: static
+        textmate: { scope: storage.modifier.static.cs, rest: [ source.cs ] }
+        span: [ 0, 6 ]
+      - text: class
+        textmate: { scope: storage.type.class.cs, rest: [ source.cs ] }
+        span: [ 7, 12 ]
+      - text: UserExtensions
+        textmate: { scope: entity.name.type.class.cs, rest: [ source.cs ] }
+        span: [ 13, 27 ]
+        semantic: { type: class, modifiers: [ static ] }
+      - text: '{'
+        textmate: { scope: punctuation.curlybrace.open.cs, rest: [ source.cs ] }
+        span: [ 28, 29 ]
+  - lineNumber: 71
+    sourceText: '    public static bool IsAdmin(this User user) => user.Roles.Contains(Role.Admin);'
+    segments:
+      - text: public
+        textmate: { scope: storage.modifier.public.cs, rest: [ source.cs ] }
+        span: [ 4, 10 ]
+      - text: static
+        textmate: { scope: storage.modifier.static.cs, rest: [ source.cs ] }
+        span: [ 11, 17 ]
+      - text: bool
+        textmate: { scope: keyword.type.bool.cs, rest: [ source.cs ] }
+        span: [ 18, 22 ]
+      - text: IsAdmin
+        textmate: { scope: entity.name.function.cs, rest: [ source.cs ] }
+        span: [ 23, 30 ]
+        semantic: { type: method, modifiers: [ static ] }
+      - text: (
+        textmate: { scope: punctuation.parenthesis.open.cs, rest: [ source.cs ] }
+        span: [ 30, 31 ]
+      - text: this
+        textmate: { scope: storage.modifier.this.cs, rest: [ source.cs ] }
+        span: [ 31, 35 ]
+      - text: User
+        textmate: { scope: entity.name.type.cs, rest: [ source.cs ] }
+        span: [ 36, 40 ]
+      - text: user
+        textmate: { scope: entity.name.variable.parameter.cs, rest: [ source.cs ] }
+        span: [ 41, 45 ]
+        semantic: { type: parameter }
+      - text: )
+        textmate: { scope: punctuation.parenthesis.close.cs, rest: [ source.cs ] }
+        span: [ 45, 46 ]
+      - text: =>
+        textmate: { scope: keyword.operator.arrow.cs, rest: [ source.cs ] }
+        span: [ 47, 49 ]
+      - text: user
+        textmate: { scope: variable.other.object.cs, rest: [ source.cs ] }
+        span: [ 50, 54 ]
+        semantic: { type: parameter }
+      - text: .
+        textmate: { scope: punctuation.accessor.cs, rest: [ source.cs ] }
+        span: [ 54, 55 ]
+      - text: Roles
+        textmate: { scope: variable.other.object.property.cs, rest: [ source.cs ] }
+        span: [ 55, 60 ]
+        semantic: { type: property }
+      - text: .
+        textmate: { scope: punctuation.accessor.cs, rest: [ source.cs ] }
+        span: [ 60, 61 ]
+      - text: Contains
+        textmate: { scope: entity.name.function.cs, rest: [ source.cs ] }
+        span: [ 61, 69 ]
+      - text: (
+        textmate: { scope: punctuation.parenthesis.open.cs, rest: [ source.cs ] }
+        span: [ 69, 70 ]
+      - text: Role
+        textmate: { scope: variable.other.object.cs, rest: [ source.cs ] }
+        span: [ 70, 74 ]
+        semantic: { type: enum }
+      - text: .
+        textmate: { scope: punctuation.accessor.cs, rest: [ source.cs ] }
+        span: [ 74, 75 ]
+      - text: Admin
+        textmate: { scope: variable.other.object.property.cs, rest: [ source.cs ] }
+        span: [ 75, 80 ]
+      - text: )
+        textmate: { scope: punctuation.parenthesis.close.cs, rest: [ source.cs ] }
+        span: [ 80, 81 ]
+      - text: ;
+        textmate: { scope: punctuation.terminator.statement.cs, rest: [ source.cs ] }
+        span: [ 81, 82 ]
+  - lineNumber: 72
+    sourceText: '    public static IEnumerable<User> Admins(this IEnumerable<User> users) => users.Where(u => u.IsAdmin());'
+    segments:
+      - text: public
+        textmate: { scope: storage.modifier.public.cs, rest: [ source.cs ] }
+        span: [ 4, 10 ]
+      - text: static
+        textmate: { scope: storage.modifier.static.cs, rest: [ source.cs ] }
+        span: [ 11, 17 ]
+      - text: IEnumerable
+        textmate: { scope: entity.name.type.cs, rest: [ source.cs ] }
+        span: [ 18, 29 ]
+        semantic: { type: interface }
+      - text: <
+        textmate: { scope: punctuation.definition.typeparameters.begin.cs, rest: [ source.cs ] }
+        span: [ 29, 30 ]
+      - text: User
+        textmate: { scope: entity.name.type.cs, rest: [ source.cs ] }
+        span: [ 30, 34 ]
+      - text: '>'
+        textmate: { scope: punctuation.definition.typeparameters.end.cs, rest: [ source.cs ] }
+        span: [ 34, 35 ]
+      - text: Admins
+        textmate: { scope: entity.name.function.cs, rest: [ source.cs ] }
+        span: [ 36, 42 ]
+        semantic: { type: method, modifiers: [ static ] }
+      - text: (
+        textmate: { scope: punctuation.parenthesis.open.cs, rest: [ source.cs ] }
+        span: [ 42, 43 ]
+      - text: this
+        textmate: { scope: storage.modifier.this.cs, rest: [ source.cs ] }
+        span: [ 43, 47 ]
+      - text: IEnumerable
+        textmate: { scope: entity.name.type.cs, rest: [ source.cs ] }
+        span: [ 48, 59 ]
+        semantic: { type: interface }
+      - text: <
+        textmate: { scope: punctuation.definition.typeparameters.begin.cs, rest: [ source.cs ] }
+        span: [ 59, 60 ]
+      - text: User
+        textmate: { scope: entity.name.type.cs, rest: [ source.cs ] }
+        span: [ 60, 64 ]
+      - text: '>'
+        textmate: { scope: punctuation.definition.typeparameters.end.cs, rest: [ source.cs ] }
+        span: [ 64, 65 ]
+      - text: users
+        textmate: { scope: entity.name.variable.parameter.cs, rest: [ source.cs ] }
+        span: [ 66, 71 ]
+        semantic: { type: parameter }
+      - text: )
+        textmate: { scope: punctuation.parenthesis.close.cs, rest: [ source.cs ] }
+        span: [ 71, 72 ]
+      - text: =>
+        textmate: { scope: keyword.operator.arrow.cs, rest: [ source.cs ] }
+        span: [ 73, 75 ]
+      - text: users
+        textmate: { scope: variable.other.object.cs, rest: [ source.cs ] }
+        span: [ 76, 81 ]
+        semantic: { type: parameter }
+      - text: .
+        textmate: { scope: punctuation.accessor.cs, rest: [ source.cs ] }
+        span: [ 81, 82 ]
+      - text: Where
+        textmate: { scope: entity.name.function.cs, rest: [ source.cs ] }
+        span: [ 82, 87 ]
+      - text: (
+        textmate: { scope: punctuation.parenthesis.open.cs, rest: [ source.cs ] }
+        span: [ 87, 88 ]
+      - text: u
+        textmate: { scope: entity.name.variable.parameter.cs, rest: [ source.cs ] }
+        span: [ 88, 89 ]
+        semantic: { type: parameter }
+      - text: =>
+        textmate: { scope: keyword.operator.arrow.cs, rest: [ source.cs ] }
+        span: [ 90, 92 ]
+      - text: u
+        textmate: { scope: variable.other.object.cs, rest: [ source.cs ] }
+        span: [ 93, 94 ]
+        semantic: { type: parameter }
+      - text: .
+        textmate: { scope: punctuation.accessor.cs, rest: [ source.cs ] }
+        span: [ 94, 95 ]
+      - text: IsAdmin
+        textmate: { scope: entity.name.function.cs, rest: [ source.cs ] }
+        span: [ 95, 102 ]
+      - text: (
+        textmate: { scope: punctuation.parenthesis.open.cs, rest: [ source.cs ] }
+        span: [ 102, 103 ]
+      - text: )
+        textmate: { scope: punctuation.parenthesis.close.cs, rest: [ source.cs ] }
+        span: [ 103, 104 ]
+      - text: )
+        textmate: { scope: punctuation.parenthesis.close.cs, rest: [ source.cs ] }
+        span: [ 104, 105 ]
+      - text: ;
+        textmate: { scope: punctuation.terminator.statement.cs, rest: [ source.cs ] }
+        span: [ 105, 106 ]
+  - lineNumber: 73
+    sourceText: '}'
+    segments:
+      - text: '}'
+        textmate: { scope: punctuation.curlybrace.close.cs, rest: [ source.cs ] }
+        span: [ 0, 1 ]
+  - lineNumber: 75
+    sourceText: static class Showcase {
+    segments:
+      - text: static
+        textmate: { scope: storage.modifier.static.cs, rest: [ source.cs ] }
+        span: [ 0, 6 ]
+      - text: class
+        textmate: { scope: storage.type.class.cs, rest: [ source.cs ] }
+        span: [ 7, 12 ]
+      - text: Showcase
+        textmate: { scope: entity.name.type.class.cs, rest: [ source.cs ] }
+        span: [ 13, 21 ]
+        semantic: { type: class, modifiers: [ static ] }
+      - text: '{'
+        textmate: { scope: punctuation.curlybrace.open.cs, rest: [ source.cs ] }
+        span: [ 22, 23 ]
+  - lineNumber: 76
+    sourceText: '    static async Task<T> RetryAsync<T>(Func<int, Task<T>> block) {'
+    segments:
+      - text: static
+        textmate: { scope: storage.modifier.static.cs, rest: [ source.cs ] }
+        span: [ 4, 10 ]
+      - text: async
+        textmate: { scope: storage.modifier.async.cs, rest: [ source.cs ] }
+        span: [ 11, 16 ]
+      - text: Task
+        textmate: { scope: entity.name.type.cs, rest: [ source.cs ] }
+        span: [ 17, 21 ]
+        semantic: { type: class }
+      - text: <
+        textmate: { scope: punctuation.definition.typeparameters.begin.cs, rest: [ source.cs ] }
+        span: [ 21, 22 ]
+      - text: T
+        textmate: { scope: entity.name.type.cs, rest: [ source.cs ] }
+        span: [ 22, 23 ]
+        semantic: { type: typeParameter }
+      - text: '>'
+        textmate: { scope: punctuation.definition.typeparameters.end.cs, rest: [ source.cs ] }
+        span: [ 23, 24 ]
+      - text: RetryAsync
+        textmate: { scope: entity.name.function.cs, rest: [ source.cs ] }
+        span: [ 25, 35 ]
+        semantic: { type: method, modifiers: [ static ] }
+      - text: <
+        textmate: { scope: punctuation.definition.typeparameters.begin.cs, rest: [ source.cs ] }
+        span: [ 35, 36 ]
+      - text: T
+        textmate: { scope: entity.name.type.type-parameter.cs, rest: [ source.cs ] }
+        span: [ 36, 37 ]
+        semantic: { type: typeParameter }
+      - text: '>'
+        textmate: { scope: punctuation.definition.typeparameters.end.cs, rest: [ source.cs ] }
+        span: [ 37, 38 ]
+      - text: (
+        textmate: { scope: punctuation.parenthesis.open.cs, rest: [ source.cs ] }
+        span: [ 38, 39 ]
+      - text: Func
+        textmate: { scope: entity.name.type.cs, rest: [ source.cs ] }
+        span: [ 39, 43 ]
+      - text: <
+        textmate: { scope: punctuation.definition.typeparameters.begin.cs, rest: [ source.cs ] }
+        span: [ 43, 44 ]
+      - text: int
+        textmate: { scope: keyword.type.int.cs, rest: [ source.cs ] }
+        span: [ 44, 47 ]
+      - text: ','
+        textmate: { scope: punctuation.separator.comma.cs, rest: [ source.cs ] }
+        span: [ 47, 48 ]
+      - text: Task
+        textmate: { scope: entity.name.type.cs, rest: [ source.cs ] }
+        span: [ 49, 53 ]
+        semantic: { type: class }
+      - text: <
+        textmate: { scope: punctuation.definition.typeparameters.begin.cs, rest: [ source.cs ] }
+        span: [ 53, 54 ]
+      - text: T
+        textmate: { scope: entity.name.type.cs, rest: [ source.cs ] }
+        span: [ 54, 55 ]
+        semantic: { type: typeParameter }
+      - text: '>'
+        textmate: { scope: punctuation.definition.typeparameters.end.cs, rest: [ source.cs ] }
+        span: [ 55, 56 ]
+      - text: '>'
+        textmate: { scope: punctuation.definition.typeparameters.end.cs, rest: [ source.cs ] }
+        span: [ 56, 57 ]
+      - text: block
+        textmate: { scope: entity.name.variable.parameter.cs, rest: [ source.cs ] }
+        span: [ 58, 63 ]
+        semantic: { type: parameter }
+      - text: )
+        textmate: { scope: punctuation.parenthesis.close.cs, rest: [ source.cs ] }
+        span: [ 63, 64 ]
+      - text: '{'
+        textmate: { scope: punctuation.curlybrace.open.cs, rest: [ source.cs ] }
+        span: [ 65, 66 ]
+  - lineNumber: 77
+    sourceText: '        Exception? last = null;'
+    segments:
+      - text: Exception
+        textmate: { scope: entity.name.type.cs, rest: [ source.cs ] }
+        span: [ 8, 17 ]
+        semantic: { type: class }
+      - text: '?'
+        textmate: { scope: punctuation.separator.question-mark.cs, rest: [ source.cs ] }
+        span: [ 17, 18 ]
+      - text: last
+        textmate: { scope: entity.name.variable.local.cs, rest: [ source.cs ] }
+        span: [ 19, 23 ]
+        semantic: { type: variable }
+      - text: =
+        textmate: { scope: keyword.operator.assignment.cs, rest: [ source.cs ] }
+        span: [ 24, 25 ]
+      - text: 'null'
+        textmate: { scope: constant.language.null.cs, rest: [ source.cs ] }
+        span: [ 26, 30 ]
+      - text: ;
+        textmate: { scope: punctuation.terminator.statement.cs, rest: [ source.cs ] }
+        span: [ 30, 31 ]
+  - lineNumber: 78
+    sourceText: '        for (var i = 0; i < 3; i++) {'
+    segments:
+      - text: for
+        textmate: { scope: keyword.control.loop.for.cs, rest: [ source.cs ] }
+        span: [ 8, 11 ]
+      - text: (
+        textmate: { scope: punctuation.parenthesis.open.cs, rest: [ source.cs ] }
+        span: [ 12, 13 ]
+      - text: var
+        textmate: { scope: storage.type.var.cs, rest: [ source.cs ] }
+        span: [ 13, 16 ]
+      - text: i
+        textmate: { scope: entity.name.variable.local.cs, rest: [ source.cs ] }
+        span: [ 17, 18 ]
+        semantic: { type: variable }
+      - text: =
+        textmate: { scope: keyword.operator.assignment.cs, rest: [ source.cs ] }
+        span: [ 19, 20 ]
+      - text: '0'
+        textmate: { scope: constant.numeric.decimal.cs, rest: [ source.cs ] }
+        span: [ 21, 22 ]
+      - text: ;
+        textmate: { scope: punctuation.terminator.statement.cs, rest: [ source.cs ] }
+        span: [ 22, 23 ]
+      - text: i
+        textmate: { scope: variable.other.readwrite.cs, rest: [ source.cs ] }
+        span: [ 24, 25 ]
+        semantic: { type: variable }
+      - text: <
+        textmate: { scope: keyword.operator.relational.cs, rest: [ source.cs ] }
+        span: [ 26, 27 ]
+      - text: '3'
+        textmate: { scope: constant.numeric.decimal.cs, rest: [ source.cs ] }
+        span: [ 28, 29 ]
+      - text: ;
+        textmate: { scope: punctuation.terminator.statement.cs, rest: [ source.cs ] }
+        span: [ 29, 30 ]
+      - text: i
+        textmate: { scope: variable.other.readwrite.cs, rest: [ source.cs ] }
+        span: [ 31, 32 ]
+        semantic: { type: variable }
+      - text: ++
+        textmate: { scope: keyword.operator.increment.cs, rest: [ source.cs ] }
+        span: [ 32, 34 ]
+      - text: )
+        textmate: { scope: punctuation.parenthesis.close.cs, rest: [ source.cs ] }
+        span: [ 34, 35 ]
+      - text: '{'
+        textmate: { scope: punctuation.curlybrace.open.cs, rest: [ source.cs ] }
+        span: [ 36, 37 ]
+  - lineNumber: 79
+    sourceText: '            try {'
+    segments:
+      - text: try
+        textmate: { scope: keyword.control.exception.try.cs, rest: [ source.cs ] }
+        span: [ 12, 15 ]
+      - text: '{'
+        textmate: { scope: punctuation.curlybrace.open.cs, rest: [ source.cs ] }
+        span: [ 16, 17 ]
+  - lineNumber: 80
+    sourceText: '                return await block(i);'
+    segments:
+      - text: return
+        textmate: { scope: keyword.control.flow.return.cs, rest: [ source.cs ] }
+        span: [ 16, 22 ]
+      - text: await
+        textmate: { scope: keyword.operator.expression.await.cs, rest: [ source.cs ] }
+        span: [ 23, 28 ]
+      - text: block
+        textmate: { scope: entity.name.function.cs, rest: [ source.cs ] }
+        span: [ 29, 34 ]
+        semantic: { type: parameter }
+      - text: (
+        textmate: { scope: punctuation.parenthesis.open.cs, rest: [ source.cs ] }
+        span: [ 34, 35 ]
+      - text: i
+        textmate: { scope: variable.other.readwrite.cs, rest: [ source.cs ] }
+        span: [ 35, 36 ]
+        semantic: { type: variable }
+      - text: )
+        textmate: { scope: punctuation.parenthesis.close.cs, rest: [ source.cs ] }
+        span: [ 36, 37 ]
+      - text: ;
+        textmate: { scope: punctuation.terminator.statement.cs, rest: [ source.cs ] }
+        span: [ 37, 38 ]
+  - lineNumber: 81
+    sourceText: '            } catch (Exception e) {'
+    segments:
+      - text: '}'
+        textmate: { scope: punctuation.curlybrace.close.cs, rest: [ source.cs ] }
+        span: [ 12, 13 ]
+      - text: catch
+        textmate: { scope: keyword.control.exception.catch.cs, rest: [ source.cs ] }
+        span: [ 14, 19 ]
+      - text: (
+        textmate: { scope: punctuation.parenthesis.open.cs, rest: [ source.cs ] }
+        span: [ 20, 21 ]
+      - text: Exception
+        textmate: { scope: entity.name.type.cs, rest: [ source.cs ] }
+        span: [ 21, 30 ]
+        semantic: { type: class }
+      - text: e
+        textmate: { scope: entity.name.variable.local.cs, rest: [ source.cs ] }
+        span: [ 31, 32 ]
+        semantic: { type: variable }
+      - text: )
+        textmate: { scope: punctuation.parenthesis.close.cs, rest: [ source.cs ] }
+        span: [ 32, 33 ]
+      - text: '{'
+        textmate: { scope: punctuation.curlybrace.open.cs, rest: [ source.cs ] }
+        span: [ 34, 35 ]
+  - lineNumber: 82
+    sourceText: '                last = e;'
+    segments:
+      - text: last
+        textmate: { scope: variable.other.readwrite.cs, rest: [ source.cs ] }
+        span: [ 16, 20 ]
+        semantic: { type: variable }
+      - text: =
+        textmate: { scope: keyword.operator.assignment.cs, rest: [ source.cs ] }
+        span: [ 21, 22 ]
+      - text: e
+        textmate: { scope: variable.other.readwrite.cs, rest: [ source.cs ] }
+        span: [ 23, 24 ]
+        semantic: { type: variable }
+      - text: ;
+        textmate: { scope: punctuation.terminator.statement.cs, rest: [ source.cs ] }
+        span: [ 24, 25 ]
+  - lineNumber: 83
+    sourceText: '            }'
+    segments:
+      - text: '}'
+        textmate: { scope: punctuation.curlybrace.close.cs, rest: [ source.cs ] }
+        span: [ 12, 13 ]
+  - lineNumber: 84
+    sourceText: '        }'
+    segments:
+      - text: '}'
+        textmate: { scope: punctuation.curlybrace.close.cs, rest: [ source.cs ] }
+        span: [ 8, 9 ]
+  - lineNumber: 86
+    sourceText: '        throw last ?? new InvalidOperationException("failed");'
+    segments:
+      - text: throw
+        textmate: { scope: keyword.control.flow.throw.cs, rest: [ source.cs ] }
+        span: [ 8, 13 ]
+      - text: last
+        textmate: { scope: variable.other.readwrite.cs, rest: [ source.cs ] }
+        span: [ 14, 18 ]
+        semantic: { type: variable }
+      - text: ??
+        textmate: { scope: keyword.operator.null-coalescing.cs, rest: [ source.cs ] }
+        span: [ 19, 21 ]
+      - text: new
+        textmate: { scope: keyword.operator.expression.new.cs, rest: [ source.cs ] }
+        span: [ 22, 25 ]
+      - text: InvalidOperationException
+        textmate: { scope: entity.name.type.cs, rest: [ source.cs ] }
+        span: [ 26, 51 ]
+        semantic: { type: class }
+      - text: (
+        textmate: { scope: punctuation.parenthesis.open.cs, rest: [ source.cs ] }
+        span: [ 51, 52 ]
+      - text: '"'
+        textmate: { scope: punctuation.definition.string.begin.cs, rest: [ source.cs, string.quoted.double.cs ] }
+        span: [ 52, 53 ]
+      - text: failed
+        textmate: { scope: string.quoted.double.cs, rest: [ source.cs ] }
+        span: [ 53, 59 ]
+      - text: '"'
+        textmate: { scope: punctuation.definition.string.end.cs, rest: [ source.cs, string.quoted.double.cs ] }
+        span: [ 59, 60 ]
+      - text: )
+        textmate: { scope: punctuation.parenthesis.close.cs, rest: [ source.cs ] }
+        span: [ 60, 61 ]
+      - text: ;
+        textmate: { scope: punctuation.terminator.statement.cs, rest: [ source.cs ] }
+        span: [ 61, 62 ]
+  - lineNumber: 87
+    sourceText: '    }'
+    segments:
+      - text: '}'
+        textmate: { scope: punctuation.curlybrace.close.cs, rest: [ source.cs ] }
+        span: [ 4, 5 ]
+  - lineNumber: 89
+    sourceText: '    static string PatternMatch(object? obj, List<User> users) {'
+    segments:
+      - text: static
+        textmate: { scope: storage.modifier.static.cs, rest: [ source.cs ] }
+        span: [ 4, 10 ]
+      - text: string
+        textmate: { scope: keyword.type.string.cs, rest: [ source.cs ] }
+        span: [ 11, 17 ]
+      - text: PatternMatch
+        textmate: { scope: entity.name.function.cs, rest: [ source.cs ] }
+        span: [ 18, 30 ]
+        semantic: { type: method, modifiers: [ static ] }
+      - text: (
+        textmate: { scope: punctuation.parenthesis.open.cs, rest: [ source.cs ] }
+        span: [ 30, 31 ]
+      - text: object
+        textmate: { scope: keyword.type.object.cs, rest: [ source.cs ] }
+        span: [ 31, 37 ]
+      - text: '?'
+        textmate: { scope: punctuation.separator.question-mark.cs, rest: [ source.cs ] }
+        span: [ 37, 38 ]
+      - text: obj
+        textmate: { scope: entity.name.variable.parameter.cs, rest: [ source.cs ] }
+        span: [ 39, 42 ]
+        semantic: { type: parameter }
+      - text: ','
+        textmate: { scope: punctuation.separator.comma.cs, rest: [ source.cs ] }
+        span: [ 42, 43 ]
+      - text: List
+        textmate: { scope: entity.name.type.cs, rest: [ source.cs ] }
+        span: [ 44, 48 ]
+        semantic: { type: class }
+      - text: <
+        textmate: { scope: punctuation.definition.typeparameters.begin.cs, rest: [ source.cs ] }
+        span: [ 48, 49 ]
+      - text: User
+        textmate: { scope: entity.name.type.cs, rest: [ source.cs ] }
+        span: [ 49, 53 ]
+      - text: '>'
+        textmate: { scope: punctuation.definition.typeparameters.end.cs, rest: [ source.cs ] }
+        span: [ 53, 54 ]
+      - text: users
+        textmate: { scope: entity.name.variable.parameter.cs, rest: [ source.cs ] }
+        span: [ 55, 60 ]
+        semantic: { type: parameter }
+      - text: )
+        textmate: { scope: punctuation.parenthesis.close.cs, rest: [ source.cs ] }
+        span: [ 60, 61 ]
+      - text: '{'
+        textmate: { scope: punctuation.curlybrace.open.cs, rest: [ source.cs ] }
+        span: [ 62, 63 ]
+  - lineNumber: 90
+    sourceText: '        var kind = obj switch {'
+    segments:
+      - text: var
+        textmate: { scope: storage.type.var.cs, rest: [ source.cs ] }
+        span: [ 8, 11 ]
+      - text: kind
+        textmate: { scope: entity.name.variable.local.cs, rest: [ source.cs ] }
+        span: [ 12, 16 ]
+        semantic: { type: variable }
+      - text: =
+        textmate: { scope: keyword.operator.assignment.cs, rest: [ source.cs ] }
+        span: [ 17, 18 ]
+      - text: obj
+        textmate: { scope: variable.other.readwrite.cs, rest: [ source.cs ] }
+        span: [ 19, 22 ]
+        semantic: { type: parameter }
+      - text: switch
+        textmate: { scope: keyword.control.conditional.switch.cs, rest: [ source.cs ] }
+        span: [ 23, 29 ]
+      - text: '{'
+        textmate: { scope: punctuation.curlybrace.open.cs, rest: [ source.cs ] }
+        span: [ 30, 31 ]
+  - lineNumber: 91
+    sourceText: '            User { Roles: var roles } u when roles.Contains(Role.Admin) => $"admin:{u.Name}",'
+    segments:
+      - text: User
+        textmate: { scope: entity.name.type.cs, rest: [ source.cs ] }
+        span: [ 12, 16 ]
+      - text: '{'
+        textmate: { scope: punctuation.curlybrace.open.cs, rest: [ source.cs ] }
+        span: [ 17, 18 ]
+      - text: Roles
+        textmate: { scope: variable.other.object.property.cs, rest: [ source.cs ] }
+        span: [ 19, 24 ]
+        semantic: { type: property }
+      - text: ':'
+        textmate: { scope: punctuation.separator.colon.cs, rest: [ source.cs ] }
+        span: [ 24, 25 ]
+      - text: var
+        textmate: { scope: storage.type.var.cs, rest: [ source.cs ] }
+        span: [ 26, 29 ]
+      - text: roles
+        textmate: { scope: entity.name.variable.local.cs, rest: [ source.cs ] }
+        span: [ 30, 35 ]
+        semantic: { type: variable }
+      - text: '}'
+        textmate: { scope: punctuation.curlybrace.close.cs, rest: [ source.cs ] }
+        span: [ 36, 37 ]
+      - text: u
+        textmate: { scope: entity.name.variable.local.cs, rest: [ source.cs ] }
+        span: [ 38, 39 ]
+        semantic: { type: variable }
+      - text: when
+        textmate: { scope: keyword.control.conditional.when.cs, rest: [ source.cs ] }
+        span: [ 40, 44 ]
+      - text: roles
+        textmate: { scope: variable.other.object.cs, rest: [ source.cs ] }
+        span: [ 45, 50 ]
+        semantic: { type: variable }
+      - text: .
+        textmate: { scope: punctuation.accessor.cs, rest: [ source.cs ] }
+        span: [ 50, 51 ]
+      - text: Contains
+        textmate: { scope: entity.name.function.cs, rest: [ source.cs ] }
+        span: [ 51, 59 ]
+      - text: (
+        textmate: { scope: punctuation.parenthesis.open.cs, rest: [ source.cs ] }
+        span: [ 59, 60 ]
+      - text: Role
+        textmate: { scope: variable.other.object.cs, rest: [ source.cs ] }
+        span: [ 60, 64 ]
+        semantic: { type: enum }
+      - text: .
+        textmate: { scope: punctuation.accessor.cs, rest: [ source.cs ] }
+        span: [ 64, 65 ]
+      - text: Admin
+        textmate: { scope: variable.other.object.property.cs, rest: [ source.cs ] }
+        span: [ 65, 70 ]
+      - text: )
+        textmate: { scope: punctuation.parenthesis.close.cs, rest: [ source.cs ] }
+        span: [ 70, 71 ]
+      - text: =>
+        textmate: { scope: keyword.operator.arrow.cs, rest: [ source.cs ] }
+        span: [ 72, 74 ]
+      - text: $"
+        textmate: { scope: punctuation.definition.string.begin.cs, rest: [ source.cs, string.quoted.double.cs ] }
+        span: [ 75, 77 ]
+      - text: 'admin:'
+        textmate: { scope: string.quoted.double.cs, rest: [ source.cs ] }
+        span: [ 77, 83 ]
+      - text: '{'
+        textmate: { scope: punctuation.definition.interpolation.begin.cs, rest: [ source.cs, string.quoted.double.cs, meta.embedded.interpolation.cs ] }
+        span: [ 83, 84 ]
+      - text: u
+        textmate: { scope: variable.other.object.cs, rest: [ source.cs, string.quoted.double.cs, meta.embedded.interpolation.cs ] }
+        span: [ 84, 85 ]
+        semantic: { type: variable }
+      - text: .
+        textmate: { scope: punctuation.accessor.cs, rest: [ source.cs, string.quoted.double.cs, meta.embedded.interpolation.cs ] }
+        span: [ 85, 86 ]
+      - text: Name
+        textmate: { scope: variable.other.object.property.cs, rest: [ source.cs, string.quoted.double.cs, meta.embedded.interpolation.cs ] }
+        span: [ 86, 90 ]
+        semantic: { type: property }
+      - text: '}'
+        textmate: { scope: punctuation.definition.interpolation.end.cs, rest: [ source.cs, string.quoted.double.cs, meta.embedded.interpolation.cs ] }
+        span: [ 90, 91 ]
+      - text: '"'
+        textmate: { scope: punctuation.definition.string.end.cs, rest: [ source.cs, string.quoted.double.cs ] }
+        span: [ 91, 92 ]
+      - text: ','
+        textmate: { scope: punctuation.separator.comma.cs, rest: [ source.cs ] }
+        span: [ 92, 93 ]
+  - lineNumber: 92
+    sourceText: '            User u => $"user:{u.Name}",'
+    segments:
+      - text: User
+        textmate: { scope: entity.name.type.cs, rest: [ source.cs ] }
+        span: [ 12, 16 ]
+      - text: u
+        textmate: { scope: entity.name.variable.local.cs, rest: [ source.cs ] }
+        span: [ 17, 18 ]
+        semantic: { type: variable }
+      - text: =>
+        textmate: { scope: keyword.operator.arrow.cs, rest: [ source.cs ] }
+        span: [ 19, 21 ]
+      - text: $"
+        textmate: { scope: punctuation.definition.string.begin.cs, rest: [ source.cs, string.quoted.double.cs ] }
+        span: [ 22, 24 ]
+      - text: 'user:'
+        textmate: { scope: string.quoted.double.cs, rest: [ source.cs ] }
+        span: [ 24, 29 ]
+      - text: '{'
+        textmate: { scope: punctuation.definition.interpolation.begin.cs, rest: [ source.cs, string.quoted.double.cs, meta.embedded.interpolation.cs ] }
+        span: [ 29, 30 ]
+      - text: u
+        textmate: { scope: variable.other.object.cs, rest: [ source.cs, string.quoted.double.cs, meta.embedded.interpolation.cs ] }
+        span: [ 30, 31 ]
+        semantic: { type: variable }
+      - text: .
+        textmate: { scope: punctuation.accessor.cs, rest: [ source.cs, string.quoted.double.cs, meta.embedded.interpolation.cs ] }
+        span: [ 31, 32 ]
+      - text: Name
+        textmate: { scope: variable.other.object.property.cs, rest: [ source.cs, string.quoted.double.cs, meta.embedded.interpolation.cs ] }
+        span: [ 32, 36 ]
+        semantic: { type: property }
+      - text: '}'
+        textmate: { scope: punctuation.definition.interpolation.end.cs, rest: [ source.cs, string.quoted.double.cs, meta.embedded.interpolation.cs ] }
+        span: [ 36, 37 ]
+      - text: '"'
+        textmate: { scope: punctuation.definition.string.end.cs, rest: [ source.cs, string.quoted.double.cs ] }
+        span: [ 37, 38 ]
+      - text: ','
+        textmate: { scope: punctuation.separator.comma.cs, rest: [ source.cs ] }
+        span: [ 38, 39 ]
+  - lineNumber: 93
+    sourceText: '            int i => $"int:{i}",'
+    segments:
+      - text: int
+        textmate: { scope: keyword.type.int.cs, rest: [ source.cs ] }
+        span: [ 12, 15 ]
+      - text: i
+        textmate: { scope: entity.name.variable.local.cs, rest: [ source.cs ] }
+        span: [ 16, 17 ]
+        semantic: { type: variable }
+      - text: =>
+        textmate: { scope: keyword.operator.arrow.cs, rest: [ source.cs ] }
+        span: [ 18, 20 ]
+      - text: $"
+        textmate: { scope: punctuation.definition.string.begin.cs, rest: [ source.cs, string.quoted.double.cs ] }
+        span: [ 21, 23 ]
+      - text: 'int:'
+        textmate: { scope: string.quoted.double.cs, rest: [ source.cs ] }
+        span: [ 23, 27 ]
+      - text: '{'
+        textmate: { scope: punctuation.definition.interpolation.begin.cs, rest: [ source.cs, string.quoted.double.cs, meta.embedded.interpolation.cs ] }
+        span: [ 27, 28 ]
+      - text: i
+        textmate: { scope: variable.other.readwrite.cs, rest: [ source.cs, string.quoted.double.cs, meta.embedded.interpolation.cs ] }
+        span: [ 28, 29 ]
+        semantic: { type: variable }
+      - text: '}'
+        textmate: { scope: punctuation.definition.interpolation.end.cs, rest: [ source.cs, string.quoted.double.cs, meta.embedded.interpolation.cs ] }
+        span: [ 29, 30 ]
+      - text: '"'
+        textmate: { scope: punctuation.definition.string.end.cs, rest: [ source.cs, string.quoted.double.cs ] }
+        span: [ 30, 31 ]
+      - text: ','
+        textmate: { scope: punctuation.separator.comma.cs, rest: [ source.cs ] }
+        span: [ 31, 32 ]
+  - lineNumber: 94
+    sourceText: '            null => "null",'
+    segments:
+      - text: 'null'
+        textmate: { scope: constant.language.null.cs, rest: [ source.cs ] }
+        span: [ 12, 16 ]
+      - text: =>
+        textmate: { scope: keyword.operator.arrow.cs, rest: [ source.cs ] }
+        span: [ 17, 19 ]
+      - text: '"'
+        textmate: { scope: punctuation.definition.string.begin.cs, rest: [ source.cs, string.quoted.double.cs ] }
+        span: [ 20, 21 ]
+      - text: 'null'
+        textmate: { scope: string.quoted.double.cs, rest: [ source.cs ] }
+        span: [ 21, 25 ]
+      - text: '"'
+        textmate: { scope: punctuation.definition.string.end.cs, rest: [ source.cs, string.quoted.double.cs ] }
+        span: [ 25, 26 ]
+      - text: ','
+        textmate: { scope: punctuation.separator.comma.cs, rest: [ source.cs ] }
+        span: [ 26, 27 ]
+  - lineNumber: 95
+    sourceText: '            _ => "other"'
+    segments:
+      - text: _
+        textmate: { scope: variable.language.discard.cs, rest: [ source.cs ] }
+        span: [ 12, 13 ]
+      - text: =>
+        textmate: { scope: keyword.operator.arrow.cs, rest: [ source.cs ] }
+        span: [ 14, 16 ]
+      - text: '"'
+        textmate: { scope: punctuation.definition.string.begin.cs, rest: [ source.cs, string.quoted.double.cs ] }
+        span: [ 17, 18 ]
+      - text: other
+        textmate: { scope: string.quoted.double.cs, rest: [ source.cs ] }
+        span: [ 18, 23 ]
+      - text: '"'
+        textmate: { scope: punctuation.definition.string.end.cs, rest: [ source.cs, string.quoted.double.cs ] }
+        span: [ 23, 24 ]
+  - lineNumber: 96
+    sourceText: '        };'
+    segments:
+      - text: '}'
+        textmate: { scope: punctuation.curlybrace.close.cs, rest: [ source.cs ] }
+        span: [ 8, 9 ]
+      - text: ;
+        textmate: { scope: punctuation.terminator.statement.cs, rest: [ source.cs ] }
+        span: [ 9, 10 ]
+  - lineNumber: 98
+    sourceText: '        var names = from u in users'
+    segments:
+      - text: var
+        textmate: { scope: storage.type.var.cs, rest: [ source.cs ] }
+        span: [ 8, 11 ]
+      - text: names
+        textmate: { scope: entity.name.variable.local.cs, rest: [ source.cs ] }
+        span: [ 12, 17 ]
+        semantic: { type: variable }
+      - text: =
+        textmate: { scope: keyword.operator.assignment.cs, rest: [ source.cs ] }
+        span: [ 18, 19 ]
+      - text: from
+        textmate: { scope: keyword.operator.expression.query.from.cs, rest: [ source.cs ] }
+        span: [ 20, 24 ]
+      - text: u
+        textmate: { scope: entity.name.variable.range-variable.cs, rest: [ source.cs ] }
+        span: [ 25, 26 ]
+      - text: in
+        textmate: { scope: keyword.operator.expression.query.in.cs, rest: [ source.cs ] }
+        span: [ 27, 29 ]
+      - text: users
+        textmate: { scope: variable.other.readwrite.cs, rest: [ source.cs ] }
+        span: [ 30, 35 ]
+        semantic: { type: parameter }
+  - lineNumber: 99
+    sourceText: '            where u.Roles.Count > 0'
+    segments:
+      - text: where
+        textmate: { scope: keyword.operator.expression.query.where.cs, rest: [ source.cs ] }
+        span: [ 12, 17 ]
+      - text: u
+        textmate: { scope: variable.other.object.cs, rest: [ source.cs ] }
+        span: [ 18, 19 ]
+        semantic: { type: parameter }
+      - text: .
+        textmate: { scope: punctuation.accessor.cs, rest: [ source.cs ] }
+        span: [ 19, 20 ]
+      - text: Roles
+        textmate: { scope: variable.other.object.property.cs, rest: [ source.cs ] }
+        span: [ 20, 25 ]
+        semantic: { type: property }
+      - text: .
+        textmate: { scope: punctuation.accessor.cs, rest: [ source.cs ] }
+        span: [ 25, 26 ]
+      - text: Count
+        textmate: { scope: variable.other.object.property.cs, rest: [ source.cs ] }
+        span: [ 26, 31 ]
+        semantic: { type: property }
+      - text: '>'
+        textmate: { scope: keyword.operator.relational.cs, rest: [ source.cs ] }
+        span: [ 32, 33 ]
+      - text: '0'
+        textmate: { scope: constant.numeric.decimal.cs, rest: [ source.cs ] }
+        span: [ 34, 35 ]
+  - lineNumber: 100
+    sourceText: '            orderby u.Name'
+    segments:
+      - text: orderby
+        textmate: { scope: keyword.operator.expression.query.orderby.cs, rest: [ source.cs ] }
+        span: [ 12, 19 ]
+      - text: u
+        textmate: { scope: variable.other.object.cs, rest: [ source.cs ] }
+        span: [ 20, 21 ]
+        semantic: { type: parameter }
+      - text: .
+        textmate: { scope: punctuation.accessor.cs, rest: [ source.cs ] }
+        span: [ 21, 22 ]
+      - text: Name
+        textmate: { scope: variable.other.object.property.cs, rest: [ source.cs ] }
+        span: [ 22, 26 ]
+        semantic: { type: property }
+  - lineNumber: 101
+    sourceText: '            select u.DisplayName;'
+    segments:
+      - text: select
+        textmate: { scope: keyword.operator.expression.query.select.cs, rest: [ source.cs ] }
+        span: [ 12, 18 ]
+      - text: u
+        textmate: { scope: variable.other.object.cs, rest: [ source.cs ] }
+        span: [ 19, 20 ]
+        semantic: { type: parameter }
+      - text: .
+        textmate: { scope: punctuation.accessor.cs, rest: [ source.cs ] }
+        span: [ 20, 21 ]
+      - text: DisplayName
+        textmate: { scope: variable.other.object.property.cs, rest: [ source.cs ] }
+        span: [ 21, 32 ]
+        semantic: { type: property }
+      - text: ;
+        textmate: { scope: punctuation.terminator.statement.cs, rest: [ source.cs ] }
+        span: [ 32, 33 ]
+  - lineNumber: 103
+    sourceText: '        var admins = users.Admins().Select(u => u.Name).ToList();'
+    segments:
+      - text: var
+        textmate: { scope: storage.type.var.cs, rest: [ source.cs ] }
+        span: [ 8, 11 ]
+      - text: admins
+        textmate: { scope: entity.name.variable.local.cs, rest: [ source.cs ] }
+        span: [ 12, 18 ]
+        semantic: { type: variable }
+      - text: =
+        textmate: { scope: keyword.operator.assignment.cs, rest: [ source.cs ] }
+        span: [ 19, 20 ]
+      - text: users
+        textmate: { scope: variable.other.object.cs, rest: [ source.cs ] }
+        span: [ 21, 26 ]
+        semantic: { type: parameter }
+      - text: .
+        textmate: { scope: punctuation.accessor.cs, rest: [ source.cs ] }
+        span: [ 26, 27 ]
+      - text: Admins
+        textmate: { scope: entity.name.function.cs, rest: [ source.cs ] }
+        span: [ 27, 33 ]
+      - text: (
+        textmate: { scope: punctuation.parenthesis.open.cs, rest: [ source.cs ] }
+        span: [ 33, 34 ]
+      - text: )
+        textmate: { scope: punctuation.parenthesis.close.cs, rest: [ source.cs ] }
+        span: [ 34, 35 ]
+      - text: .
+        textmate: { scope: punctuation.accessor.cs, rest: [ source.cs ] }
+        span: [ 35, 36 ]
+      - text: Select
+        textmate: { scope: entity.name.function.cs, rest: [ source.cs ] }
+        span: [ 36, 42 ]
+      - text: (
+        textmate: { scope: punctuation.parenthesis.open.cs, rest: [ source.cs ] }
+        span: [ 42, 43 ]
+      - text: u
+        textmate: { scope: entity.name.variable.parameter.cs, rest: [ source.cs ] }
+        span: [ 43, 44 ]
+        semantic: { type: parameter }
+      - text: =>
+        textmate: { scope: keyword.operator.arrow.cs, rest: [ source.cs ] }
+        span: [ 45, 47 ]
+      - text: u
+        textmate: { scope: variable.other.object.cs, rest: [ source.cs ] }
+        span: [ 48, 49 ]
+        semantic: { type: parameter }
+      - text: .
+        textmate: { scope: punctuation.accessor.cs, rest: [ source.cs ] }
+        span: [ 49, 50 ]
+      - text: Name
+        textmate: { scope: variable.other.object.property.cs, rest: [ source.cs ] }
+        span: [ 50, 54 ]
+        semantic: { type: property }
+      - text: )
+        textmate: { scope: punctuation.parenthesis.close.cs, rest: [ source.cs ] }
+        span: [ 54, 55 ]
+      - text: .
+        textmate: { scope: punctuation.accessor.cs, rest: [ source.cs ] }
+        span: [ 55, 56 ]
+      - text: ToList
+        textmate: { scope: entity.name.function.cs, rest: [ source.cs ] }
+        span: [ 56, 62 ]
+      - text: (
+        textmate: { scope: punctuation.parenthesis.open.cs, rest: [ source.cs ] }
+        span: [ 62, 63 ]
+      - text: )
+        textmate: { scope: punctuation.parenthesis.close.cs, rest: [ source.cs ] }
+        span: [ 63, 64 ]
+      - text: ;
+        textmate: { scope: punctuation.terminator.statement.cs, rest: [ source.cs ] }
+        span: [ 64, 65 ]
+  - lineNumber: 105
+    sourceText: '        var hex = 0xFF;'
+    segments:
+      - text: var
+        textmate: { scope: storage.type.var.cs, rest: [ source.cs ] }
+        span: [ 8, 11 ]
+      - text: hex
+        textmate: { scope: entity.name.variable.local.cs, rest: [ source.cs ] }
+        span: [ 12, 15 ]
+        semantic: { type: variable }
+      - text: =
+        textmate: { scope: keyword.operator.assignment.cs, rest: [ source.cs ] }
+        span: [ 16, 17 ]
+      - text: 0x
+        textmate: { scope: constant.numeric.other.preffix.hex.cs, rest: [ source.cs ] }
+        span: [ 18, 20 ]
+      - text: FF
+        textmate: { scope: constant.numeric.hex.cs, rest: [ source.cs ] }
+        span: [ 20, 22 ]
+      - text: ;
+        textmate: { scope: punctuation.terminator.statement.cs, rest: [ source.cs ] }
+        span: [ 22, 23 ]
+  - lineNumber: 106
+    sourceText: '        var fp = 3.14f + 1e5;'
+    segments:
+      - text: var
+        textmate: { scope: storage.type.var.cs, rest: [ source.cs ] }
+        span: [ 8, 11 ]
+      - text: fp
+        textmate: { scope: entity.name.variable.local.cs, rest: [ source.cs ] }
+        span: [ 12, 14 ]
+        semantic: { type: variable }
+      - text: =
+        textmate: { scope: keyword.operator.assignment.cs, rest: [ source.cs ] }
+        span: [ 15, 16 ]
+      - text: '3'
+        textmate: { scope: constant.numeric.decimal.cs, rest: [ source.cs ] }
+        span: [ 17, 18 ]
+      - text: .
+        textmate: { scope: constant.numeric.other.separator.decimals.cs, rest: [ source.cs ] }
+        span: [ 18, 19 ]
+      - text: '14'
+        textmate: { scope: constant.numeric.decimal.cs, rest: [ source.cs ] }
+        span: [ 19, 21 ]
+      - text: f
+        textmate: { scope: constant.numeric.other.suffix.cs, rest: [ source.cs ] }
+        span: [ 21, 22 ]
+      - text: +
+        textmate: { scope: keyword.operator.arithmetic.cs, rest: [ source.cs ] }
+        span: [ 23, 24 ]
+      - text: '1'
+        textmate: { scope: constant.numeric.decimal.cs, rest: [ source.cs ] }
+        span: [ 25, 26 ]
+      - text: e
+        textmate: { scope: constant.numeric.other.exponent.cs, rest: [ source.cs ] }
+        span: [ 26, 27 ]
+      - text: '5'
+        textmate: { scope: constant.numeric.decimal.cs, rest: [ source.cs ] }
+        span: [ 27, 28 ]
+      - text: ;
+        textmate: { scope: punctuation.terminator.statement.cs, rest: [ source.cs ] }
+        span: [ 28, 29 ]
+  - lineNumber: 107
+    sourceText: '        var verbatim = @"multi\nline";'
+    segments:
+      - text: var
+        textmate: { scope: storage.type.var.cs, rest: [ source.cs ] }
+        span: [ 8, 11 ]
+      - text: verbatim
+        textmate: { scope: entity.name.variable.local.cs, rest: [ source.cs ] }
+        span: [ 12, 20 ]
+        semantic: { type: variable }
+      - text: =
+        textmate: { scope: keyword.operator.assignment.cs, rest: [ source.cs ] }
+        span: [ 21, 22 ]
+      - text: '@"'
+        textmate: { scope: punctuation.definition.string.begin.cs, rest: [ source.cs, string.quoted.double.cs ] }
+        span: [ 23, 25 ]
+      - text: multi\nline
+        textmate: { scope: string.quoted.double.cs, rest: [ source.cs ] }
+        span: [ 25, 36 ]
+      - text: '"'
+        textmate: { scope: punctuation.definition.string.end.cs, rest: [ source.cs, string.quoted.double.cs ] }
+        span: [ 36, 37 ]
+      - text: ;
+        textmate: { scope: punctuation.terminator.statement.cs, rest: [ source.cs ] }
+        span: [ 37, 38 ]
+  - lineNumber: 108
+    sourceText: '        var raw = """raw "string" literal""";'
+    segments:
+      - text: var
+        textmate: { scope: storage.type.var.cs, rest: [ source.cs ] }
+        span: [ 8, 11 ]
+      - text: raw
+        textmate: { scope: entity.name.variable.local.cs, rest: [ source.cs ] }
+        span: [ 12, 15 ]
+        semantic: { type: variable }
+      - text: =
+        textmate: { scope: keyword.operator.assignment.cs, rest: [ source.cs ] }
+        span: [ 16, 17 ]
+      - text: '"""'
+        textmate: { scope: punctuation.definition.string.begin.cs, rest: [ source.cs, string.quoted.double.cs ] }
+        span: [ 18, 21 ]
+      - text: raw "string" literal
+        textmate: { scope: string.quoted.double.cs, rest: [ source.cs ] }
+        span: [ 21, 41 ]
+      - text: '"""'
+        textmate: { scope: punctuation.definition.string.end.cs, rest: [ source.cs, string.quoted.double.cs ] }
+        span: [ 41, 44 ]
+      - text: ;
+        textmate: { scope: punctuation.terminator.statement.cs, rest: [ source.cs ] }
+        span: [ 44, 45 ]
+  - lineNumber: 109
+    sourceText: '        var escape = "tab:\there\n";'
+    segments:
+      - text: var
+        textmate: { scope: storage.type.var.cs, rest: [ source.cs ] }
+        span: [ 8, 11 ]
+      - text: escape
+        textmate: { scope: entity.name.variable.local.cs, rest: [ source.cs ] }
+        span: [ 12, 18 ]
+        semantic: { type: variable }
+      - text: =
+        textmate: { scope: keyword.operator.assignment.cs, rest: [ source.cs ] }
+        span: [ 19, 20 ]
+      - text: '"'
+        textmate: { scope: punctuation.definition.string.begin.cs, rest: [ source.cs, string.quoted.double.cs ] }
+        span: [ 21, 22 ]
+      - text: 'tab:'
+        textmate: { scope: string.quoted.double.cs, rest: [ source.cs ] }
+        span: [ 22, 26 ]
+      - text: \t
+        textmate: { scope: constant.character.escape.cs, rest: [ source.cs, string.quoted.double.cs ] }
+        span: [ 26, 28 ]
+      - text: here
+        textmate: { scope: string.quoted.double.cs, rest: [ source.cs ] }
+        span: [ 28, 32 ]
+      - text: \n
+        textmate: { scope: constant.character.escape.cs, rest: [ source.cs, string.quoted.double.cs ] }
+        span: [ 32, 34 ]
+      - text: '"'
+        textmate: { scope: punctuation.definition.string.end.cs, rest: [ source.cs, string.quoted.double.cs ] }
+        span: [ 34, 35 ]
+      - text: ;
+        textmate: { scope: punctuation.terminator.statement.cs, rest: [ source.cs ] }
+        span: [ 35, 36 ]
+  - lineNumber: 111
+    sourceText: '        _ = obj is User { Id: > 0 } admin && admin.IsAdmin();'
+    segments:
+      - text: _
+        textmate: { scope: variable.other.readwrite.cs, rest: [ source.cs ] }
+        span: [ 8, 9 ]
+      - text: =
+        textmate: { scope: keyword.operator.assignment.cs, rest: [ source.cs ] }
+        span: [ 10, 11 ]
+      - text: obj
+        textmate: { scope: variable.other.readwrite.cs, rest: [ source.cs ] }
+        span: [ 12, 15 ]
+        semantic: { type: parameter }
+      - text: is
+        textmate: { scope: keyword.operator.expression.pattern.is.cs, rest: [ source.cs ] }
+        span: [ 16, 18 ]
+      - text: User
+        textmate: { scope: entity.name.type.cs, rest: [ source.cs ] }
+        span: [ 19, 23 ]
+      - text: '{'
+        textmate: { scope: punctuation.curlybrace.open.cs, rest: [ source.cs ] }
+        span: [ 24, 25 ]
+      - text: Id
+        textmate: { scope: variable.other.object.property.cs, rest: [ source.cs ] }
+        span: [ 26, 28 ]
+        semantic: { type: property }
+      - text: ':'
+        textmate: { scope: punctuation.separator.colon.cs, rest: [ source.cs ] }
+        span: [ 28, 29 ]
+      - text: '>'
+        textmate: { scope: keyword.operator.relational.cs, rest: [ source.cs ] }
+        span: [ 30, 31 ]
+      - text: '0'
+        textmate: { scope: constant.numeric.decimal.cs, rest: [ source.cs ] }
+        span: [ 32, 33 ]
+      - text: '}'
+        textmate: { scope: punctuation.curlybrace.close.cs, rest: [ source.cs ] }
+        span: [ 34, 35 ]
+      - text: admin
+        textmate: { scope: entity.name.variable.local.cs, rest: [ source.cs ] }
+        span: [ 36, 41 ]
+        semantic: { type: variable }
+      - text: '&&'
+        textmate: { scope: keyword.operator.logical.cs, rest: [ source.cs ] }
+        span: [ 42, 44 ]
+      - text: admin
+        textmate: { scope: variable.other.object.cs, rest: [ source.cs ] }
+        span: [ 45, 50 ]
+        semantic: { type: variable }
+      - text: .
+        textmate: { scope: punctuation.accessor.cs, rest: [ source.cs ] }
+        span: [ 50, 51 ]
+      - text: IsAdmin
+        textmate: { scope: entity.name.function.cs, rest: [ source.cs ] }
+        span: [ 51, 58 ]
+      - text: (
+        textmate: { scope: punctuation.parenthesis.open.cs, rest: [ source.cs ] }
+        span: [ 58, 59 ]
+      - text: )
+        textmate: { scope: punctuation.parenthesis.close.cs, rest: [ source.cs ] }
+        span: [ 59, 60 ]
+      - text: ;
+        textmate: { scope: punctuation.terminator.statement.cs, rest: [ source.cs ] }
+        span: [ 60, 61 ]
+  - lineNumber: 112
+    sourceText: '        return kind;'
+    segments:
+      - text: return
+        textmate: { scope: keyword.control.flow.return.cs, rest: [ source.cs ] }
+        span: [ 8, 14 ]
+      - text: kind
+        textmate: { scope: variable.other.readwrite.cs, rest: [ source.cs ] }
+        span: [ 15, 19 ]
+        semantic: { type: variable }
+      - text: ;
+        textmate: { scope: punctuation.terminator.statement.cs, rest: [ source.cs ] }
+        span: [ 19, 20 ]
+  - lineNumber: 113
+    sourceText: '    }'
+    segments:
+      - text: '}'
+        textmate: { scope: punctuation.curlybrace.close.cs, rest: [ source.cs ] }
+        span: [ 4, 5 ]
+  - lineNumber: 114
+    sourceText: '}'
+    segments:
+      - text: '}'
+        textmate: { scope: punctuation.curlybrace.close.cs, rest: [ source.cs ] }
+        span: [ 0, 1 ]
+  - lineNumber: 116
+    sourceText: class Matrix {
+    segments:
+      - text: class
+        textmate: { scope: storage.type.class.cs, rest: [ source.cs ] }
+        span: [ 0, 5 ]
+      - text: Matrix
+        textmate: { scope: entity.name.type.class.cs, rest: [ source.cs ] }
+        span: [ 6, 12 ]
+        semantic: { type: class }
+      - text: '{'
+        textmate: { scope: punctuation.curlybrace.open.cs, rest: [ source.cs ] }
+        span: [ 13, 14 ]
+  - lineNumber: 117
+    sourceText: '    private readonly double[,] _data;'
+    segments:
+      - text: private
+        textmate: { scope: storage.modifier.private.cs, rest: [ source.cs ] }
+        span: [ 4, 11 ]
+      - text: readonly
+        textmate: { scope: storage.modifier.readonly.cs, rest: [ source.cs ] }
+        span: [ 12, 20 ]
+      - text: double
+        textmate: { scope: keyword.type.double.cs, rest: [ source.cs ] }
+        span: [ 21, 27 ]
+      - text: '['
+        textmate: { scope: punctuation.squarebracket.open.cs, rest: [ source.cs ] }
+        span: [ 27, 28 ]
+      - text: ','
+        textmate: { scope: punctuation.separator.comma.cs, rest: [ source.cs ] }
+        span: [ 28, 29 ]
+      - text: ']'
+        textmate: { scope: punctuation.squarebracket.close.cs, rest: [ source.cs ] }
+        span: [ 29, 30 ]
+      - text: _data
+        textmate: { scope: entity.name.variable.field.cs, rest: [ source.cs ] }
+        span: [ 31, 36 ]
+      - text: ;
+        textmate: { scope: punctuation.terminator.statement.cs, rest: [ source.cs ] }
+        span: [ 36, 37 ]
+  - lineNumber: 118
+    sourceText: '    public Matrix(int rows, int cols) => _data = new double[rows, cols];'
+    segments:
+      - text: public
+        textmate: { scope: storage.modifier.public.cs, rest: [ source.cs ] }
+        span: [ 4, 10 ]
+      - text: Matrix
+        textmate: { scope: entity.name.function.cs, rest: [ source.cs ] }
+        span: [ 11, 17 ]
+        semantic: { type: class }
+      - text: (
+        textmate: { scope: punctuation.parenthesis.open.cs, rest: [ source.cs ] }
+        span: [ 17, 18 ]
+      - text: int
+        textmate: { scope: keyword.type.int.cs, rest: [ source.cs ] }
+        span: [ 18, 21 ]
+      - text: rows
+        textmate: { scope: entity.name.variable.parameter.cs, rest: [ source.cs ] }
+        span: [ 22, 26 ]
+        semantic: { type: parameter }
+      - text: ','
+        textmate: { scope: punctuation.separator.comma.cs, rest: [ source.cs ] }
+        span: [ 26, 27 ]
+      - text: int
+        textmate: { scope: keyword.type.int.cs, rest: [ source.cs ] }
+        span: [ 28, 31 ]
+      - text: cols
+        textmate: { scope: entity.name.variable.parameter.cs, rest: [ source.cs ] }
+        span: [ 32, 36 ]
+        semantic: { type: parameter }
+      - text: )
+        textmate: { scope: punctuation.parenthesis.close.cs, rest: [ source.cs ] }
+        span: [ 36, 37 ]
+      - text: =>
+        textmate: { scope: keyword.operator.arrow.cs, rest: [ source.cs ] }
+        span: [ 38, 40 ]
+      - text: _data
+        textmate: { scope: variable.other.readwrite.cs, rest: [ source.cs ] }
+        span: [ 41, 46 ]
+      - text: =
+        textmate: { scope: keyword.operator.assignment.cs, rest: [ source.cs ] }
+        span: [ 47, 48 ]
+      - text: new
+        textmate: { scope: keyword.operator.expression.new.cs, rest: [ source.cs ] }
+        span: [ 49, 52 ]
+      - text: double
+        textmate: { scope: keyword.type.double.cs, rest: [ source.cs ] }
+        span: [ 53, 59 ]
+      - text: '['
+        textmate: { scope: punctuation.squarebracket.open.cs, rest: [ source.cs ] }
+        span: [ 59, 60 ]
+      - text: rows
+        textmate: { scope: variable.other.readwrite.cs, rest: [ source.cs ] }
+        span: [ 60, 64 ]
+        semantic: { type: parameter }
+      - text: ','
+        textmate: { scope: punctuation.separator.comma.cs, rest: [ source.cs ] }
+        span: [ 64, 65 ]
+      - text: cols
+        textmate: { scope: variable.other.readwrite.cs, rest: [ source.cs ] }
+        span: [ 66, 70 ]
+        semantic: { type: parameter }
+      - text: ']'
+        textmate: { scope: punctuation.squarebracket.close.cs, rest: [ source.cs ] }
+        span: [ 70, 71 ]
+      - text: ;
+        textmate: { scope: punctuation.terminator.statement.cs, rest: [ source.cs ] }
+        span: [ 71, 72 ]
+  - lineNumber: 120
+    sourceText: '    public double this[int row, int col] {'
+    segments:
+      - text: public
+        textmate: { scope: storage.modifier.public.cs, rest: [ source.cs ] }
+        span: [ 4, 10 ]
+      - text: double
+        textmate: { scope: keyword.type.double.cs, rest: [ source.cs ] }
+        span: [ 11, 17 ]
+      - text: this
+        textmate: { scope: variable.language.this.cs, rest: [ source.cs ] }
+        span: [ 18, 22 ]
+      - text: '['
+        textmate: { scope: punctuation.squarebracket.open.cs, rest: [ source.cs ] }
+        span: [ 22, 23 ]
+      - text: int
+        textmate: { scope: keyword.type.int.cs, rest: [ source.cs ] }
+        span: [ 23, 26 ]
+      - text: row
+        textmate: { scope: entity.name.variable.parameter.cs, rest: [ source.cs ] }
+        span: [ 27, 30 ]
+        semantic: { type: parameter }
+      - text: ','
+        textmate: { scope: punctuation.separator.comma.cs, rest: [ source.cs ] }
+        span: [ 30, 31 ]
+      - text: int
+        textmate: { scope: keyword.type.int.cs, rest: [ source.cs ] }
+        span: [ 32, 35 ]
+      - text: col
+        textmate: { scope: entity.name.variable.parameter.cs, rest: [ source.cs ] }
+        span: [ 36, 39 ]
+        semantic: { type: parameter }
+      - text: ']'
+        textmate: { scope: punctuation.squarebracket.close.cs, rest: [ source.cs ] }
+        span: [ 39, 40 ]
+      - text: '{'
+        textmate: { scope: punctuation.curlybrace.open.cs, rest: [ source.cs ] }
+        span: [ 41, 42 ]
+  - lineNumber: 121
+    sourceText: '        get => _data[row, col];'
+    segments:
+      - text: get
+        textmate: { scope: storage.type.accessor.get.cs, rest: [ source.cs ] }
+        span: [ 8, 11 ]
+        semantic: { type: method }
+      - text: =>
+        textmate: { scope: keyword.operator.arrow.cs, rest: [ source.cs ] }
+        span: [ 12, 14 ]
+      - text: _data
+        textmate: { scope: variable.other.object.property.cs, rest: [ source.cs, meta.accessor.getter.cs ] }
+        span: [ 15, 20 ]
+      - text: '['
+        textmate: { scope: punctuation.squarebracket.open.cs, rest: [ source.cs, meta.accessor.getter.cs ] }
+        span: [ 20, 21 ]
+      - text: row
+        textmate: { scope: variable.other.readwrite.cs, rest: [ source.cs, meta.accessor.getter.cs ] }
+        span: [ 21, 24 ]
+        semantic: { type: parameter }
+      - text: ','
+        textmate: { scope: punctuation.separator.comma.cs, rest: [ source.cs, meta.accessor.getter.cs ] }
+        span: [ 24, 25 ]
+      - text: col
+        textmate: { scope: variable.other.readwrite.cs, rest: [ source.cs, meta.accessor.getter.cs ] }
+        span: [ 26, 29 ]
+        semantic: { type: parameter }
+      - text: ']'
+        textmate: { scope: punctuation.squarebracket.close.cs, rest: [ source.cs, meta.accessor.getter.cs ] }
+        span: [ 29, 30 ]
+      - text: ;
+        textmate: { scope: punctuation.terminator.statement.cs, rest: [ source.cs ] }
+        span: [ 30, 31 ]
+  - lineNumber: 122
+    sourceText: '        set => _data[row, col] = value;'
+    segments:
+      - text: set
+        textmate: { scope: storage.type.accessor.set.cs, rest: [ source.cs ] }
+        span: [ 8, 11 ]
+        semantic: { type: method }
+      - text: =>
+        textmate: { scope: keyword.operator.arrow.cs, rest: [ source.cs ] }
+        span: [ 12, 14 ]
+      - text: _data
+        textmate: { scope: variable.other.object.property.cs, rest: [ source.cs, meta.accessor.setter.cs ] }
+        span: [ 15, 20 ]
+      - text: '['
+        textmate: { scope: punctuation.squarebracket.open.cs, rest: [ source.cs, meta.accessor.setter.cs ] }
+        span: [ 20, 21 ]
+      - text: row
+        textmate: { scope: variable.other.readwrite.cs, rest: [ source.cs, meta.accessor.setter.cs ] }
+        span: [ 21, 24 ]
+        semantic: { type: parameter }
+      - text: ','
+        textmate: { scope: punctuation.separator.comma.cs, rest: [ source.cs, meta.accessor.setter.cs ] }
+        span: [ 24, 25 ]
+      - text: col
+        textmate: { scope: variable.other.readwrite.cs, rest: [ source.cs, meta.accessor.setter.cs ] }
+        span: [ 26, 29 ]
+        semantic: { type: parameter }
+      - text: ']'
+        textmate: { scope: punctuation.squarebracket.close.cs, rest: [ source.cs, meta.accessor.setter.cs ] }
+        span: [ 29, 30 ]
+      - text: =
+        textmate: { scope: keyword.operator.assignment.cs, rest: [ source.cs, meta.accessor.setter.cs ] }
+        span: [ 31, 32 ]
+      - text: value
+        textmate: { scope: variable.other.value.cs, rest: [ source.cs, meta.accessor.setter.cs ] }
+        span: [ 33, 38 ]
+      - text: ;
+        textmate: { scope: punctuation.terminator.statement.cs, rest: [ source.cs ] }
+        span: [ 38, 39 ]
+  - lineNumber: 123
+    sourceText: '    }'
+    segments:
+      - text: '}'
+        textmate: { scope: punctuation.curlybrace.close.cs, rest: [ source.cs ] }
+        span: [ 4, 5 ]
+  - lineNumber: 125
+    sourceText: '    public static Matrix operator +(Matrix a, Matrix b) => a;'
+    segments:
+      - text: public
+        textmate: { scope: storage.modifier.public.cs, rest: [ source.cs ] }
+        span: [ 4, 10 ]
+      - text: static
+        textmate: { scope: storage.modifier.static.cs, rest: [ source.cs ] }
+        span: [ 11, 17 ]
+      - text: Matrix
+        textmate: { scope: entity.name.type.cs, rest: [ source.cs ] }
+        span: [ 18, 24 ]
+        semantic: { type: class }
+      - text: operator
+        textmate: { scope: storage.type.operator.cs, rest: [ source.cs ] }
+        span: [ 25, 33 ]
+        semantic: { type: operator }
+      - text: +
+        textmate: { scope: entity.name.function.cs, rest: [ source.cs ] }
+        span: [ 34, 35 ]
+        semantic: { type: operator }
+      - text: (
+        textmate: { scope: punctuation.parenthesis.open.cs, rest: [ source.cs ] }
+        span: [ 35, 36 ]
+      - text: Matrix
+        textmate: { scope: entity.name.type.cs, rest: [ source.cs ] }
+        span: [ 36, 42 ]
+        semantic: { type: class }
+      - text: a
+        textmate: { scope: entity.name.variable.parameter.cs, rest: [ source.cs ] }
+        span: [ 43, 44 ]
+        semantic: { type: parameter }
+      - text: ','
+        textmate: { scope: punctuation.separator.comma.cs, rest: [ source.cs ] }
+        span: [ 44, 45 ]
+      - text: Matrix
+        textmate: { scope: entity.name.type.cs, rest: [ source.cs ] }
+        span: [ 46, 52 ]
+        semantic: { type: class }
+      - text: b
+        textmate: { scope: entity.name.variable.parameter.cs, rest: [ source.cs ] }
+        span: [ 53, 54 ]
+        semantic: { type: parameter }
+      - text: )
+        textmate: { scope: punctuation.parenthesis.close.cs, rest: [ source.cs ] }
+        span: [ 54, 55 ]
+      - text: =>
+        textmate: { scope: keyword.operator.arrow.cs, rest: [ source.cs ] }
+        span: [ 56, 58 ]
+      - text: a
+        textmate: { scope: variable.other.readwrite.cs, rest: [ source.cs ] }
+        span: [ 59, 60 ]
+        semantic: { type: parameter }
+      - text: ;
+        textmate: { scope: punctuation.terminator.statement.cs, rest: [ source.cs ] }
+        span: [ 60, 61 ]
+  - lineNumber: 126
+    sourceText: '    public static implicit operator Matrix(double[,] d) => new(d.GetLength(0), d.GetLength(1));'
+    segments:
+      - text: public
+        textmate: { scope: storage.modifier.public.cs, rest: [ source.cs ] }
+        span: [ 4, 10 ]
+      - text: static
+        textmate: { scope: storage.modifier.static.cs, rest: [ source.cs ] }
+        span: [ 11, 17 ]
+      - text: implicit
+        textmate: { scope: storage.modifier.implicit.cs, rest: [ source.cs ] }
+        span: [ 18, 26 ]
+      - text: operator
+        textmate: { scope: storage.type.operator.cs, rest: [ source.cs ] }
+        span: [ 27, 35 ]
+      - text: Matrix
+        textmate: { scope: entity.name.type.cs, rest: [ source.cs ] }
+        span: [ 36, 42 ]
+        semantic: { type: class }
+      - text: (
+        textmate: { scope: punctuation.parenthesis.open.cs, rest: [ source.cs ] }
+        span: [ 42, 43 ]
+      - text: double
+        textmate: { scope: keyword.type.double.cs, rest: [ source.cs ] }
+        span: [ 43, 49 ]
+      - text: '['
+        textmate: { scope: punctuation.squarebracket.open.cs, rest: [ source.cs ] }
+        span: [ 49, 50 ]
+      - text: ','
+        textmate: { scope: punctuation.separator.comma.cs, rest: [ source.cs ] }
+        span: [ 50, 51 ]
+      - text: ']'
+        textmate: { scope: punctuation.squarebracket.close.cs, rest: [ source.cs ] }
+        span: [ 51, 52 ]
+      - text: d
+        textmate: { scope: entity.name.variable.parameter.cs, rest: [ source.cs ] }
+        span: [ 53, 54 ]
+        semantic: { type: parameter }
+      - text: )
+        textmate: { scope: punctuation.parenthesis.close.cs, rest: [ source.cs ] }
+        span: [ 54, 55 ]
+      - text: =>
+        textmate: { scope: keyword.operator.arrow.cs, rest: [ source.cs ] }
+        span: [ 56, 58 ]
+      - text: new
+        textmate: { scope: keyword.operator.expression.new.cs, rest: [ source.cs ] }
+        span: [ 59, 62 ]
+      - text: (
+        textmate: { scope: punctuation.parenthesis.open.cs, rest: [ source.cs ] }
+        span: [ 62, 63 ]
+      - text: d
+        textmate: { scope: variable.other.object.cs, rest: [ source.cs ] }
+        span: [ 63, 64 ]
+        semantic: { type: parameter }
+      - text: .
+        textmate: { scope: punctuation.accessor.cs, rest: [ source.cs ] }
+        span: [ 64, 65 ]
+      - text: GetLength
+        textmate: { scope: entity.name.function.cs, rest: [ source.cs ] }
+        span: [ 65, 74 ]
+      - text: (
+        textmate: { scope: punctuation.parenthesis.open.cs, rest: [ source.cs ] }
+        span: [ 74, 75 ]
+      - text: '0'
+        textmate: { scope: constant.numeric.decimal.cs, rest: [ source.cs ] }
+        span: [ 75, 76 ]
+      - text: )
+        textmate: { scope: punctuation.parenthesis.close.cs, rest: [ source.cs ] }
+        span: [ 76, 77 ]
+      - text: ','
+        textmate: { scope: punctuation.separator.comma.cs, rest: [ source.cs ] }
+        span: [ 77, 78 ]
+      - text: d
+        textmate: { scope: variable.other.object.cs, rest: [ source.cs ] }
+        span: [ 79, 80 ]
+        semantic: { type: parameter }
+      - text: .
+        textmate: { scope: punctuation.accessor.cs, rest: [ source.cs ] }
+        span: [ 80, 81 ]
+      - text: GetLength
+        textmate: { scope: entity.name.function.cs, rest: [ source.cs ] }
+        span: [ 81, 90 ]
+      - text: (
+        textmate: { scope: punctuation.parenthesis.open.cs, rest: [ source.cs ] }
+        span: [ 90, 91 ]
+      - text: '1'
+        textmate: { scope: constant.numeric.decimal.cs, rest: [ source.cs ] }
+        span: [ 91, 92 ]
+      - text: )
+        textmate: { scope: punctuation.parenthesis.close.cs, rest: [ source.cs ] }
+        span: [ 92, 93 ]
+      - text: )
+        textmate: { scope: punctuation.parenthesis.close.cs, rest: [ source.cs ] }
+        span: [ 93, 94 ]
+      - text: ;
+        textmate: { scope: punctuation.terminator.statement.cs, rest: [ source.cs ] }
+        span: [ 94, 95 ]
+  - lineNumber: 127
+    sourceText: '}'
+    segments:
+      - text: '}'
+        textmate: { scope: punctuation.curlybrace.close.cs, rest: [ source.cs ] }
+        span: [ 0, 1 ]
+  - lineNumber: 129
+    sourceText: '#if DEBUG'
+    segments:
+      - text: '#'
+        textmate: { scope: punctuation.separator.hash.cs, rest: [ source.cs, meta.preprocessor.cs ] }
+        span: [ 0, 1 ]
+      - text: if
+        textmate: { scope: keyword.preprocessor.if.cs, rest: [ source.cs, meta.preprocessor.cs ] }
+        span: [ 1, 3 ]
+      - text: DEBUG
+        textmate: { scope: entity.name.variable.preprocessor.symbol.cs, rest: [ source.cs, meta.preprocessor.cs ] }
+        span: [ 4, 9 ]
+  - lineNumber: 130
+    sourceText: static class DebugHelpers {
+    segments:
+      - text: static
+        textmate: { scope: storage.modifier.static.cs, rest: [ source.cs ] }
+        span: [ 0, 6 ]
+      - text: class
+        textmate: { scope: storage.type.class.cs, rest: [ source.cs ] }
+        span: [ 7, 12 ]
+      - text: DebugHelpers
+        textmate: { scope: entity.name.type.class.cs, rest: [ source.cs ] }
+        span: [ 13, 25 ]
+        semantic: { type: class, modifiers: [ static ] }
+      - text: '{'
+        textmate: { scope: punctuation.curlybrace.open.cs, rest: [ source.cs ] }
+        span: [ 26, 27 ]
+  - lineNumber: 131
+    sourceText: '    public static void Log(string msg) => Console.WriteLine($"[DEBUG] {msg}");'
+    segments:
+      - text: public
+        textmate: { scope: storage.modifier.public.cs, rest: [ source.cs ] }
+        span: [ 4, 10 ]
+      - text: static
+        textmate: { scope: storage.modifier.static.cs, rest: [ source.cs ] }
+        span: [ 11, 17 ]
+      - text: void
+        textmate: { scope: keyword.type.void.cs, rest: [ source.cs ] }
+        span: [ 18, 22 ]
+      - text: Log
+        textmate: { scope: entity.name.function.cs, rest: [ source.cs ] }
+        span: [ 23, 26 ]
+        semantic: { type: method, modifiers: [ static ] }
+      - text: (
+        textmate: { scope: punctuation.parenthesis.open.cs, rest: [ source.cs ] }
+        span: [ 26, 27 ]
+      - text: string
+        textmate: { scope: keyword.type.string.cs, rest: [ source.cs ] }
+        span: [ 27, 33 ]
+      - text: msg
+        textmate: { scope: entity.name.variable.parameter.cs, rest: [ source.cs ] }
+        span: [ 34, 37 ]
+        semantic: { type: parameter }
+      - text: )
+        textmate: { scope: punctuation.parenthesis.close.cs, rest: [ source.cs ] }
+        span: [ 37, 38 ]
+      - text: =>
+        textmate: { scope: keyword.operator.arrow.cs, rest: [ source.cs ] }
+        span: [ 39, 41 ]
+      - text: Console
+        textmate: { scope: variable.other.object.cs, rest: [ source.cs ] }
+        span: [ 42, 49 ]
+        semantic: { type: class, modifiers: [ static ] }
+      - text: .
+        textmate: { scope: punctuation.accessor.cs, rest: [ source.cs ] }
+        span: [ 49, 50 ]
+      - text: WriteLine
+        textmate: { scope: entity.name.function.cs, rest: [ source.cs ] }
+        span: [ 50, 59 ]
+      - text: (
+        textmate: { scope: punctuation.parenthesis.open.cs, rest: [ source.cs ] }
+        span: [ 59, 60 ]
+      - text: $"
+        textmate: { scope: punctuation.definition.string.begin.cs, rest: [ source.cs, string.quoted.double.cs ] }
+        span: [ 60, 62 ]
+      - text: '[DEBUG] '
+        textmate: { scope: string.quoted.double.cs, rest: [ source.cs ] }
+        span: [ 62, 70 ]
+      - text: '{'
+        textmate: { scope: punctuation.definition.interpolation.begin.cs, rest: [ source.cs, string.quoted.double.cs, meta.embedded.interpolation.cs ] }
+        span: [ 70, 71 ]
+      - text: msg
+        textmate: { scope: variable.other.readwrite.cs, rest: [ source.cs, string.quoted.double.cs, meta.embedded.interpolation.cs ] }
+        span: [ 71, 74 ]
+        semantic: { type: parameter }
+      - text: '}'
+        textmate: { scope: punctuation.definition.interpolation.end.cs, rest: [ source.cs, string.quoted.double.cs, meta.embedded.interpolation.cs ] }
+        span: [ 74, 75 ]
+      - text: '"'
+        textmate: { scope: punctuation.definition.string.end.cs, rest: [ source.cs, string.quoted.double.cs ] }
+        span: [ 75, 76 ]
+      - text: )
+        textmate: { scope: punctuation.parenthesis.close.cs, rest: [ source.cs ] }
+        span: [ 76, 77 ]
+      - text: ;
+        textmate: { scope: punctuation.terminator.statement.cs, rest: [ source.cs ] }
+        span: [ 77, 78 ]
+  - lineNumber: 132
+    sourceText: '}'
+    segments:
+      - text: '}'
+        textmate: { scope: punctuation.curlybrace.close.cs, rest: [ source.cs ] }
+        span: [ 0, 1 ]
+  - lineNumber: 133
+    sourceText: '#endif'
+    segments:
+      - text: '#'
+        textmate: { scope: punctuation.separator.hash.cs, rest: [ source.cs, meta.preprocessor.cs ] }
+        span: [ 0, 1 ]
+      - text: endif
+        textmate: { scope: keyword.preprocessor.endif.cs, rest: [ source.cs, meta.preprocessor.cs ] }
+        span: [ 1, 6 ]
