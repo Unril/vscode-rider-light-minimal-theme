@@ -95,7 +95,11 @@ class SelectionColors:
     word_read: TCol  # symbol read-access highlight
     word_write: TCol  # symbol write-access highlight
     word_text: TCol  # textual occurrence highlight (secondary accent)
-    hover_bg: TCol  # range/hover highlight
+    # hover_bg is a faint accent wash used for three editor decorations that
+    # can light up many rows at once: range highlight (find/goto), hover
+    # highlight (word under mouse), and fold background. Sharing one value
+    # keeps the "faint wash" signal uniform; splitting later is an easy edit.
+    hover_bg: TCol
     find_match: TCol  # current find match
     find_hl: TCol  # other find matches
     find_ruler: TCol  # find match in overview ruler
@@ -147,20 +151,27 @@ class EditorPalette:
         find_match_base = _tint(accent, is_dark=is_dark).soft
         notebook_base = _tint(accent, is_dark=is_dark).muted.a80
 
+        # Symbol icons appear in sidebar (outline, breadcrumbs, symbol picker)
+        # which sits on panel_bg. Ensure each symbol color meets 4.6:1 there.
+        panel_bg = palette.panel_bg
+
+        def _sym(c: TCol) -> TCol:
+            return c.with_min_contrast(panel_bg, 4.6)
+
         return cls(
             symbols=SymbolColors(
-                cls=syntax.type,
-                function=syntax.function,
-                interface=syntax.type,
-                variable=syntax.field,
-                constant=syntax.field,
-                enum=syntax.type,
-                enum_member=syntax.enum_member,
-                property=syntax.field,
-                keyword=syntax.keyword,
-                namespace=syntax.namespace,
-                string=syntax.string,
-                number=syntax.number,
+                cls=_sym(syntax.type),
+                function=_sym(syntax.function),
+                interface=_sym(syntax.type),
+                variable=_sym(syntax.field),
+                constant=_sym(syntax.field),
+                enum=_sym(syntax.type),
+                enum_member=_sym(syntax.enum_member),
+                property=_sym(syntax.field),
+                keyword=_sym(syntax.keyword),
+                namespace=_sym(syntax.namespace),
+                string=_sym(syntax.string),
+                number=_sym(syntax.number),
             ),
             output=OutputColors(
                 info=accent,
@@ -171,27 +182,56 @@ class EditorPalette:
             chrome=EditorChrome(
                 caret=accent,
                 caret_row=_overlay(palette.foreground, 0, is_dark=is_dark),
-                line_num=palette.fg_disabled,
-                indent_guide=palette.foreground.a15,
+                # Line numbers are structural navigation, not "disabled" chrome -- use
+                # fg_muted (WCAG-AA-passing) so they stay legible at small sizes.
+                line_num=palette.fg_muted,
+                # Indent guides -- inactive at 5% so deeply-nested code (Python
+                # especially) doesn't develop a zebra-stripe pattern. Active stays
+                # at 25% so the current scope is clearly highlighted -- 5x the
+                # inactive alpha gives unambiguous focus without visual noise from
+                # uninvolved branches. Bumped from a15 inactive (review found 15%
+                # produced visible vertical stripes in long indented blocks).
+                indent_guide=palette.foreground.a05,
                 indent_guide_active=palette.foreground.a25,
                 whitespace=palette.fg_disabled,
-                ruler=palette.foreground.a15,
-                inlay_bg=palette.foreground.a05 if is_dark else palette.panel_bg,
+                ruler=palette.foreground.a25,  # stronger than indent_guide so ruler is distinguishable
+                # Inlay hints: alpha background so hints composite over
+                # selection/find-match highlights instead of punching opaque
+                # holes through them. Light uses 8% fg (visible pill on white);
+                # dark uses 10% fg (slightly stronger to register on dark bg).
+                inlay_bg=palette.foreground.with_alpha(0.08) if not is_dark else palette.foreground.with_alpha(0.10),
                 inlay_fg=palette.fg_muted,
                 codelens=palette.fg_muted,
                 info_fg=palette.fg_muted,
                 bracket_match=bracket_base.muted,
-                bracket_match_border=bracket_base.soft,
+                bracket_match_border=secondary.soft,  # crisper than tinted form -- bracket-match is a key reading cue
                 stack_frame=stack_frame_base,
                 stack_focused=stack_focused_base,
                 debug_bg=success.muted,
             ),
             selection=SelectionColors(
                 primary=_overlay(accent, 1, is_dark=is_dark),
-                inactive=accent.a50,
-                highlight=_overlay(accent, 1, is_dark=is_dark),
-                word_read=_overlay(accent, 2, is_dark=is_dark),
-                word_write=_overlay(accent, 2, is_dark=is_dark),
+                # Inactive selection -- dropped to 8% alpha so it reads clearly
+                # lighter than primary (15%). Quality review found the previous
+                # 12% inactive vs 15% primary blended to contrast 1.04:1 --
+                # visually identical. 8% gives a clearer lightness gap while
+                # keeping the "your selection survives focus loss" signal.
+                inactive=accent.with_alpha(0.14 if is_dark else 0.08),
+                # highlight is "other occurrences of the current selection" -- must read
+                # between hover_bg (level 0 -- can cover many rows) and primary (level 1 --
+                # the focused selection). Uses a dedicated mid-alpha so it sits visibly
+                # between the two without colliding with either.
+                highlight=accent.with_alpha(0.16 if is_dark else 0.10),
+                # Read vs write occurrences: VS Code exposes these as two distinct
+                # decorations (editor.wordHighlightBackground for reads,
+                # editor.wordHighlightStrongBackground for writes). Setting them
+                # to the same value erases a refactoring-relevant signal -- you
+                # want the write sites of a symbol to stand out from reads since
+                # mutations are more consequential. Both stay in the accent family
+                # for now; moving reads to neutral gray to solve blue-family
+                # stacking with selection is tracked as an open refactor.
+                word_read=accent.with_alpha(0.25 if is_dark else 0.18),
+                word_write=accent.with_alpha(0.38 if is_dark else 0.28),
                 word_text=_overlay(secondary, 1, is_dark=is_dark),
                 hover_bg=_overlay(accent, 0, is_dark=is_dark),
                 find_match=find_match_base,
@@ -204,7 +244,7 @@ class EditorPalette:
                 settings_modified=secondary.vivid,
                 chat_edited_fg=secondary.s700 if not is_dark else secondary.s300,
                 notebook_cell_bg=notebook_base,
-                slash_cmd_fg=accent.darker.vivid,
+                slash_cmd_fg=accent.darker.vivid if not is_dark else palette.accent_hover,
                 chat_lines_add=success.a80,
                 chat_lines_remove=error.a80,
             ),

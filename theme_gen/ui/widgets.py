@@ -19,21 +19,26 @@ class WidgetSection(UISection):
         fg = p.foreground
 
         return {
-            "editorWidget.background": p.background,
+            "editorWidget.background": p.surface_elevated,
             "editorWidget.border": p.border,
-            "editorSuggestWidget.background": p.background,
+            "editorSuggestWidget.background": p.surface_elevated,
             "editorSuggestWidget.border": p.border,
             "editorSuggestWidget.foreground": fg,
             "editorSuggestWidget.selectedBackground": p.selection_bg,
+            "editorSuggestWidget.selectedForeground": fg,
             "editorSuggestWidget.highlightForeground": p.accent,
             "editorSuggestWidget.focusHighlightForeground": p.accent,
             # Hover widget — slightly elevated surface
-            "editorHoverWidget.background": p.panel_bg,
+            "editorHoverWidget.background": p.surface_elevated,
             "editorHoverWidget.border": p.border,
             "editorHoverWidget.foreground": fg,
             "editorHoverWidget.highlightForeground": p.accent,
+            # Hover widget status bar -- the "⌘ click to go to definition" hint
+            # at the bottom. Grounded on panel_bg so it reads as a footer strip
+            # rather than floating text at the popup's edge.
+            "editorHoverWidget.statusBarBackground": p.panel_bg,
             # Quick input / command palette
-            "quickInput.background": p.background,
+            "quickInput.background": p.surface_elevated,
             "quickInput.foreground": fg,
             # Peek view — accent border is intentional design element
             "peekView.border": p.accent,
@@ -48,10 +53,10 @@ class WidgetSection(UISection):
             "peekViewResult.lineForeground": p.fg_muted,
             "peekViewEditor.matchHighlightBackground": e.widgets.peek_match_hl,
             "peekViewResult.matchHighlightBackground": e.widgets.peek_match_hl,
-            # Notifications — white bg, NO border (shadow handles it)
-            "notifications.background": p.background,
+            # Notifications -- elevated (float on top of the UI)
+            "notifications.background": p.surface_elevated,
             "notifications.foreground": fg,
-            "notificationCenterHeader.background": p.background,
+            "notificationCenterHeader.background": p.surface_elevated,
             "notificationCenterHeader.foreground": fg,
             "notificationsErrorIcon.foreground": p.error,
             "notificationsWarningIcon.foreground": p.warning,
@@ -61,26 +66,32 @@ class WidgetSection(UISection):
             "notificationToast.border": p.border,
             # Quick picker
             "quickInputList.focusBackground": p.selection_bg,
-            "pickerGroup.border": p.border,
+            "pickerGroup.border": p.border_subtle,
             "pickerGroup.foreground": p.fg_muted,
             # Toolbar
-            "toolbar.hoverBackground": p.hover_bg,
+            "toolbar.hoverBackground": p.hover_bg_neutral,
             "toolbar.activeBackground": p.selection_bg,
-            # Search editor
+            # Search editor -- input edge uses `border` (not `border_subtle`)
+            # so the field reads as interactive.
             "searchEditor.textInputBorder": p.border,
             # Input option hover
-            "inputOption.hoverBackground": p.hover_bg,
+            "inputOption.hoverBackground": p.hover_bg_neutral,
             # Settings
-            "settings.dropdownBackground": p.background,
+            "settings.dropdownBackground": p.surface_elevated,
             "settings.dropdownBorder": p.border,
             "settings.headerForeground": fg,
+            # Settings inputs -- input edge uses `border` (not `border_subtle`)
+            # so the field reads as interactive.
             "settings.numberInputBorder": p.border,
             "settings.textInputBorder": p.border,
             "settings.modifiedItemIndicator": e.widgets.settings_modified,
-            "settings.rowHoverBackground": p.hover_bg,
-            # Welcome page
+            "settings.rowHoverBackground": p.hover_bg_neutral,
+            # Welcome page -- hover must provide visible feedback relative to
+            # the resting tile. On light: darken (sunken < panel_bg in lightness).
+            # On dark: lighten (elevated > panel_bg in lightness). Both directions
+            # signal "interactive, you're hovering" without looking like a press.
             "welcomePage.tileBackground": p.panel_bg,
-            "welcomePage.tileHoverBackground": p.hover_bg,
+            "welcomePage.tileHoverBackground": p.surface_elevated if p.is_dark else p.surface_sunken,
             # Action bar
-            "actionBar.toggledBackground": p.border,
+            "actionBar.toggledBackground": p.border_subtle,
         }

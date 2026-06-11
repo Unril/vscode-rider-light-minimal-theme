@@ -5,8 +5,8 @@ import re
 from css.markdown_variables import _extract_vars, build_css
 from palette.theme import Theme
 
-_CSS_VAR_RE = re.compile(r"^\s+--kiro-[\w-]+:\s+#[0-9A-Fa-f]{6,8};$")
-_EXPECTED_VAR_COUNT = 31
+_CSS_VAR_RE = re.compile(r"^\s+--rlm-[\w-]+:\s+#[0-9A-Fa-f]{6,8};$")
+_EXPECTED_VAR_COUNT = 33
 
 
 class TestExtractVars:
@@ -47,7 +47,7 @@ class TestExtractVars:
             "escape",
             "quote-fg",
         ]:
-            assert f"--kiro-{name}:" in joined, f"Missing --kiro-{name}"
+            assert f"--rlm-{name}:" in joined, f"Missing --rlm-{name}"
 
 
 class TestBuildCss:

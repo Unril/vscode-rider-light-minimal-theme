@@ -82,7 +82,7 @@ def generate_theme_dict(*, is_dark: bool = False) -> dict[str, object]:
     token_colors = [rule.to_dict() for rule in registry.build_token_colors(theme)]
     semantic_tokens = registry.build_semantic_tokens(theme)
 
-    name = "Kiro Rider Dark" if is_dark else "Kiro Rider Light"
+    name = "Rider Light Minimal Dark" if is_dark else "Rider Light Minimal"
     theme_type = "dark" if is_dark else "light"
 
     return {

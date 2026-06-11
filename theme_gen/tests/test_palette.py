@@ -11,6 +11,9 @@ _CHROMA_TOLERANCE = 0.02
 _HUE_TOLERANCE = 2.0
 
 
+_BG_MIN_LIGHTNESS = 0.99  # light variant bg should be near-white
+_BG_MAX_CHROMA = 0.01  # light variant bg is imperceptibly tinted
+
 _FG_MAX_LIGHTNESS = 0.36
 _WCAG_AA_FLOOR = 4.5
 _DARK_BG_MAX_LIGHTNESS = 0.3
@@ -77,9 +80,21 @@ class TestPalette:
         assert isinstance(p.hover_bg, TCol)
         assert isinstance(p.selection_bg, TCol)
 
-    def test_for_light_background_is_white(self) -> None:
+    def test_for_light_background_is_warm_off_white(self) -> None:
         p = Palette.for_light()
-        assert p.background.hex == "#FFFFFF"
+        # Not pure white -- a small warm yellow tint at hue 85.
+        # Imperceptible as "colored" but avoids the blue-screen glow of #FFFFFF.
+        assert p.background.lightness > _BG_MIN_LIGHTNESS
+        assert p.background.c < _BG_MAX_CHROMA
+        # Near-white: first two hex channels reach 0xFE or 0xFF. Specific values
+        # depend on sRGB gamut projection at whatever chroma we settle on.
+        assert p.background.hex.startswith(("#FF", "#FE"))
+
+    def test_surface_hierarchy(self) -> None:
+        p = Palette.for_light()
+        # elevated > default > subtle > sunken
+        assert p.surface_elevated.lightness >= p.background.lightness
+        assert p.background.lightness > p.panel_bg.lightness > p.surface_sunken.lightness
 
     def test_for_light_foreground_is_dark_grey(self) -> None:
         p = Palette.for_light()

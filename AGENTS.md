@@ -4,16 +4,16 @@ Guidance for AI coding agents working in this repo. Covers what the product is, 
 
 ## Product
 
-Kiro Rider is a light + dark color theme extension for VS Code and Kiro IDE, inspired by JetBrains Rider.
+Rider light minimal is a light + dark color theme extension for VS Code, inspired by JetBrains Rider.
 
-Published to the VS Code Marketplace and Open VSX as `NikolaiFedorov.kiro-rider-light`.
+Published to the VS Code Marketplace and Open VSX as `NikolaiFedorov.vscode-rider-light-minimal-theme`.
 
 ### Goals
 
 - Consistent syntax colors across all supported languages (Kotlin, Java, TypeScript, JavaScript, Python, Markdown, YAML, JSON, HTML, CSS, shell scripts) -- a class is always purple, a function always green, regardless of language
 - WCAG AA contrast (4.5:1 minimum) for all syntax colors on the background
 - Dedicated semantic highlighting scopes for Kotlin LSP and basedpyright
-- 487 UI colors covering editor, terminal, debug, testing, VCS, and more
+- 523 UI colors covering editor, terminal, debug, testing, VCS, and more
 - Full 16-color ANSI terminal palette at perceptually uniform lightness
 - Themed markdown preview (colored headings, highlighted code blocks, styled tables, lists, blockquotes)
 
@@ -36,10 +36,11 @@ Published to the VS Code Marketplace and Open VSX as `NikolaiFedorov.kiro-rider-
 
 - Format: VS Code color theme extension (`package.json` with `contributes.themes`)
 - Engine: VS Code `^1.90.0`
-- Entry: `src/extension.js` (registers a markdown-it plugin that wraps the preview when `kiro-rider.markdownPreview.enabled` is true)
+- Entry: `src/extension.js` (registers a markdown-it plugin that wraps the preview when `rider-light-minimal.markdownPreview.enabled` is true)
+- Activation: `extensionDependencies: ["vscode.markdown-language-features"]` + empty `activationEvents`. The markdown engine discovers the plugin via the `'api'` pattern (same as `markdown-math` and `markdown-mermaid`). Using `onLanguage:markdown` causes a race where the engine initializes before the plugin registers.
 - Outputs (generated, not hand-edited):
-  - `themes/Kiro Rider Light-color-theme.json`
-  - `themes/Kiro Rider Dark-color-theme.json`
+  - `themes/Rider Light Minimal-color-theme.json`
+  - `themes/Rider Light Minimal Dark-color-theme.json`
   - `styles/markdown-variables.css` (paired with hand-written `styles/markdown-preview.css` and `styles/markdown-highlight.css`)
 
 ### Theme generator (`theme_gen/`)
@@ -62,6 +63,8 @@ All `theme_gen` commands run from `theme_gen/` (use `cwd: "theme_gen"` when disp
 ```bash
 # Regenerate both theme JSONs and the markdown-variables CSS
 uv run main.py
+# or
+uv run ./theme_gen/main.py
 
 # Run the test suite
 uv run -m pytest
@@ -73,14 +76,18 @@ uv run ruff check .
 uv run mypy .
 
 # Sync dependencies (after pyproject.toml changes)
-uv sync
+uv sync --all-groups
+
+# Format
+uv run ruff check --fix .
+uv run ruff format .
 ```
 
 ### Testing the extension locally
 
-1. Open the workspace root in VS Code or Kiro.
+1. Open the workspace root in VS Code.
 2. Press `F5` to launch the Extension Development Host.
-3. `Cmd+K Cmd+T` and pick `Kiro Rider Light` or `Kiro Rider Dark`.
+3. `Cmd+K Cmd+T` and pick `Rider Light Minimal` or `Rider Light Minimal Dark`.
 
 ### Packaging
 
@@ -92,7 +99,7 @@ vsce package
 ## Project structure
 
 ```text
-kiro-rider-light/
+vscode-rider-light-minimal-theme/
   package.json  # Extension manifest (themes, markdown preview, config)
   pyrightconfig.json  # basedpyright config for theme_gen/
   src/
@@ -102,8 +109,8 @@ kiro-rider-light/
     markdown-preview.css  # Hand-written preview styles
     markdown-highlight.css  # Hand-written highlight.js scope styles
   themes/
-    Kiro Rider Light-color-theme.json  # Generated -- do not edit by hand
-    Kiro Rider Dark-color-theme.json  # Generated -- do not edit by hand
+    Rider Light Minimal-color-theme.json  # Generated -- do not edit by hand
+    Rider Light Minimal Dark-color-theme.json  # Generated -- do not edit by hand
   theme_gen/  # Python generator (source of truth for theme colors)
     main.py  # Assembles Light + Dark JSONs and markdown CSS
     pyproject.toml  # Dependencies, ruff/mypy/pylint config

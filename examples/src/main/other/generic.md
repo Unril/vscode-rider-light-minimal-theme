@@ -17,7 +17,7 @@ draft: false
 
 ###### Heading 6
 
-Body text with **bold**, *italic*, ***bold italic***, and ~~strikethrough~~.
+Body text with **bold**, _italic_, **_bold italic_**, and ~~strikethrough~~.
 
 Inline `code span` and a [link text](https://example.com "title").
 
@@ -61,7 +61,7 @@ Example [hobbit-hole][123]
 - [ ] Pending task
 
 | Name | Type | Default |
-|---|:---:|---:|
+| --- | :---: | ---: |
 | `host` | string | `localhost` |
 | port | number | "5432.123" |
 

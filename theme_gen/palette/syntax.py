@@ -85,9 +85,12 @@ _C_MID = 0.12
 _C_VIVID = 0.16  # vivid for comment, number, escape (Rider comment ≈ 0.177)
 _C_ACCENT = 0.20  # keyword, type — matches Rider (#0F54D6 C=0.210, #6B2FBA C=0.203)
 
-# Contrast floors
-_FLOOR_STRUCTURAL = 4.5  # WCAG AA — keyword, type, param, punct, namespace, escape
-_FLOOR_SEMANTIC = 4.5  # WCAG AA — function, field, comment, string, metadata, number
+# Contrast floors. 4.6 target (not 4.5) absorbs sRGB quantization loss so
+# rounded 8-bit output reliably meets WCAG AA 4.5:1. Without the buffer,
+# Brent's OKLCH solution converges in float precision but the rounded hex
+# can miss AA by ~0.02 (e.g., string color at 4.47:1 instead of 4.50:1).
+_FLOOR_STRUCTURAL = 4.6  # WCAG AA — keyword, type, param, punct, namespace, escape
+_FLOOR_SEMANTIC = 4.6  # WCAG AA — function, field, comment, string, metadata, number
 _FLOOR_NONE = 0.0  # dark anchors — function_decl, field_const
 _CI_STRING = 0  # 40°  brown
 _CI_META = 1  # 85°  olive

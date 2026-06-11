@@ -1,8 +1,70 @@
 # Changelog
 
-All notable changes to the "kiro-rider-light" extension will be documented in this file.
+All notable changes to the "vscode-rider-light-minimal-theme" extension will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
+
+## [Unreleased]
+
+### Fixed
+
+- **Diff editor stacking**: line and text backgrounds now use different alpha levels (5%/15% light, 10%/25% dark) so word-level diffs pop above the row wash instead of compounding into a dark blob
+- **Word highlight read/write distinction**: `editor.wordHighlightBackground` (18%) and `editor.wordHighlightStrongBackground` (28%) are no longer identical, restoring the refactoring-relevant signal
+- **Active link feedback**: `textLink.activeForeground` now uses the darker accent hover color, providing visible press/click feedback
+- **Indent guide zebra striping**: inactive guide opacity reduced from 15% to 5%, eliminating vertical stripe noise in deeply nested code
+- **Status bar focus border**: now opaque accent (was 50% alpha, inconsistent with other focus indicators)
+- **Inline chat placeholder**: uses muted foreground (was disabled gray, too faint for an active input surface)
+- **Secondary button hover**: stays neutral gray (was accent blue, creating false primary-action affordance)
+- **List inactive focus**: dimmer than active focus so focus-loss is visible when switching to the editor
+- **Status bar prominent hover**: always stronger than base (was equal or inverted in dark mode)
+- **Welcome page tile hover**: correctly darkens on light / lightens on dark (was inverted in both)
+- **Terminal hover highlight**: uses alpha transparency (was solid, could obliterate CLI background colors)
+- **Inlay hint background (light)**: uses alpha (was solid, punched through selection/find highlights)
+- **Dark `terminal.ansiBlack`**: raised above terminal background so dim CLI content is visible
+- **Dark minimap slider**: uses foreground-based alpha (was mid-gray, nearly invisible)
+- **Dark inlay hint background**: bumped from 5% to 10% for visibility
+- **Dark chat slash command**: uses lighter accent (was too dark on the tinted bubble background)
+- **Secondary color AA floor**: `#906800` now passes 4.55:1 on panel_bg (was 4.27:1)
+- **`textSeparator.foreground`**: uses border_subtle (was pure black, harsh on warm off-white)
+- **Light minimap slider**: uses foreground base (was different color family than scrollbar, causing color-shift on hover)
+- **Minimap find match**: bumped to 80% opacity (was 25-35%, invisible at minimap scale)
+
+### Added
+
+- `inputValidation.errorForeground`, `warningForeground`, `infoForeground` (completes the validation color set)
+- `editorSuggestWidget.selectedForeground` (defensive against VS Code fallback inversion)
+- `menu.background` and `menu.foreground` (prevents OS dark-mode fallback on Windows/Linux)
+- `keybindingLabel.background`, `border`, `bottomBorder` (keycap styling in command palette)
+- `editorHoverWidget.statusBarBackground` (grounds the "⌘ click" hint as a footer strip)
+- `--rlm-code-bg` CSS variable (dedicated code-block background for WCAG AA syntax contrast)
+- `--rlm-link-active` CSS variable (hover/active link color for markdown preview)
+- Link `:hover`, `:active`, `:focus-visible` states in markdown preview
+- Theme-aware diff highlight backgrounds in markdown preview (5% light / 15% dark via `color-mix`)
+- `capabilities` declaration in `package.json` for virtual and untrusted workspaces
+- Settings section in README with copy-paste config for the markdown preview toggle
+
+### Changed
+
+- Markdown preview code blocks use `--rlm-code-bg` (editor bg) instead of `--rlm-panel` for better syntax contrast
+- Markdown preview HTML/XML tags now use `--rlm-type` (purple) to match editor semantics
+- Markdown preview CSS selectors now use `--rlm-type` (purple) to match editor semantics
+- Markdown preview `::marker` scoped to `li::marker` (no longer colors `<details>` triangles)
+- Markdown preview table striping scoped to `tbody tr` (no longer counts header row)
+- Markdown preview table has `display: block; overflow-x: auto` for wide-table scrolling
+- Markdown preview heading borders use explicit shorthand (more robust than partial overrides)
+- Removed `min-width: 200px` from preview layout (prevented narrow split-pane usage)
+- Removed dead `code.hljs { padding: 3px 5px }` rule (specificity-safe but confusing)
+- Terminal ANSI white decision documented as intentional tradeoff in source code
+- Markdown preview refresh on setting change is now guarded against rejection (Web extensions, restricted-mode)
+- Configuration listener narrowed to the exact `rider-light-minimal.markdownPreview.enabled` key
+- Markdown-it plugin now guards against double-wrapping if applied to the same renderer twice
+
+## [0.3.2] - 2026-05-13
+
+### Fixed
+
+- Markdown preview styling not applying on recent VS Code versions. The extension declared no activation events, so the markdown-it plugin that injects the `.rlm-preview` wrapper was never registered after VS Code's move away from implicit activation. Added `"activationEvents": ["onLanguage:markdown"]` so the plugin activates when any markdown file or preview opens.
+- Markdown-it plugin not discovered by the preview engine when installed as a `.vsix`. The `onLanguage:markdown` activation event caused a race: the markdown engine initialized its plugin chain before the extension finished activating. Fixed by declaring `"extensionDependencies": ["vscode.markdown-language-features"]` and using an empty `activationEvents` array, which lets the markdown engine discover and activate the plugin via the `'api'` pattern (same mechanism used by `markdown-math` and `markdown-mermaid`).
 
 ## [0.3.1] - 2026-04-04
 
@@ -16,8 +78,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 - Colored heading hierarchy (H1-H6) using hue-shifted series shared with bracket pairs and SCM graph
 - `SyntaxPalette.hue_shifted` field as single source for bracket, heading, and SCM graph colors
-- Lighter quote variants (`--kiro-h*-quote`) for blockquote borders by nesting depth (up to 6 levels)
-- Heading colors (`--kiro-h*`) for list markers by nesting depth (up to 6 levels)
+- Lighter quote variants (`--rlm-h*-quote`) for blockquote borders by nesting depth (up to 6 levels)
+- Heading colors (`--rlm-h*`) for list markers by nesting depth (up to 6 levels)
 - Alternating disc/square bullet shapes for nested unordered lists
 - Inline code colored with comment-green to match editor styling
 - Table styling: rounded corners, zebra striping, horizontal-only separators
@@ -42,7 +104,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - Table styling: rounded corners, zebra striping, horizontal-only separators
 - Task list styling: checked items get line-through and reduced opacity
 - Max-width (980px) layout for comfortable reading on wide monitors
-- Setting `kiro-rider.markdownPreview.enabled` to toggle preview styling (default: on)
+- Setting `rider-light-minimal.markdownPreview.enabled` to toggle preview styling (default: on)
 - CSS variables generated on `body.vscode-light` / `body.vscode-dark` for reliable theming
 - `SyntaxPalette.hue_shifted` field: single source for bracket, SCM graph, heading, and preview heading colors
 
@@ -50,7 +112,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ### Added
 
-- Dark theme variant ("Kiro Rider Dark") with warm-tinted background (OKLCH H=82)
+- Dark theme variant ("Rider light minimal Dark") with warm-tinted background (OKLCH H=82)
 - Same 8 syntax hues as light theme with contrast-matched dark lightness tiers
 - Bidirectional `with_min_contrast` -- lightens on dark backgrounds, darkens on light
 - `TCol.mix` for blending two colors in sRGB space
@@ -61,7 +123,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ### Changed
 
-- Extension renamed to "Kiro Rider" (covers both variants)
+- Extension renamed to "Rider light minimal" (covers both variants)
 - `SyntaxPalette.create` accepts `is_dark` and `foreground` parameters
 - `Palette` includes `is_dark` field
 - `EditorPalette.create` uses `_tint` and `_overlay` helpers instead of inline conditionals

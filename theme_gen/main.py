@@ -1,6 +1,23 @@
 #!/usr/bin/env -S uv run --script
+# /// script
+# requires-python = ">=3.13"
+# dependencies = [
+#   "coloraide>=8.8",
+#   "scipy>=1.17",
+# ]
+# ///
 
-"""Generate the Kiro Rider Light and Dark VS Code color theme JSON files."""
+"""Generate the Rider Light Minimal and Dark VS Code color theme JSON files.
+
+Run as an executable script from the workspace root:
+
+    ./theme_gen/main.py
+
+The shebang `uv run --script` + the PEP 723 inline-metadata block above let uv
+materialize a cached venv with coloraide + scipy on first run, without needing
+to activate the project's `.venv/`. For development inside the project
+(editable install, tests, linters), keep using `cd theme_gen && uv run main.py`.
+"""
 
 import json
 from collections.abc import Callable
@@ -42,8 +59,8 @@ _THEMES_DIR = Path(__file__).resolve().parent.parent / "themes"
 _STYLES_DIR = Path(__file__).resolve().parent.parent / "styles"
 _MARKDOWN_VARS_OUTPUT = _STYLES_DIR / "markdown-variables.css"
 _VARIANTS: list[tuple[bool, str, str]] = [
-    (False, "Kiro Rider Light", "light"),
-    (True, "Kiro Rider Dark", "dark"),
+    (False, "Rider Light Minimal", "light"),
+    (True, "Rider Light Minimal Dark", "dark"),
 ]
 
 

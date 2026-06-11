@@ -10,7 +10,7 @@ HEX_RE = re.compile(r"^#[0-9A-Fa-f]{6}([0-9A-Fa-f]{2})?$")
 
 
 _COLOR_COUNT_MIN = 200
-_COLOR_COUNT_MAX = 500
+_COLOR_COUNT_MAX = 600
 _TOKEN_COLOR_COUNT_MIN = 70
 _SEMANTIC_TOKEN_COUNT_MIN = 55
 
@@ -64,7 +64,7 @@ class TestThemeStructure:
     def test_json_serializable(self, theme_output: dict[str, object]) -> None:
         text = json.dumps(theme_output, indent=2)
         parsed = cast("dict[str, object]", json.loads(text))
-        assert parsed["name"] == "Kiro Rider Light"
+        assert parsed["name"] == "Rider Light Minimal"
 
     def test_color_count_in_range(self, theme_output: dict[str, object]) -> None:
         colors = cast("dict[str, str]", theme_output["colors"])
@@ -100,7 +100,7 @@ class TestThemeStructure:
             assert dark_theme_output["type"] == "dark"
 
         def test_name_is_dark(self, dark_theme_output: dict[str, object]) -> None:
-            assert dark_theme_output["name"] == "Kiro Rider Dark"
+            assert dark_theme_output["name"] == "Rider Light Minimal Dark"
 
         def test_colors_are_hex_strings(self, dark_theme_output: dict[str, object]) -> None:
             colors = cast("dict[str, str]", dark_theme_output["colors"])
@@ -123,4 +123,4 @@ class TestThemeStructure:
         def test_json_serializable(self, dark_theme_output: dict[str, object]) -> None:
             text = json.dumps(dark_theme_output, indent=2)
             parsed = cast("dict[str, object]", json.loads(text))
-            assert parsed["name"] == "Kiro Rider Dark"
+            assert parsed["name"] == "Rider Light Minimal Dark"

@@ -55,20 +55,31 @@ class EditorSection(UISection):
             "editorMarkerNavigationWarning.background": p.warning.a15,
             "editorMarkerNavigationInfo.background": p.accent.a15,
             "editorUnnecessaryCode.opacity": fg.a50,
-            # Overview ruler
+            # Overview ruler -- density-map treatment (markers at 80% so stacked hits
+            # read as intensity instead of an oversaturated clown stripe).
+            # The left border separates the minimap slab from the scrollbar track.
             "editorOverviewRuler.background": p.background,
-            "editorOverviewRuler.errorForeground": p.error,
-            "editorOverviewRuler.warningForeground": p.warning,
-            "editorOverviewRuler.infoForeground": p.accent,
+            "editorOverviewRuler.border": p.border_subtle,
+            "editorOverviewRuler.errorForeground": p.error.a80,
+            "editorOverviewRuler.warningForeground": p.warning.a80,
+            "editorOverviewRuler.infoForeground": p.accent.a80,
             "editorOverviewRuler.modifiedForeground": p.gutter_mod,
             "editorOverviewRuler.addedForeground": p.gutter_add,
             "editorOverviewRuler.deletedForeground": p.gutter_del,
             "editorOverviewRuler.findMatchForeground": sel.find_ruler,
             "editorOverviewRuler.bracketMatchForeground": c.bracket_match_border,
+            # Ruler markers for editor highlights (word occurrences, selections,
+            # range highlights from Quick Open / goto-symbol). Reference requires
+            # non-opaque values so underlying ruler content isn't hidden.
+            "editorOverviewRuler.wordHighlightForeground": sel.word_read,
+            "editorOverviewRuler.wordHighlightStrongForeground": sel.word_write,
+            "editorOverviewRuler.wordHighlightTextForeground": sel.word_text,
+            "editorOverviewRuler.selectionHighlightForeground": sel.highlight,
+            "editorOverviewRuler.rangeHighlightForeground": sel.hover_bg,
             # Sticky scroll (shadow inherits from scrollbar.shadow)
             "editorStickyScroll.background": p.background,
             "editorStickyScrollHover.background": p.hover_bg_opaque,
-            "editorLink.activeForeground": p.accent,
+            "editorLink.activeForeground": p.accent_hover,
             "editor.foldBackground": sel.hover_bg,
             "editorGutter.foldingControlForeground": p.fg_muted,
             "editorGhostText.foreground": p.fg_disabled,

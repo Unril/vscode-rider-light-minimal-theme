@@ -12,6 +12,7 @@ class DebugSection(UISection):
     def build(self, theme: Theme) -> dict[str, TCol]:
         p = theme.palette
         s = theme.syntax
+        e = theme.editor
         fg = p.foreground
 
         return {
@@ -23,13 +24,15 @@ class DebugSection(UISection):
             "debugConsole.errorForeground": p.error,
             "debugConsole.sourceForeground": p.fg_muted,
             "debugConsoleInputIcon.foreground": p.accent,
-            # Debug token expressions (Variables/Watch view)
-            "debugTokenExpression.name": s.field,
-            "debugTokenExpression.type": s.type,
+            # Debug token expressions (Variables/Watch view) -- these render on
+            # panel_bg surfaces, so use the symbol-icon-adjusted colors that pass
+            # 4.6:1 on panel_bg (same as sidebar symbol icons).
+            "debugTokenExpression.name": e.symbols.variable,
+            "debugTokenExpression.type": e.symbols.cls,
             "debugTokenExpression.value": s.foreground,
-            "debugTokenExpression.string": s.string,
-            "debugTokenExpression.number": s.number,
-            "debugTokenExpression.boolean": s.keyword,
+            "debugTokenExpression.string": e.symbols.string,
+            "debugTokenExpression.number": e.symbols.number,
+            "debugTokenExpression.boolean": e.symbols.keyword,
             "debugTokenExpression.error": p.error,
             # Debug view labels
             "debugView.exceptionLabelBackground": p.error.a15,

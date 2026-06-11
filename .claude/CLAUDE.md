@@ -1,0 +1,3 @@
+# Agent guides
+
+@../AGENTS.md

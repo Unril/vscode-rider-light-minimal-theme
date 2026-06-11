@@ -1,76 +1,155 @@
 /*
- * Kiro Rider -- Generated CSS custom properties for markdown preview.
+ * Rider light minimal -- Generated CSS custom properties for markdown preview.
  * Do not edit by hand. Regenerate with: cd theme_gen && uv run main.py
  */
 
 /* Light variant */
 
 body.vscode-light {
-    --kiro-bg: #FFFFFF;
-    --kiro-fg: #161616;
-    --kiro-accent: #4371C9;
-    --kiro-border: #D7D7D7;
-    --kiro-panel: #F2F2F2;
-    --kiro-muted: #747474;
-    --kiro-keyword: #305EDD;
-    --kiro-type: #7922A7;
-    --kiro-function: #007561;
-    --kiro-string: #A26955;
-    --kiro-number: #C24C82;
-    --kiro-comment: #5C822E;
-    --kiro-field: #00819D;
-    --kiro-metadata: #977100;
-    --kiro-escape: #8A4DB1;
-    --kiro-error: #BA4A50;
-    --kiro-warning: #AD652E;
-    --kiro-success: #158941;
-    --kiro-h1: #00718A;
-    --kiro-h2: #0F6BA5;
-    --kiro-h3: #4861AA;
-    --kiro-h4: #6856A4;
-    --kiro-h5: #804E93;
-    --kiro-h6: #91477B;
-    --kiro-h1-quote: #B5D7E3;
-    --kiro-h2-quote: #BBD4E9;
-    --kiro-h3-quote: #C5D0EC;
-    --kiro-h4-quote: #D0CCE9;
-    --kiro-h5-quote: #DBC9E3;
-    --kiro-h6-quote: #E3C7D9;
-    --kiro-quote-fg: #747474;
+    --rlm-bg: #FEFDFC;
+    --rlm-fg: #161616;
+    --rlm-accent: #3E6CC3;
+    --rlm-border: #D4D4D4;
+    --rlm-panel: #F4F3F2;
+    --rlm-muted: #686868;
+    --rlm-code-bg: #FEFDFC;
+    --rlm-link-active: #365BA2;
+    --rlm-keyword: #305EDD;
+    --rlm-type: #7922A7;
+    --rlm-function: #007561;
+    --rlm-string: #9F6652;
+    --rlm-number: #BF4A7F;
+    --rlm-comment: #5A7F2B;
+    --rlm-field: #007F9A;
+    --rlm-metadata: #946E00;
+    --rlm-escape: #8A4DB1;
+    --rlm-error: #B9494F;
+    --rlm-warning: #A35C24;
+    --rlm-success: #008039;
+    --rlm-h1: #00718A;
+    --rlm-h2: #0F6BA5;
+    --rlm-h3: #4861AA;
+    --rlm-h4: #6856A4;
+    --rlm-h5: #804E93;
+    --rlm-h6: #91477B;
+    --rlm-h1-quote: #B5D7E3;
+    --rlm-h2-quote: #BBD4E9;
+    --rlm-h3-quote: #C5D0EC;
+    --rlm-h4-quote: #D0CCE9;
+    --rlm-h5-quote: #DBC9E3;
+    --rlm-h6-quote: #E3C7D9;
+    --rlm-quote-fg: #686868;
 }
 
 /* Dark variant */
 
 body.vscode-dark {
-    --kiro-bg: #262118;
-    --kiro-fg: #C7C7C7;
-    --kiro-accent: #7CA4ED;
-    --kiro-border: #3F3A30;
-    --kiro-panel: #1A150D;
-    --kiro-muted: #A4A4A4;
-    --kiro-keyword: #6492FF;
-    --kiro-type: #D190FF;
-    --kiro-function: #3FA68E;
-    --kiro-string: #B88573;
-    --kiro-number: #D6709A;
-    --kiro-comment: #7A9B56;
-    --kiro-field: #339CB9;
-    --kiro-metadata: #AE8C41;
-    --kiro-escape: #B481D9;
-    --kiro-error: #E48686;
-    --kiro-warning: #DC905A;
-    --kiro-success: #6CB97D;
-    --kiro-h1: #3AA2BF;
-    --kiro-h2: #599ACE;
-    --kiro-h3: #7991D3;
-    --kiro-h4: #9588CD;
-    --kiro-h5: #AC80BE;
-    --kiro-h6: #BD7AA7;
-    --kiro-h1-quote: #17363F;
-    --kiro-h2-quote: #1F3444;
-    --kiro-h3-quote: #293146;
-    --kiro-h4-quote: #322E44;
-    --kiro-h5-quote: #392B3F;
-    --kiro-h6-quote: #3F2938;
-    --kiro-quote-fg: #A4A4A4;
+    --rlm-bg: #1F1A11;
+    --rlm-fg: #C7C7C7;
+    --rlm-accent: #7CA4ED;
+    --rlm-border: #3F3A30;
+    --rlm-panel: #161108;
+    --rlm-muted: #A4A4A4;
+    --rlm-code-bg: #1F1A11;
+    --rlm-link-active: #A2BEF1;
+    --rlm-keyword: #6492FF;
+    --rlm-type: #D190FF;
+    --rlm-function: #3FA68E;
+    --rlm-string: #B88573;
+    --rlm-number: #D6709A;
+    --rlm-comment: #7A9B56;
+    --rlm-field: #339CB9;
+    --rlm-metadata: #AE8C41;
+    --rlm-escape: #B481D9;
+    --rlm-error: #E48686;
+    --rlm-warning: #DC905A;
+    --rlm-success: #6CB97D;
+    --rlm-h1: #3AA2BF;
+    --rlm-h2: #599ACE;
+    --rlm-h3: #7991D3;
+    --rlm-h4: #9588CD;
+    --rlm-h5: #AC80BE;
+    --rlm-h6: #BD7AA7;
+    --rlm-h1-quote: #17363F;
+    --rlm-h2-quote: #1F3444;
+    --rlm-h3-quote: #293146;
+    --rlm-h4-quote: #322E44;
+    --rlm-h5-quote: #392B3F;
+    --rlm-h6-quote: #3F2938;
+    --rlm-quote-fg: #A4A4A4;
+}
+
+/* High contrast: map to the matching base variant so the preview
+   doesn't break when users switch to accessibility themes. */
+
+body.vscode-high-contrast-light {
+    --rlm-bg: #FEFDFC;
+    --rlm-fg: #161616;
+    --rlm-accent: #3E6CC3;
+    --rlm-border: #D4D4D4;
+    --rlm-panel: #F4F3F2;
+    --rlm-muted: #686868;
+    --rlm-code-bg: #FEFDFC;
+    --rlm-link-active: #365BA2;
+    --rlm-keyword: #305EDD;
+    --rlm-type: #7922A7;
+    --rlm-function: #007561;
+    --rlm-string: #9F6652;
+    --rlm-number: #BF4A7F;
+    --rlm-comment: #5A7F2B;
+    --rlm-field: #007F9A;
+    --rlm-metadata: #946E00;
+    --rlm-escape: #8A4DB1;
+    --rlm-error: #B9494F;
+    --rlm-warning: #A35C24;
+    --rlm-success: #008039;
+    --rlm-h1: #00718A;
+    --rlm-h2: #0F6BA5;
+    --rlm-h3: #4861AA;
+    --rlm-h4: #6856A4;
+    --rlm-h5: #804E93;
+    --rlm-h6: #91477B;
+    --rlm-h1-quote: #B5D7E3;
+    --rlm-h2-quote: #BBD4E9;
+    --rlm-h3-quote: #C5D0EC;
+    --rlm-h4-quote: #D0CCE9;
+    --rlm-h5-quote: #DBC9E3;
+    --rlm-h6-quote: #E3C7D9;
+    --rlm-quote-fg: #686868;
+}
+
+body.vscode-high-contrast {
+    --rlm-bg: #1F1A11;
+    --rlm-fg: #C7C7C7;
+    --rlm-accent: #7CA4ED;
+    --rlm-border: #3F3A30;
+    --rlm-panel: #161108;
+    --rlm-muted: #A4A4A4;
+    --rlm-code-bg: #1F1A11;
+    --rlm-link-active: #A2BEF1;
+    --rlm-keyword: #6492FF;
+    --rlm-type: #D190FF;
+    --rlm-function: #3FA68E;
+    --rlm-string: #B88573;
+    --rlm-number: #D6709A;
+    --rlm-comment: #7A9B56;
+    --rlm-field: #339CB9;
+    --rlm-metadata: #AE8C41;
+    --rlm-escape: #B481D9;
+    --rlm-error: #E48686;
+    --rlm-warning: #DC905A;
+    --rlm-success: #6CB97D;
+    --rlm-h1: #3AA2BF;
+    --rlm-h2: #599ACE;
+    --rlm-h3: #7991D3;
+    --rlm-h4: #9588CD;
+    --rlm-h5: #AC80BE;
+    --rlm-h6: #BD7AA7;
+    --rlm-h1-quote: #17363F;
+    --rlm-h2-quote: #1F3444;
+    --rlm-h3-quote: #293146;
+    --rlm-h4-quote: #322E44;
+    --rlm-h5-quote: #392B3F;
+    --rlm-h6-quote: #3F2938;
+    --rlm-quote-fg: #A4A4A4;
 }

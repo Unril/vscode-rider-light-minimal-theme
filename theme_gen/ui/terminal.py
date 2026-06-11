@@ -27,10 +27,14 @@ _NORMAL_LAB_L = 45.0
 _NORMAL_CHROMA = 0.15
 _NORMAL_FLOOR = 4.5
 
-# Bright: lighter for bold/bright text
+# Bright: lighter and more saturated than normal for bold/bright text.
+# Contrast floor kept at AA (4.5:1) so bright variants remain readable for
+# everyday terminal output; the higher chroma (0.18 vs 0.15) + higher Lab L
+# (55 vs 45) preserve the "brighter" feel even when the floor forces the
+# final output slightly darker than the raw OkLCh target.
 _BRIGHT_LAB_L = 55.0
 _BRIGHT_CHROMA = 0.18
-_BRIGHT_FLOOR = 3.0
+_BRIGHT_FLOOR = 4.6
 
 
 @dataclass(frozen=True)
@@ -72,6 +76,14 @@ class AnsiColors:
             blue=_normal(_HUE_BLUE),
             magenta=_normal(_HUE_MAGENTA),
             cyan=_normal(_HUE_CYAN),
+            # ANSI white/brightWhite: intentionally low contrast on light bg.
+            # Known tradeoff: ~1.83:1 (white) and ~1.14:1 (brightWhite) fail
+            # text contrast, but ANSI slot 7/15 is NOT a body-text role. CLI
+            # tools use it for borders, separators, dim table elements, and
+            # low-emphasis decorations. Inverting to dark gray (as some reviews
+            # suggest) breaks tools that rely on ANSI white being "the lighter
+            # neutral." Revisit only if real terminal workloads show unreadable
+            # output -- not from static contrast audits.
             white=TCol.from_oklch(0.80, 0.0, 0.0),
             bright_black=TCol.from_oklch(0.45, 0.0, 0.0),
             bright_red=_bright(_HUE_RED),
@@ -102,7 +114,12 @@ class AnsiColors:
             )
 
         return cls(
-            black=TCol.from_oklch(0.20, 0.0, 0.0),
+            # ANSI black on dark: must sit ABOVE the terminal background in
+            # lightness so CLI tools using it for dim/muted content (git log
+            # graphs, tree connectors, separators) remain visible. L=0.30 gives
+            # ~1.5:1 against the L=0.22 terminal bg -- subtle but perceptible,
+            # matching the "dim structural element" semantic of ANSI slot 0.
+            black=TCol.from_oklch(0.30, 0.0, 0.0),
             red=_normal(_HUE_RED),
             green=_normal(_HUE_GREEN),
             yellow=_normal(_HUE_YELLOW),
@@ -152,14 +169,24 @@ class TerminalSection(UISection):
             # Cursor
             "terminalCursor.foreground": p.accent,
             "terminalCursor.background": p.background,
-            # Selection -- match editor selection
+            # Selection -- match editor selection. selectionForeground MUST be set
+            # explicitly: when null, VS Code applies its "minimum contrast ratio"
+            # feature which overrides our carefully tuned ANSI palette with
+            # auto-adjusted colors. Pinning to p.foreground keeps the palette stable.
             "terminal.selectionBackground": sel.primary,
+            "terminal.selectionForeground": p.foreground,
             "terminal.inactiveSelectionBackground": sel.inactive,
-            # Find -- must be transparent (VS Code spec)
+            # Find -- must be transparent (VS Code spec). findMatchBorder outlines
+            # the current match so it stands out from other find hits.
             "terminal.findMatchBackground": sel.find_hl,
+            "terminal.findMatchBorder": p.accent,
             "terminal.findMatchHighlightBackground": sel.find_hl,
             # Hover and sticky scroll
-            "terminal.hoverHighlightBackground": p.hover_bg_opaque,
+            # Terminal hover uses alpha so it composites over CLI tools that set
+            # their own background colors (htop, lazygit, test runners). Solid
+            # colors would obliterate the underlying content. Sticky scroll stays
+            # opaque because it's a chrome surface, not content.
+            "terminal.hoverHighlightBackground": p.accent.with_alpha(0.12),
             "terminalStickyScroll.background": p.background,
             "terminalStickyScroll.border": p.border,
             "terminalStickyScrollHover.background": p.hover_bg_opaque,

@@ -1,6 +1,6 @@
 """Generate markdown-variables.css with theme colors as CSS custom properties.
 
-The generated file defines --kiro-* CSS variables on body.vscode-light /
+The generated file defines --rlm-* CSS variables on body.vscode-light /
 body.vscode-dark, consumed by the static markdown-preview.css and
 markdown-highlight.css stylesheets.
 """
@@ -9,7 +9,7 @@ from palette.theme import Theme
 
 _HEADER = """\
 /*
- * Kiro Rider -- Generated CSS custom properties for markdown preview.
+ * Rider light minimal -- Generated CSS custom properties for markdown preview.
  * Do not edit by hand. Regenerate with: cd theme_gen && uv run main.py
  */
 """
@@ -29,6 +29,12 @@ def _extract_vars(theme: Theme) -> list[str]:
         ("border", p.border),
         ("panel", p.panel_bg),
         ("muted", p.fg_muted),
+        # Code block background -- uses editor bg (not panel_bg) so syntax
+        # colors pass WCAG AA. On panel_bg, string/comment/field/number/metadata
+        # land at ~4.2:1; on editor bg they pass at ~4.6:1.
+        ("code-bg", p.background),
+        # Link active state (darker accent for press/hover feedback)
+        ("link-active", p.accent_hover),
         # Syntax
         ("keyword", s.keyword),
         ("type", s.type),
@@ -49,7 +55,7 @@ def _extract_vars(theme: Theme) -> list[str]:
         # Blockquote / list chrome
         ("quote-fg", p.fg_muted),
     ]
-    return [f"    --kiro-{name}: {col.hex};" for name, col in pairs]
+    return [f"    --rlm-{name}: {col.hex};" for name, col in pairs]
 
 
 def build_css() -> str:
@@ -65,5 +71,9 @@ def build_css() -> str:
         f"/* Light variant */\n\n"
         f"body.vscode-light {{\n{light_vars}\n}}\n\n"
         f"/* Dark variant */\n\n"
-        f"body.vscode-dark {{\n{dark_vars}\n}}\n"
+        f"body.vscode-dark {{\n{dark_vars}\n}}\n\n"
+        f"/* High contrast: map to the matching base variant so the preview\n"
+        f"   doesn't break when users switch to accessibility themes. */\n\n"
+        f"body.vscode-high-contrast-light {{\n{light_vars}\n}}\n\n"
+        f"body.vscode-high-contrast {{\n{dark_vars}\n}}\n"
     )

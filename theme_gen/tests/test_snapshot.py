@@ -1,6 +1,6 @@
 """Snapshot integration test -- regenerates the theme and compares against the fixture.
 
-The fixture at tests/fixtures/kiro-rider-light.snapshot.json is the source of truth.
+The fixture at tests/fixtures/rider-light-minimal.snapshot.json is the source of truth.
 If the generator changes produce different output, this test fails with a diff.
 
 To update the fixture after intentional changes, copy the generated
@@ -15,7 +15,7 @@ import pytest
 
 from tests.conftest import generate_theme_dict
 
-_FIXTURE = Path(__file__).parent / "fixtures" / "kiro-rider-light.snapshot.json"
+_FIXTURE = Path(__file__).parent / "fixtures" / "rider-light-minimal.snapshot.json"
 
 
 class TestSnapshot:
@@ -54,7 +54,7 @@ class TestSnapshot:
         assert gen_text == fix_text, "Full JSON mismatch -- run main.py and update fixture"
 
 
-_DARK_FIXTURE = Path(__file__).parent / "fixtures" / "kiro-rider-dark.snapshot.json"
+_DARK_FIXTURE = Path(__file__).parent / "fixtures" / "rider-light-minimal-dark.snapshot.json"
 
 
 class TestDarkSnapshot:

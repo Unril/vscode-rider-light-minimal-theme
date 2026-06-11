@@ -13,19 +13,41 @@ class VcsSection(UISection):
         p = theme.palette
         e = theme.editor
 
+        # Git decoration foregrounds: push away from the sidebar surface for
+        # readability at small badge sizes (M/A/D single-letter markers).
+        # On light -> darker, on dark -> lighter.
+        is_dark = p.is_dark
+        git_added = p.success.lighter if is_dark else p.success.darker
+        git_modified = p.accent.lighter if is_dark else p.accent.darker
+        git_deleted = p.error.lighter if is_dark else p.error.darker
+
         return {
-            # Diff editor
+            # Diff editor -- line and text use DIFFERENT alpha levels. VS Code
+            # stacks them additively, so when a modified line contains word-level
+            # changes both backgrounds paint the same pixels. Equal alpha
+            # produced a dark blob (~28% effective). Now: faint line wash + full
+            # text highlight, so word diffs pop above the row.
             "diffEditor.insertedTextBackground": p.diff_insert,
             "diffEditor.removedTextBackground": p.diff_remove,
-            "diffEditor.insertedLineBackground": p.diff_insert,
-            "diffEditor.removedLineBackground": p.diff_remove,
+            "diffEditor.insertedLineBackground": p.diff_insert_line,
+            "diffEditor.removedLineBackground": p.diff_remove_line,
             "diffEditorOverview.insertedForeground": p.gutter_add,
             "diffEditorOverview.removedForeground": p.gutter_del,
             "diffEditor.unchangedRegionBackground": p.panel_bg,
-            # Minimap
-            "minimap.background": p.background,
-            "minimap.findMatchHighlight": e.selection.find_hl,
+            # Minimap -- sits on panel_bg so it reads as a distinct slab next to the editor.
+            # foregroundOpacity encodes the opacity in the alpha channel of an #RRGGBBAA
+            # hex; the RGB portion is ignored by VS Code. Use fg with 0.99 alpha so the
+            # generated JSON has an 8-digit hex that clearly signals "full opacity applied".
+            # Default VS Code treatment fades minimap text to ~75%, which washes out colors
+            # on our panel_bg slab; pushing to ~100% keeps syntax silhouettes legible.
+            "minimap.background": p.panel_bg,
+            "minimap.foregroundOpacity": p.foreground.with_alpha(0.99),
+            # Minimap find match -- minimap renders decorations as tiny dots;
+            # low-alpha colors become invisible at that scale. Use warning.a80
+            # so search hits are clearly visible in the minimap gutter.
+            "minimap.findMatchHighlight": p.warning.a80,
             "minimap.selectionHighlight": e.selection.primary,
+            "minimap.selectionOccurrenceHighlight": e.selection.highlight,
             "minimap.errorHighlight": p.minimap_error,
             "minimap.warningHighlight": p.minimap_warning,
             "minimap.infoHighlight": p.accent.a50,
@@ -35,16 +57,18 @@ class VcsSection(UISection):
             "minimapGutter.addedBackground": p.gutter_add,
             "minimapGutter.modifiedBackground": p.gutter_mod,
             "minimapGutter.deletedBackground": p.gutter_del,
-            # Git decorations
-            "gitDecoration.addedResourceForeground": p.success,
-            "gitDecoration.modifiedResourceForeground": p.accent,
-            "gitDecoration.deletedResourceForeground": p.error,
-            "gitDecoration.untrackedResourceForeground": p.success,
+            # Git decorations -- push away from the sidebar surface so `M`/`A`/`D`
+            # badges stay readable at small sizes. Applies to both the file tree
+            # (sidebar) and the SCM viewlet per theme-color.md.
+            "gitDecoration.addedResourceForeground": git_added,
+            "gitDecoration.modifiedResourceForeground": git_modified,
+            "gitDecoration.deletedResourceForeground": git_deleted,
+            "gitDecoration.untrackedResourceForeground": git_added,
             "gitDecoration.ignoredResourceForeground": p.fg_disabled,
-            "gitDecoration.conflictingResourceForeground": p.error,
-            "gitDecoration.renamedResourceForeground": p.success,
-            "gitDecoration.stageModifiedResourceForeground": p.accent.mix(p.foreground),
-            "gitDecoration.stageDeletedResourceForeground": p.error.mix(p.foreground),
+            "gitDecoration.conflictingResourceForeground": git_deleted,
+            "gitDecoration.renamedResourceForeground": git_added,
+            "gitDecoration.stageModifiedResourceForeground": git_modified.mix(p.foreground),
+            "gitDecoration.stageDeletedResourceForeground": git_deleted.mix(p.foreground),
             # Git blame -- warm muted for historical annotations
             "git.blame.editorDecorationForeground": p.secondary.a50,
             # Merge conflicts

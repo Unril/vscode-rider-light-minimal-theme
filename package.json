@@ -1,17 +1,17 @@
 {
-  "name": "kiro-rider-light",
-  "displayName": "Kiro Rider",
-  "description": "Light and dark color themes built for Kiro IDE and VS Code. Consistent syntax highlighting across languages with a themed markdown preview style. Inspired by JetBrains Rider.",
-  "version": "0.3.1",
+  "name": "vscode-rider-light-minimal-theme",
+  "displayName": "Rider light minimal",
+  "description": "Light and dark color themes for VS Code. Consistent syntax highlighting across languages with a themed markdown preview style. Inspired by JetBrains Rider.",
+  "version": "0.3.2",
   "publisher": "NikolaiFedorov",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Unril/kiro-rider-light"
+    "url": "https://github.com/Unril/vscode-rider-light-minimal-theme"
   },
   "bugs": {
-    "url": "https://github.com/Unril/kiro-rider-light/issues"
+    "url": "https://github.com/Unril/vscode-rider-light-minimal-theme/issues"
   },
-  "homepage": "https://github.com/Unril/kiro-rider-light",
+  "homepage": "https://github.com/Unril/vscode-rider-light-minimal-theme",
   "license": "MIT",
   "icon": "img/icon.png",
   "galleryBanner": {
@@ -27,6 +27,9 @@
   "main": "./src/extension.js",
   "browser": "./src/extension.js",
   "activationEvents": [],
+  "extensionDependencies": [
+    "vscode.markdown-language-features"
+  ],
   "keywords": [
     "theme",
     "light",
@@ -34,8 +37,7 @@
     "color-theme",
     "rider",
     "jetbrains",
-    "kiro",
-    "kiro-ide",
+    "vscode",
     "kotlin",
     "basedpyright",
     "markdown-preview",
@@ -51,26 +53,32 @@
       "./styles/markdown-highlight.css"
     ],
     "configuration": {
-      "title": "Kiro Rider",
+      "title": "Rider light minimal",
       "properties": {
-        "kiro-rider.markdownPreview.enabled": {
+        "rider-light-minimal.markdownPreview.enabled": {
           "type": "boolean",
           "default": true,
-          "description": "Apply Kiro Rider styling to the Markdown preview. Disable to use the default VS Code preview style."
+          "description": "Apply Rider light minimal styling to the Markdown preview. Disable to use the default VS Code preview style."
         }
       }
     },
     "themes": [
       {
-        "label": "Kiro Rider Light",
+        "label": "Rider Light Minimal",
         "uiTheme": "vs",
-        "path": "./themes/Kiro Rider Light-color-theme.json"
+        "path": "./themes/Rider Light Minimal-color-theme.json"
       },
       {
-        "label": "Kiro Rider Dark",
+        "label": "Rider Light Minimal Dark",
         "uiTheme": "vs-dark",
-        "path": "./themes/Kiro Rider Dark-color-theme.json"
+        "path": "./themes/Rider Light Minimal Dark-color-theme.json"
       }
     ]
+  },
+  "capabilities": {
+    "virtualWorkspaces": true,
+    "untrustedWorkspaces": {
+      "supported": true
+    }
   }
 }
