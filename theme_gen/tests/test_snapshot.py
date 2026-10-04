@@ -1,10 +1,8 @@
 """Snapshot integration test -- regenerates the theme and compares against the fixture.
 
-The fixture at tests/fixtures/rider-light-minimal.snapshot.json is the source of truth.
-If the generator changes produce different output, this test fails with a diff.
+The fixture at tests/fixtures/rider-light-minimal.snapshot.json is the source of truth. If the generator changes produce different output, this test fails with a diff.
 
-To update the fixture after intentional changes, copy the generated
-theme JSON into the fixtures directory.
+To update the fixture after intentional changes, copy the generated theme JSON into the fixtures directory.
 """
 
 import json
@@ -13,19 +11,20 @@ from typing import cast
 
 import pytest
 
-from tests.conftest import generate_theme_dict
+from theme_gen.pipeline import ThemeDocument
 
 _FIXTURE = Path(__file__).parent / "fixtures" / "rider-light-minimal.snapshot.json"
+_UPDATE_HINT = "if intentional: just gen, then copy themes/*.json over theme_gen/tests/fixtures/*.snapshot.json"
 
 
 class TestSnapshot:
     """Regenerate the theme and compare against the committed fixture."""
 
-    @pytest.fixture(scope="class")
-    def generated(self) -> dict[str, object]:
-        return generate_theme_dict()
+    @pytest.fixture
+    def generated(self, theme_output: ThemeDocument) -> ThemeDocument:
+        return theme_output
 
-    @pytest.fixture(scope="class")
+    @pytest.fixture
     def fixture(self) -> dict[str, object]:
         return cast("dict[str, object]", json.loads(_FIXTURE.read_text()))
 
@@ -40,7 +39,7 @@ class TestSnapshot:
     def test_token_colors_match(self, generated: dict[str, object], fixture: dict[str, object]) -> None:
         gen_tokens = generated["tokenColors"]
         fix_tokens = fixture["tokenColors"]
-        assert gen_tokens == fix_tokens, "tokenColors mismatch (re-run main.py and update fixture)"
+        assert gen_tokens == fix_tokens, f"tokenColors mismatch ({_UPDATE_HINT})"
 
     def test_semantic_tokens_match(self, generated: dict[str, object], fixture: dict[str, object]) -> None:
         gen_sem = cast("dict[str, object]", generated["semanticTokenColors"])
@@ -51,7 +50,7 @@ class TestSnapshot:
         """Serialized JSON must match byte-for-byte (modulo trailing newline)."""
         gen_text = json.dumps(generated, indent=2)
         fix_text = json.dumps(fixture, indent=2)
-        assert gen_text == fix_text, "Full JSON mismatch -- run main.py and update fixture"
+        assert gen_text == fix_text, f"Full JSON mismatch ({_UPDATE_HINT})"
 
 
 _DARK_FIXTURE = Path(__file__).parent / "fixtures" / "rider-light-minimal-dark.snapshot.json"
@@ -60,11 +59,11 @@ _DARK_FIXTURE = Path(__file__).parent / "fixtures" / "rider-light-minimal-dark.s
 class TestDarkSnapshot:
     """Regenerate the dark theme and compare against the committed fixture."""
 
-    @pytest.fixture(scope="class")
-    def generated(self) -> dict[str, object]:
-        return generate_theme_dict(is_dark=True)
+    @pytest.fixture
+    def generated(self, dark_theme_output: ThemeDocument) -> ThemeDocument:
+        return dark_theme_output
 
-    @pytest.fixture(scope="class")
+    @pytest.fixture
     def fixture(self) -> dict[str, object]:
         return cast("dict[str, object]", json.loads(_DARK_FIXTURE.read_text()))
 
@@ -87,7 +86,7 @@ class TestDarkSnapshot:
     def test_full_json_round_trip(self, generated: dict[str, object], fixture: dict[str, object]) -> None:
         gen_text = json.dumps(generated, indent=2)
         fix_text = json.dumps(fixture, indent=2)
-        assert gen_text == fix_text, "Dark full JSON mismatch -- run main.py and update fixture"
+        assert gen_text == fix_text, f"Dark full JSON mismatch ({_UPDATE_HINT})"
 
 
 def _diff_dicts(gen: dict[str, object], fix: dict[str, object], label: str) -> str:

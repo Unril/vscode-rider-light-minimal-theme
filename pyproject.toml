@@ -1,0 +1,80 @@
+[project]
+name = "theme-gen"
+version = "0.1.0"
+description = "Generates the Rider Light Minimal VS Code theme JSONs and markdown preview CSS"
+readme = "theme_gen/README.md"
+requires-python = ">=3.14"
+dependencies = [
+  "coloraide>=8.8",
+  "scipy>=1.17",
+]
+
+[dependency-groups]
+dev = [
+  "basedpyright>=1.40.1",
+  "docformatter>=1.7.8",
+  "ruamel-yaml>=0.19.1",
+  "ruff>=0.16.10",
+  "scipy-stubs>=1.18.1.1",
+  "taplo>=0.9.3",
+]
+test = [
+  "pytest>=9.1.1",
+]
+
+[build-system]
+requires = ["uv_build>=0.12.21,<0.13"]
+build-backend = "uv_build"
+
+[tool.uv]
+# `test` is not a default group by uv's own default; making it one means a plain `uv sync` builds the full environment
+# instead of pruning pytest.
+default-groups = ["dev", "test"]
+
+[tool.uv.build-backend]
+# Flat layout: the package is theme_gen/ at the repo root, beside the extension's src/, themes/, and styles/. It is
+# installed editable, so imports resolve the same way for basedpyright, pytest, and `uv run -m theme_gen`.
+module-root = ""
+module-name = "theme_gen"
+
+[tool.basedpyright]
+pythonVersion = "3.14"
+include = ["theme_gen"]
+venvPath = "."
+venv = ".venv"
+
+[tool.pytest]
+addopts = ["--import-mode=importlib"]
+strict = true
+filterwarnings = ["error"]
+testpaths = ["theme_gen/tests"]
+
+# Docstrings are written for LLM readers that find them with `rg`: a paragraph up to 256 columns stays on one line, so
+# a phrase is never split across a wrap; a longer paragraph wraps at 256, so split it into shorter paragraphs instead.
+# `ruff format` treats docstring text as verbatim, so docformatter is the piece that reflows it; it runs BEFORE
+# `ruff format` (see `just py-fmt`). 256 rather than unlimited bounds the diff when one clause changes. Do NOT set
+# `black = true`: it forces both wrap values to 88. docformatter leaves docstrings it reads as lists, tables, or
+# indented blocks untouched, so write those paragraphs on one line by hand.
+[tool.docformatter]
+wrap-summaries = 256
+wrap-descriptions = 256
+recursive = true
+
+[tool.ruff]
+line-length = 120
+target-version = "py314"
+# Sample sources for screenshots and token exports -- deliberately unidiomatic, never linted.
+extend-exclude = ["examples"]
+
+[tool.ruff.lint]
+select = ["ALL"]
+# E501: docstrings wrap at 256 (see [tool.docformatter]); `ruff format` still holds code to `line-length`.
+# TC: annotations are lazy on 3.14, so a TYPE_CHECKING guard around an ordinary import buys nothing at runtime.
+# CPY: the project is licensed once in LICENSE.md, not per file.
+ignore = ["D", "EM", "T20", "S", "TRY003", "COM812", "ERA001", "E501", "TC", "CPY"]
+
+[tool.ruff.lint.flake8-annotations]
+suppress-dummy-args = true
+
+[tool.ruff.format]
+docstring-code-format = true

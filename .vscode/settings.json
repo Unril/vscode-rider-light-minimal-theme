@@ -1,5 +1,5 @@
 {
-  "basedpyright.analysis.configFilePath": "${workspaceFolder}/theme_gen/pyproject.toml",
-  "python.venvPath": "${workspaceFolder}/theme_gen/.venv",
-  "python.languageServer": "None",
+  // basedpyright reads [tool.basedpyright] from the root pyproject.toml and finds .venv through it; the Python
+  // extension's own language server would analyze the same files a second time.
+  "python.languageServer": "None"
 }

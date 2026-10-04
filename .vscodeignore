@@ -1,11 +1,11 @@
 # Ignore everything
 **
 
-# Allow only what the extension needs
+# Allow only what the extension needs. CHANGELOG.md is deliberately absent: only a registry's Changelog tab shows it, and
+# the extension is unpublished. Re-add `!CHANGELOG.md` before publishing.
 !package.json
 !README.md
 !LICENSE.md
-!CHANGELOG.md
 !themes/**
 !src/**
 !styles/**

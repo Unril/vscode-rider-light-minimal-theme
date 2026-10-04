@@ -1,12 +1,13 @@
 /*
  * Rider light minimal -- Generated CSS custom properties for markdown preview.
- * Do not edit by hand. Regenerate with: cd theme_gen && uv run main.py
+ * Do not edit by hand. Regenerate with: just gen (or uv run -m theme_gen)
  */
 
-/* Light variant */
+/* Light variant. High contrast maps to the matching base variant so the preview
+   doesn't break when users switch to accessibility themes. */
 
-body.vscode-light {
-    --rlm-bg: #FEFDFC;
+body.vscode-light,
+body.vscode-high-contrast-light {
     --rlm-fg: #161616;
     --rlm-accent: #3E6CC3;
     --rlm-border: #D4D4D4;
@@ -24,7 +25,6 @@ body.vscode-light {
     --rlm-metadata: #946E00;
     --rlm-escape: #8A4DB1;
     --rlm-error: #B9494F;
-    --rlm-warning: #A35C24;
     --rlm-success: #008039;
     --rlm-h1: #00718A;
     --rlm-h2: #0F6BA5;
@@ -43,83 +43,8 @@ body.vscode-light {
 
 /* Dark variant */
 
-body.vscode-dark {
-    --rlm-bg: #1F1A11;
-    --rlm-fg: #C7C7C7;
-    --rlm-accent: #7CA4ED;
-    --rlm-border: #3F3A30;
-    --rlm-panel: #161108;
-    --rlm-muted: #A4A4A4;
-    --rlm-code-bg: #1F1A11;
-    --rlm-link-active: #A2BEF1;
-    --rlm-keyword: #6492FF;
-    --rlm-type: #D190FF;
-    --rlm-function: #3FA68E;
-    --rlm-string: #B88573;
-    --rlm-number: #D6709A;
-    --rlm-comment: #7A9B56;
-    --rlm-field: #339CB9;
-    --rlm-metadata: #AE8C41;
-    --rlm-escape: #B481D9;
-    --rlm-error: #E48686;
-    --rlm-warning: #DC905A;
-    --rlm-success: #6CB97D;
-    --rlm-h1: #3AA2BF;
-    --rlm-h2: #599ACE;
-    --rlm-h3: #7991D3;
-    --rlm-h4: #9588CD;
-    --rlm-h5: #AC80BE;
-    --rlm-h6: #BD7AA7;
-    --rlm-h1-quote: #17363F;
-    --rlm-h2-quote: #1F3444;
-    --rlm-h3-quote: #293146;
-    --rlm-h4-quote: #322E44;
-    --rlm-h5-quote: #392B3F;
-    --rlm-h6-quote: #3F2938;
-    --rlm-quote-fg: #A4A4A4;
-}
-
-/* High contrast: map to the matching base variant so the preview
-   doesn't break when users switch to accessibility themes. */
-
-body.vscode-high-contrast-light {
-    --rlm-bg: #FEFDFC;
-    --rlm-fg: #161616;
-    --rlm-accent: #3E6CC3;
-    --rlm-border: #D4D4D4;
-    --rlm-panel: #F4F3F2;
-    --rlm-muted: #686868;
-    --rlm-code-bg: #FEFDFC;
-    --rlm-link-active: #365BA2;
-    --rlm-keyword: #305EDD;
-    --rlm-type: #7922A7;
-    --rlm-function: #007561;
-    --rlm-string: #9F6652;
-    --rlm-number: #BF4A7F;
-    --rlm-comment: #5A7F2B;
-    --rlm-field: #007F9A;
-    --rlm-metadata: #946E00;
-    --rlm-escape: #8A4DB1;
-    --rlm-error: #B9494F;
-    --rlm-warning: #A35C24;
-    --rlm-success: #008039;
-    --rlm-h1: #00718A;
-    --rlm-h2: #0F6BA5;
-    --rlm-h3: #4861AA;
-    --rlm-h4: #6856A4;
-    --rlm-h5: #804E93;
-    --rlm-h6: #91477B;
-    --rlm-h1-quote: #B5D7E3;
-    --rlm-h2-quote: #BBD4E9;
-    --rlm-h3-quote: #C5D0EC;
-    --rlm-h4-quote: #D0CCE9;
-    --rlm-h5-quote: #DBC9E3;
-    --rlm-h6-quote: #E3C7D9;
-    --rlm-quote-fg: #686868;
-}
-
+body.vscode-dark,
 body.vscode-high-contrast {
-    --rlm-bg: #1F1A11;
     --rlm-fg: #C7C7C7;
     --rlm-accent: #7CA4ED;
     --rlm-border: #3F3A30;
@@ -137,7 +62,6 @@ body.vscode-high-contrast {
     --rlm-metadata: #AE8C41;
     --rlm-escape: #B481D9;
     --rlm-error: #E48686;
-    --rlm-warning: #DC905A;
     --rlm-success: #6CB97D;
     --rlm-h1: #3AA2BF;
     --rlm-h2: #599ACE;

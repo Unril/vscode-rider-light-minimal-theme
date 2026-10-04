@@ -1,0 +1,11 @@
+# taplo reads neither .gitignore nor .vscodeignore, so this exclude list is what keeps it out of .venv and other
+# generated or archived trees. The Even Better TOML editor extension reads this file too, so an editor-triggered format
+# sees the same scope as `just config-fmt`.
+include = ["**/*.toml"]
+exclude = [".venv/**", "node_modules/**", "work/**", "references/**", "scripts_old/**"]
+
+[formatting]
+# uv writes one dependency per line; collapsing short arrays would be undone by the next `uv add`.
+array_auto_collapse = false
+# Matches max_line_length in .editorconfig.
+column_width = 120

@@ -1,20 +1,18 @@
 """Tests for lang layer: protocol types, BaseSyntax, GlobalSemanticTokens."""
 
-# pylint: disable=redefined-outer-name
-
 import pytest
 
-from core.font_style import FontStyle
-from core.tcol import TCol
-from lang.base import BaseSyntax
-from lang.protocol import (
+from theme_gen.core.font_style import FontStyle
+from theme_gen.core.tcol import TCol
+from theme_gen.lang.base import BaseSyntax
+from theme_gen.lang.protocol import (
     BaseLanguage,
     SemanticTokenStyle,
     TokenColorRule,
 )
-from lang.semantic import GlobalSemanticTokens
-from palette.syntax import SyntaxPalette
-from palette.theme import Theme
+from theme_gen.lang.semantic import GlobalSemanticTokens
+from theme_gen.palette.syntax import SyntaxPalette
+from theme_gen.palette.theme import Theme
 
 _MIN_BASE_RULES = 50
 _MIN_SEMANTIC_COUNT = 55
@@ -109,7 +107,7 @@ class TestBaseLanguage:
 
     def test_is_abstract(self) -> None:
         with pytest.raises(TypeError):
-            _ = BaseLanguage()  # type: ignore[abstract]  # pyright: ignore[reportAbstractUsage]  # pylint: disable=abstract-class-instantiated  # intentional: asserting abstractness
+            _ = BaseLanguage()  # pyright: ignore[reportAbstractUsage]  # intentional: asserting abstractness
 
 
 # ── BaseSyntax ──

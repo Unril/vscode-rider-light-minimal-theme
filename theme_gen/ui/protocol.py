@@ -2,8 +2,8 @@
 
 from typing import Protocol
 
-from core.tcol import TCol
-from palette.theme import Theme
+from theme_gen.core.tcol import TCol
+from theme_gen.palette.theme import Theme
 
 
 class UISection(Protocol):

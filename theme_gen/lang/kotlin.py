@@ -8,9 +8,9 @@ Kotlin LSP quirks addressed here:
 
 from typing import override
 
-from core.font_style import FontStyle
-from lang.protocol import BaseLanguage, SemanticTokenStyle, SemanticTokenValue, TokenColorRule, tcr
-from palette.theme import Theme
+from theme_gen.core.font_style import FontStyle
+from theme_gen.lang.protocol import BaseLanguage, SemanticTokenStyle, SemanticTokenValue, TokenColorRule, tcr
+from theme_gen.palette.theme import Theme
 
 
 class KotlinLang(BaseLanguage):

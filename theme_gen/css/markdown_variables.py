@@ -1,16 +1,16 @@
 """Generate markdown-variables.css with theme colors as CSS custom properties.
 
-The generated file defines --rlm-* CSS variables on body.vscode-light /
-body.vscode-dark, consumed by the static markdown-preview.css and
-markdown-highlight.css stylesheets.
+The generated file defines --rlm-* CSS variables once per variant (light, dark; the two high-contrast body classes share those rules), consumed by the static markdown-preview.css and markdown-highlight.css stylesheets.
+
+It ships in the .vsix, so it defines only variables those stylesheets use (test_css.py enforces this).
 """
 
-from palette.theme import Theme
+from theme_gen.palette.theme import Theme
 
 _HEADER = """\
 /*
  * Rider light minimal -- Generated CSS custom properties for markdown preview.
- * Do not edit by hand. Regenerate with: cd theme_gen && uv run main.py
+ * Do not edit by hand. Regenerate with: just gen (or uv run -m theme_gen)
  */
 """
 
@@ -19,11 +19,9 @@ def _extract_vars(theme: Theme) -> list[str]:
     """Extract CSS custom properties from a theme."""
     p = theme.palette
     s = theme.syntax
-    h = list(enumerate(s.hue_shifted, start=1))
 
     pairs = [
         # Surfaces
-        ("bg", p.background),
         ("fg", p.foreground),
         ("accent", p.accent),
         ("border", p.border),
@@ -47,11 +45,10 @@ def _extract_vars(theme: Theme) -> list[str]:
         ("escape", s.escape),
         # Status
         ("error", p.error),
-        ("warning", p.warning),
         ("success", p.success),
         # Headings + quote variants: same hue-shifted series
-        *((f"h{i}", c) for i, c in h),
-        *((f"h{i}-quote", c.much_darker.muted if theme.is_dark else c.much_lighter.muted) for i, c in h),
+        *((f"h{i}", c) for i, c in enumerate(s.hue_shifted, start=1)),
+        *((f"h{i}-quote", c) for i, c in enumerate(s.hue_shifted_quote, start=1)),
         # Blockquote / list chrome
         ("quote-fg", p.fg_muted),
     ]
@@ -68,12 +65,9 @@ def build_css() -> str:
 
     return (
         f"{_HEADER}\n"
-        f"/* Light variant */\n\n"
-        f"body.vscode-light {{\n{light_vars}\n}}\n\n"
-        f"/* Dark variant */\n\n"
-        f"body.vscode-dark {{\n{dark_vars}\n}}\n\n"
-        f"/* High contrast: map to the matching base variant so the preview\n"
+        f"/* Light variant. High contrast maps to the matching base variant so the preview\n"
         f"   doesn't break when users switch to accessibility themes. */\n\n"
-        f"body.vscode-high-contrast-light {{\n{light_vars}\n}}\n\n"
-        f"body.vscode-high-contrast {{\n{dark_vars}\n}}\n"
+        f"body.vscode-light,\nbody.vscode-high-contrast-light {{\n{light_vars}\n}}\n\n"
+        f"/* Dark variant */\n\n"
+        f"body.vscode-dark,\nbody.vscode-high-contrast {{\n{dark_vars}\n}}\n"
     )

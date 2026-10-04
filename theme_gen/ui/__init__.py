@@ -1,5 +1,5 @@
 """UI layer -- section protocol, section classes, and ColorMapComposition."""
 
-from ui.composer import ColorMapComposition
+from theme_gen.ui.composer import ColorMapComposition
 
 __all__ = ["ColorMapComposition"]

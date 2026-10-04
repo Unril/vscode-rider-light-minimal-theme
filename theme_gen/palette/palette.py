@@ -3,7 +3,7 @@
 from dataclasses import dataclass
 from typing import Self
 
-from core.tcol import TCol
+from theme_gen.core.tcol import TCol
 
 # Status color hues (OKLCH, fixed by convention)
 _HUE_ERROR = 20.0
@@ -94,6 +94,12 @@ class Palette:
     diff_insert: TCol
     diff_remove: TCol
 
+    # Git decoration foregrounds (file-tree and SCM M/A/D badges): pushed away from the sidebar surface for readability
+    # at small sizes -- darker on light, lighter on dark.
+    git_added: TCol
+    git_modified: TCol
+    git_deleted: TCol
+
     # Minimap highlights
     minimap_error: TCol
     minimap_warning: TCol
@@ -108,6 +114,9 @@ class Palette:
     btn_secondary_bg: TCol
     text_separator: TCol
     status_prominent_bg: TCol
+    # Welcome-page tile under the pointer: must read as feedback relative to the resting tile (panel_bg) without looking
+    # like a press -- darker (sunken) on light, lighter (elevated) on dark.
+    welcome_tile_hover: TCol
 
     # Reusable overlays and tints
     shadow: TCol  # fg @ 15% -- widget shadow, button border, preformat bg
@@ -212,6 +221,9 @@ class Palette:
             diff_remove_line=error.a05,
             diff_insert=success.a15,
             diff_remove=error.a15,
+            git_added=success.darker,
+            git_modified=accent.darker,
+            git_deleted=error.darker,
             minimap_error=error.a80,
             minimap_warning=warning.a80,
             minimap_slider=fg.with_alpha(0.08),
@@ -224,6 +236,7 @@ class Palette:
             # (border_subtle) -- pure foreground reads as harsh on off-white.
             text_separator=border_sub,
             status_prominent_bg=accent.muted.s600.a50,
+            welcome_tile_hover=sunken,
             shadow=fg.a05,  # soft drop shadow -- widgets float rather than bordered
             drop_bg=accent.a15,
             accent_wash=accent.a05,
@@ -318,6 +331,9 @@ class Palette:
             diff_remove_line=error.with_alpha(0.10),
             diff_insert=success.a25,
             diff_remove=error.a25,
+            git_added=success.lighter,
+            git_modified=accent.lighter,
+            git_deleted=error.lighter,
             minimap_error=error.a80,
             minimap_warning=warning.a80,
             minimap_slider=fg.with_alpha(0.12),
@@ -329,6 +345,7 @@ class Palette:
             # theme's divider system (see light variant rationale).
             text_separator=border_sub,
             status_prominent_bg=accent.muted.s400.a50,
+            welcome_tile_hover=elevated,
             shadow=TCol.from_oklch(0.0, 0.0, 0.0).with_alpha(0.18),  # softer than before (was 0.35)
             drop_bg=accent.a25,
             accent_wash=accent.a15,

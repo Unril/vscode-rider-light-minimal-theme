@@ -45,8 +45,7 @@ def _build_hex(srgb: Color) -> str:
 class TCol:
     """Immutable theme color stored in OKLCH, converted to sRGB on output.
 
-    Eagerly caches hex string and OKLCH components so repeated access is free.
-    Defensively copies the underlying coloraide.Color on construction.
+    Eagerly caches hex string and OKLCH components so repeated access is free. Defensively copies the underlying coloraide.Color on construction.
     """
 
     _color: Color
@@ -88,7 +87,10 @@ class TCol:
 
     @classmethod
     def from_oklch(cls, lightness: float, chroma: float, hue: float) -> Self:
-        """Create from OKLCH components. Hue normalized to 0-360."""
+        """Create from OKLCH components.
+
+        Hue normalized to 0-360.
+        """
         return cls(Color(_OKLCH, [lightness, chroma, hue % 360]))
 
     @property
@@ -108,7 +110,10 @@ class TCol:
 
     @property
     def h(self) -> float:
-        """OKLCH hue (0-360). 0.0 for achromatic colors."""
+        """OKLCH hue (0-360).
+
+        0.0 for achromatic colors.
+        """
         return self._h
 
     @property
@@ -254,19 +259,28 @@ class TCol:
         return self._at_step(0.28, 0.43)
 
     def lighten(self, amount: float) -> Self:
-        """Increase OKLCH lightness by amount. Clamped to 0.0-1.0."""
+        """Increase OKLCH lightness by amount.
+
+        Clamped to 0.0-1.0.
+        """
         c = self.color
         _ = c.set(_CH_L, min(1.0, c.get(_CH_L) + abs(amount)))
         return type(self)(c)
 
     def darken(self, amount: float) -> Self:
-        """Decrease OKLCH lightness by amount. Clamped to 0.0-1.0."""
+        """Decrease OKLCH lightness by amount.
+
+        Clamped to 0.0-1.0.
+        """
         c = self.color
         _ = c.set(_CH_L, max(0.0, c.get(_CH_L) - abs(amount)))
         return type(self)(c)
 
     def shift_hue(self, degrees: float) -> Self:
-        """Rotate hue by degrees. Returns self unchanged when shift is a full rotation."""
+        """Rotate hue by degrees.
+
+        Returns self unchanged when shift is a full rotation.
+        """
         if math.isclose(degrees % 360, 0.0):
             return self
         c = self.color
@@ -281,12 +295,15 @@ class TCol:
         _ = c.set(_CH_C, chroma)
         return type(self)(c)
 
-    def contrast(self, other: "TCol") -> float:
+    def contrast(self, other: TCol) -> float:
         """WCAG 2.1 contrast ratio (1.0 to 21.0)."""
         return self._color.contrast(other.color)
 
-    def mix(self, other: "TCol", amount: float = 0.5) -> Self:
-        """Blend self with other in sRGB space. amount=0 returns self, amount=1 returns other."""
+    def mix(self, other: TCol, amount: float = 0.5) -> Self:
+        """Blend self with other in sRGB space.
+
+        amount=0 returns self, amount=1 returns other.
+        """
         mixed = self._color.mix(other.color, amount, space=_SRGB)
         return type(self)(mixed)
 
@@ -294,13 +311,10 @@ class TCol:
     def from_lab_l(cls, target_lab_l: float, chroma: float, hue: float) -> Self:
         """Create a TCol at the OkLCh L that achieves target CIELab L*.
 
-        Uses scipy.optimize.brentq (Brent's method) to find the OkLCh L
-        that maps to the given CIELab L* at the specified hue and chroma.
+        Uses scipy.optimize.brentq (Brent's method) to find the OkLCh L that maps to the given CIELab L* at the specified hue and chroma.
 
-        This compensates for the hue-dependent mapping between OkLCh L and
-        Lab L*: purple (310°) has a lower Lab L* than blue (265°) at the same
-        OkLCh L, making it appear darker. Targeting Lab L* directly ensures
-        colors at the same tier have the same perceptual weight regardless of hue.
+        This compensates for the hue-dependent mapping between OkLCh L and Lab L*: purple (310°) has a lower Lab L* than blue (265°) at the same OkLCh L, making it appear darker. Targeting Lab L* directly ensures colors at the same tier have the same
+        perceptual weight regardless of hue.
         """
 
         def residual(ok_l: float) -> float:
@@ -309,14 +323,11 @@ class TCol:
         ok_l = brentq(residual, 0.0, 1.0)
         return cls.from_oklch(ok_l, chroma, hue)
 
-    def with_min_contrast(self, bg: "TCol", min_ratio: float) -> Self:
+    def with_min_contrast(self, bg: TCol, min_ratio: float) -> Self:
         """Return self adjusted until contrast against bg meets min_ratio.
 
-        On a light background (L >= 0.5), darkens the color (searches L downward).
-        On a dark background (L < 0.5), lightens the color (searches L upward).
-        Uses scipy.optimize.brentq to find the exact OkLCh L where contrast
-        equals min_ratio, preserving hue and chroma precisely.
-        Returns self unchanged if it already passes or min_ratio <= 0.
+        On a light background (L >= 0.5), darkens the color (searches L downward). On a dark background (L < 0.5), lightens the color (searches L upward). Uses scipy.optimize.brentq to find the exact OkLCh L where contrast equals min_ratio, preserving hue
+        and chroma precisely. Returns self unchanged if it already passes or min_ratio <= 0.
         """
         if min_ratio <= 0.0 or self.contrast(bg) >= min_ratio:
             return self
@@ -346,7 +357,7 @@ class TCol:
         if not isinstance(other, TCol):
             return NotImplemented
         return (self._l, self._c, self._h, self._a) < (
-            other._l,  # pylint: disable=protected-access
+            other._l,
             other._c,
             other._h,
             other._a,

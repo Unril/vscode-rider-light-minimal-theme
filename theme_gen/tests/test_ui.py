@@ -1,28 +1,26 @@
 """Tests for UI sections and ColorMapComposition."""
 
-# pylint: disable=redefined-outer-name
-
 import re
 from collections.abc import Callable
 
 import pytest
 
-from core.tcol import TCol
-from palette.theme import Theme
-from ui.base import BaseSection
-from ui.chat import ChatSection
-from ui.composer import ColorMapComposition
-from ui.debug import DebugSection
-from ui.editor import EditorSection
-from ui.lists import ListSection
-from ui.panels import PanelSection
-from ui.protocol import UISection
-from ui.symbols import SymbolSection
-from ui.tabs import TabSection
-from ui.terminal import TerminalSection
-from ui.testing import TestingSection
-from ui.vcs import VcsSection
-from ui.widgets import WidgetSection
+from theme_gen.core.tcol import TCol
+from theme_gen.palette.theme import Theme
+from theme_gen.ui.base import BaseSection
+from theme_gen.ui.chat import ChatSection
+from theme_gen.ui.composer import ColorMapComposition
+from theme_gen.ui.debug import DebugSection
+from theme_gen.ui.editor import EditorSection
+from theme_gen.ui.lists import ListSection
+from theme_gen.ui.panels import PanelSection
+from theme_gen.ui.protocol import UISection
+from theme_gen.ui.symbols import SymbolSection
+from theme_gen.ui.tabs import TabSection
+from theme_gen.ui.terminal import TerminalSection
+from theme_gen.ui.testing import TestingSection
+from theme_gen.ui.vcs import VcsSection
+from theme_gen.ui.widgets import WidgetSection
 
 ALL_SECTIONS: list[Callable[[], UISection]] = [
     BaseSection,

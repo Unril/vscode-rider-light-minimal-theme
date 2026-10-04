@@ -6,11 +6,18 @@ from typing import cast
 import pytest
 from coloraide import Color
 
-from core.tcol import TCol
-from palette.editor import EditorChrome, EditorPalette, OutputColors, SelectionColors, SymbolColors, WidgetColors
-from palette.palette import Palette
-from palette.syntax import SyntaxPalette
-from palette.theme import Theme
+from theme_gen.core.tcol import TCol
+from theme_gen.palette.editor import (
+    EditorChrome,
+    EditorPalette,
+    OutputColors,
+    SelectionColors,
+    SymbolColors,
+    WidgetColors,
+)
+from theme_gen.palette.palette import Palette
+from theme_gen.palette.syntax import SyntaxPalette
+from theme_gen.palette.theme import Theme
 
 _WCAG_AA = 4.5
 _WCAG_AA_TOLERANCE = 4.4
@@ -331,6 +338,19 @@ class TestEditorPaletteDark:
                 assert _LIGHTNESS_RANGE_MIN <= col.lightness <= _LIGHTNESS_RANGE_MAX, (
                     f"{sub_name}.{f.name}: L={col.lightness:.3f} out of range"
                 )
+
+
+class TestAnsiColors:
+    def test_neutral_ramp_is_ordered_in_both_variants(self) -> None:
+        for is_dark in (False, True):
+            ansi = Theme.create(is_dark=is_dark).editor.ansi
+            assert ansi.bright_white.lightness > ansi.white.lightness > ansi.bright_black.lightness
+
+    def test_black_sits_on_the_variant_side_of_the_terminal_background(self) -> None:
+        light, dark = Theme.create(is_dark=False), Theme.create(is_dark=True)
+        assert light.editor.ansi.black.lightness < light.palette.background.lightness
+        # Dark: ANSI black must sit ABOVE the terminal background or dim CLI output vanishes.
+        assert dark.editor.ansi.black.lightness > dark.palette.background.lightness
 
 
 class TestTheme:

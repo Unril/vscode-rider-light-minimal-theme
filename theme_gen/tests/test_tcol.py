@@ -3,8 +3,8 @@
 import pytest
 from coloraide import Color
 
-from core.font_style import FontStyle
-from core.tcol import TCol
+from theme_gen.core.font_style import FontStyle
+from theme_gen.core.tcol import TCol
 
 
 class TestTColHexRoundTrip:
@@ -63,7 +63,7 @@ class TestTColContrast:
 
     def test_same_color_contrast(self) -> None:
         c = TCol.from_hex("#808080")
-        assert c.contrast(c) == pytest.approx(1.0, abs=0.1)  # pyright: ignore[reportUnknownMemberType]
+        assert c.contrast(c) == pytest.approx(1.0, abs=0.1)
 
 
 class TestTColLightenDarken:
@@ -109,7 +109,7 @@ class TestTColSetChroma:
     def test_set_chroma_zero_is_achromatic(self) -> None:
         t = TCol.from_hex("#FF0000")
         gray = t.set_chroma(0.0)
-        assert gray.c == pytest.approx(0.0, abs=0.001)  # pyright: ignore[reportUnknownMemberType]
+        assert gray.c == pytest.approx(0.0, abs=0.001)
 
     def test_negative_chroma_raises(self) -> None:
         t = TCol.from_hex("#FF0000")

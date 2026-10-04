@@ -2,9 +2,9 @@
 
 from typing import override
 
-from core.tcol import TCol
-from palette.theme import Theme
-from ui.protocol import UISection
+from theme_gen.core.tcol import TCol
+from theme_gen.palette.theme import Theme
+from theme_gen.ui.protocol import UISection
 
 
 class VcsSection(UISection):
@@ -12,14 +12,7 @@ class VcsSection(UISection):
     def build(self, theme: Theme) -> dict[str, TCol]:
         p = theme.palette
         e = theme.editor
-
-        # Git decoration foregrounds: push away from the sidebar surface for
-        # readability at small badge sizes (M/A/D single-letter markers).
-        # On light -> darker, on dark -> lighter.
-        is_dark = p.is_dark
-        git_added = p.success.lighter if is_dark else p.success.darker
-        git_modified = p.accent.lighter if is_dark else p.accent.darker
-        git_deleted = p.error.lighter if is_dark else p.error.darker
+        git_added, git_modified, git_deleted = p.git_added, p.git_modified, p.git_deleted
 
         return {
             # Diff editor -- line and text use DIFFERENT alpha levels. VS Code

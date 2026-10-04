@@ -1,7 +1,7 @@
 """Tests for TCol ramp steps and Palette."""
 
-from core.tcol import TCol
-from palette.palette import Palette
+from theme_gen.core.tcol import TCol
+from theme_gen.palette.palette import Palette
 
 _RAMP_STEP_COUNT = 9
 _ACHROMATIC_CHROMA_MAX = 0.01
@@ -139,6 +139,20 @@ class TestPalette:
         assert p.diff_insert.a < 1.0
         assert p.error_bg.a < 1.0
         assert p.scrollbar_thumb.a < 1.0
+
+    def test_git_decorations_step_away_from_sidebar_surface(self) -> None:
+        light, dark = Palette.for_light(), Palette.for_dark()
+        assert light.git_added.lightness < light.success.lightness
+        assert light.git_modified.lightness < light.accent.lightness
+        assert light.git_deleted.lightness < light.error.lightness
+        assert dark.git_added.lightness > dark.success.lightness
+        assert dark.git_modified.lightness > dark.accent.lightness
+        assert dark.git_deleted.lightness > dark.error.lightness
+
+    def test_welcome_tile_hover_moves_away_from_resting_tile(self) -> None:
+        light, dark = Palette.for_light(), Palette.for_dark()
+        assert light.welcome_tile_hover.lightness < light.panel_bg.lightness
+        assert dark.welcome_tile_hover.lightness > dark.panel_bg.lightness
 
     def test_neutral_derived_fields(self) -> None:
         p = Palette.for_light()

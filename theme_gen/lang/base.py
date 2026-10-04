@@ -6,9 +6,9 @@ keyword, markup, punctuation, storage, string, support, and variable scopes.
 
 from typing import override
 
-from core.font_style import FontStyle
-from lang.protocol import BaseLanguage, TokenColorRule, tcr
-from palette.theme import Theme
+from theme_gen.core.font_style import FontStyle
+from theme_gen.lang.protocol import BaseLanguage, TokenColorRule, tcr
+from theme_gen.palette.theme import Theme
 
 
 class BaseSyntax(BaseLanguage):

@@ -8,10 +8,10 @@ green, links are function green with blue underlined URLs, structural chrome
 from collections.abc import Iterator
 from typing import override
 
-from core.font_style import FontStyle
-from core.tcol import TCol
-from lang.protocol import BaseLanguage, TokenColorRule, tcr
-from palette.theme import Theme
+from theme_gen.core.font_style import FontStyle
+from theme_gen.core.tcol import TCol
+from theme_gen.lang.protocol import BaseLanguage, TokenColorRule, tcr
+from theme_gen.palette.theme import Theme
 
 
 def _heading_rules(colors: list[TCol], fallback: TCol) -> Iterator[TokenColorRule]:

@@ -1,6 +1,6 @@
 """Core color types with zero theme coupling."""
 
-from core.font_style import FontStyle
-from core.tcol import TCol
+from theme_gen.core.font_style import FontStyle
+from theme_gen.core.tcol import TCol
 
 __all__ = ["FontStyle", "TCol"]

@@ -2,9 +2,9 @@
 
 from collections.abc import Sequence
 
-from core.tcol import TCol
-from palette.theme import Theme
-from ui.protocol import UISection
+from theme_gen.core.tcol import TCol
+from theme_gen.palette.theme import Theme
+from theme_gen.ui.protocol import UISection
 
 
 class ColorMapComposition:

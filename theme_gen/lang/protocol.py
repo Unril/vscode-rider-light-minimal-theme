@@ -4,17 +4,16 @@ from abc import ABC, abstractmethod
 from dataclasses import dataclass
 from typing import Protocol
 
-from core.font_style import FontStyle
-from core.tcol import TCol
-from palette.theme import Theme
+from theme_gen.core.font_style import FontStyle
+from theme_gen.core.tcol import TCol
+from theme_gen.palette.theme import Theme
 
 
 @dataclass(frozen=True)
 class TokenColorRule:
     """A single VS Code tokenColors entry.
 
-    scope accepts a single string or list of strings.
-    color and style are optional -- omitted keys are absent from output.
+    scope accepts a single string or list of strings. color and style are optional -- omitted keys are absent from output.
     """
 
     name: str
@@ -47,11 +46,8 @@ def tcr(
 class SemanticTokenStyle:
     """Value for a semanticTokenColors entry that needs both color and font style.
 
-    Unlike TokenColorRule (which models a full tokenColors array entry with name,
-    scope, and optional settings), this is just the value half of a key->value pair
-    in the semanticTokenColors map. Most entries are plain TCol (color only); this
-    class covers the ~8 entries that also set bold/italic.
-    Serializes to {"foreground": "#hex", "fontStyle": "..."}.
+    Unlike TokenColorRule (which models a full tokenColors array entry with name, scope, and optional settings), this is just the value half of a key->value pair in the semanticTokenColors map. Most entries are plain TCol (color only); this class covers
+    the ~8 entries that also set bold/italic. Serializes to {"foreground": "#hex", "fontStyle": "..."}.
     """
 
     foreground: TCol
@@ -78,8 +74,7 @@ class Language(Protocol):
 class BaseLanguage(ABC):
     """Default implementation -- empty semantic overrides.
 
-    Per-language classes inherit this and implement id + textmate_rules().
-    Override semantic_token_overrides() only when the language has entries.
+    Per-language classes inherit this and implement id + textmate_rules(). Override semantic_token_overrides() only when the language has entries.
     """
 
     @property

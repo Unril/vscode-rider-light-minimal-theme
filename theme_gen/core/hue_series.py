@@ -1,10 +1,9 @@
 """Hue-shifted color series used by headings, bracket pairs, and SCM graph.
 
-All three features share the same progressive hue rotation from a base color,
-stepping 24° per slot to produce visually distinct colors within a 120°+ arc.
+All three features share the same progressive hue rotation from a base color, stepping 24° per slot to produce visually distinct colors within a 120°+ arc.
 """
 
-from core.tcol import TCol
+from theme_gen.core.tcol import TCol
 
 # Degrees per step in the hue-shifted series (OKLCH hue rotation).
 # 24° gives 6 visually distinct colors within a 144° arc.

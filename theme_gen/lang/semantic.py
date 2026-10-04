@@ -4,9 +4,9 @@ Covers all 23 standard VS Code token types, key modifier combinations,
 and widely-emitted custom types from rust-analyzer, pylance, and other LSPs.
 """
 
-from core.font_style import FontStyle
-from lang.protocol import SemanticTokenStyle, SemanticTokenValue
-from palette.syntax import SyntaxPalette
+from theme_gen.core.font_style import FontStyle
+from theme_gen.lang.protocol import SemanticTokenStyle, SemanticTokenValue
+from theme_gen.palette.syntax import SyntaxPalette
 
 
 class GlobalSemanticTokens:

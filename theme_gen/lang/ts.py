@@ -2,8 +2,8 @@
 
 from typing import override
 
-from lang.protocol import BaseLanguage, TokenColorRule, tcr
-from palette.theme import Theme
+from theme_gen.lang.protocol import BaseLanguage, TokenColorRule, tcr
+from theme_gen.palette.theme import Theme
 
 
 class TypeScriptLang(BaseLanguage):

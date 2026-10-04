@@ -5,8 +5,8 @@ All generic cross-language rules previously here have been moved to BaseSyntax.
 
 from typing import override
 
-from lang.protocol import BaseLanguage, TokenColorRule
-from palette.theme import Theme
+from theme_gen.lang.protocol import BaseLanguage, TokenColorRule
+from theme_gen.palette.theme import Theme
 
 
 class ScriptLang(BaseLanguage):

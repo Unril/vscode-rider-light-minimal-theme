@@ -3,9 +3,9 @@
 from dataclasses import dataclass
 from typing import Self
 
-from palette.editor import EditorPalette
-from palette.palette import Palette
-from palette.syntax import SyntaxPalette
+from theme_gen.palette.editor import EditorPalette
+from theme_gen.palette.palette import Palette
+from theme_gen.palette.syntax import SyntaxPalette
 
 
 @dataclass(frozen=True)

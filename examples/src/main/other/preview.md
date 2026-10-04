@@ -1,7 +1,6 @@
 # User Service API
 
-A lightweight REST API for managing user accounts. Built with **TypeScript** and
-deployed on [Node.js 22 LTS](https://nodejs.org). See the `README` for setup instructions.
+A lightweight REST API for managing user accounts. Built with **TypeScript** and deployed on [Node.js 22 LTS](https://nodejs.org). See the `README` for setup instructions.
 
 ## Quick Start
 
@@ -49,9 +48,7 @@ async function fetchUser(id: string): Promise<User> {
 
 ## Setup
 
-Clone the repository and follow the steps below. The project uses `npm` for
-package management and expects a _PostgreSQL_ database for persistence.
-The ~~SQLite backend~~ has been removed in v2.
+Clone the repository and follow the steps below. The project uses `npm` for package management and expects a _PostgreSQL_ database for persistence. The ~~SQLite backend~~ has been removed in v2.
 
 - Install dependencies
   - Runtime

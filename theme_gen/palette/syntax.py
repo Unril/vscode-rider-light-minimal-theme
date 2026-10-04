@@ -39,8 +39,8 @@ from typing import Self
 
 from coloraide import Color
 
-from core.hue_series import hue_series
-from core.tcol import TCol
+from theme_gen.core.hue_series import hue_series
+from theme_gen.core.tcol import TCol
 
 # Bracket pairs, SCM graph, and markdown headings all share this count.
 _HUE_SERIES_COUNT = 6
@@ -137,10 +137,9 @@ _SPECS: dict[str, tuple[int, float, float, float]] = {
 class SyntaxPalette:
     """17 syntax color roles + foreground/background.
 
-    Cluster hues are derived from coloraide harmony('wheel', count=8),
-    guaranteeing 45° separation between every adjacent cluster.
-    Lightness is set by targeting CIELab L* per tier for perceptual uniformity.
-    Contrast floors are per-role: 4.5:1 for all text roles (WCAG AA).
+    Cluster hues are derived from coloraide harmony('wheel', count=8), guaranteeing 45° separation between every adjacent cluster.
+
+    Lightness is set by targeting CIELab L* per tier for perceptual uniformity. Contrast floors are per-role: 4.5:1 for all text roles (WCAG AA).
     """
 
     keyword: TCol
@@ -165,6 +164,9 @@ class SyntaxPalette:
     hue_shifted: list[TCol]
     """6 hue-rotated colors from enum_member for brackets, SCM graph, and headings."""
 
+    hue_shifted_quote: list[TCol]
+    """Muted tints of hue_shifted for markdown blockquote variants: toward the background, so lighter on light and darker on dark."""
+
     @classmethod
     def create(  # noqa: PLR0913
         cls,
@@ -178,14 +180,11 @@ class SyntaxPalette:
     ) -> Self:
         """Generate all syntax colors from minimal parameters.
 
-        string_hue seeds the harmony wheel at the string/brown cluster (40° by
-        default, matching Rider Light's #8C6C41). The remaining 7 clusters are
-        placed at 45° intervals by coloraide's wheel harmony in OkLCh space.
+        string_hue seeds the harmony wheel at the string/brown cluster (40° by default, matching Rider Light's #8C6C41). The remaining 7 clusters are placed at 45° intervals by coloraide's wheel harmony in OkLCh space.
 
-        background is the editor background -- used for WCAG AA correction.
-        foreground overrides the default foreground (black for light, light gray for dark).
-        Lightness per role is set by targeting CIELab L* (see _SPECS).
-        Contrast floors are per-role (see _SPECS and module docstring).
+        background is the editor background -- used for WCAG AA correction. foreground overrides the default foreground (black for light, light gray for dark).
+
+        Lightness per role is set by targeting CIELab L* (see _SPECS). Contrast floors are per-role (see _SPECS and module docstring).
         """
         # Derive 8 evenly-spaced hues via coloraide harmony
         seed = Color("oklch", [lightness, _C_MID * chroma_scale, string_hue])
@@ -207,9 +206,11 @@ class SyntaxPalette:
         if foreground is None:
             # Fallback foreground -- normally provided by Theme.create() from Palette
             foreground = TCol.from_oklch(0.83, 0.0, 0.0) if is_dark else TCol.from_oklch(0.0, 0.0, 0.0)
+        hue_shifted = hue_series(colors["enum_member"], _HUE_SERIES_COUNT)
         return cls(
             **colors,
             foreground=foreground,
             background=background,
-            hue_shifted=hue_series(colors["enum_member"], _HUE_SERIES_COUNT),
+            hue_shifted=hue_shifted,
+            hue_shifted_quote=[(c.much_darker if is_dark else c.much_lighter).muted for c in hue_shifted],
         )

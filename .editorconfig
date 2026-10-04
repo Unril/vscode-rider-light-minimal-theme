@@ -100,7 +100,7 @@ dotnet_diagnostic.CS3021.severity = none
 [*.{csproj,props,targets}]
 indent_size = 2
 
-[*.{json,yaml,yml}]
+[*.{json,md,yaml,yml}]
 indent_size = 2
 
 [*.tscn]

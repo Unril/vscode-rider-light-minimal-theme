@@ -91,7 +91,7 @@ Nested lists with colored markers, styled blockquotes, and depth-adapted colorin
 
 ## Installation
 
-Install from the [VS Code Marketplace][marketplace] or [Open VSX][open-vsx], or search for "Rider light minimal" in the Extensions view.
+The extension is not currently published to the VS Code Marketplace or Open VSX. Build the `.vsix` and install it locally; see [CONTRIBUTING.md][contributing].
 
 ## Settings
 
@@ -111,8 +111,6 @@ See [CONTRIBUTING.md][contributing] for generator usage, local testing, and deve
 
 MIT
 
-[marketplace]: https://marketplace.visualstudio.com/items?itemName=NikolaiFedorov.vscode-rider-light-minimal-theme
-[open-vsx]: https://open-vsx.org/extension/NikolaiFedorov/vscode-rider-light-minimal-theme
 [contributing]: https://github.com/Unril/vscode-rider-light-minimal-theme/blob/master/CONTRIBUTING.md
 [kotlin-lsp]: https://github.com/Kotlin/kotlin-lsp
 [basedpyright]: https://github.com/detachhead/basedpyright

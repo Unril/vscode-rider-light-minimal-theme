@@ -1,2 +1,5 @@
-# Set default behavior to automatically normalize line endings.
-* text=auto
+# Normalize line endings to LF, matching end_of_line in .editorconfig.
+* text=auto eol=lf
+
+# Windows-only scripts keep CRLF (examples/gradlew.bat).
+*.bat text eol=crlf

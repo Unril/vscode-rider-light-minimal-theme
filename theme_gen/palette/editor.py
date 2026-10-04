@@ -9,14 +9,16 @@ Sub-palettes group related fields:
   EditorChrome   -- caret, line numbers, brackets, guides, inlay hints
   SelectionColors -- selection, word highlights, find matches (transparent)
   WidgetColors   -- status bar, peek view, settings, chat, notebook
+  AnsiColors     -- terminal ANSI colors (palette/ansi.py)
 """
 
 from dataclasses import dataclass
 from typing import Self
 
-from core.tcol import TCol
-from palette.palette import Palette
-from palette.syntax import SyntaxPalette
+from theme_gen.core.tcol import TCol
+from theme_gen.palette.ansi import AnsiColors
+from theme_gen.palette.palette import Palette
+from theme_gen.palette.syntax import SyntaxPalette
 
 # Dark themes need higher alpha for overlays to be visible on dark backgrounds.
 # Light alpha -> dark alpha mapping (roughly 1.5x).
@@ -123,7 +125,7 @@ class WidgetColors:
 class EditorPalette:
     """Editor chrome colors bridging syntax and UI.
 
-    Composed of five sub-palettes for logical grouping.
+    Composed of six sub-palettes for logical grouping.
     Consumers access fields via sub-palette: ``e.chrome.caret``, ``e.selection.primary``, etc.
     """
 
@@ -132,6 +134,7 @@ class EditorPalette:
     chrome: EditorChrome
     selection: SelectionColors
     widgets: WidgetColors
+    ansi: AnsiColors
 
     @classmethod
     def create(cls, syntax: SyntaxPalette, palette: Palette) -> Self:
@@ -248,4 +251,5 @@ class EditorPalette:
                 chat_lines_add=success.a80,
                 chat_lines_remove=error.a80,
             ),
+            ansi=AnsiColors.for_dark(palette.background) if is_dark else AnsiColors.for_light(palette.background),
         )

@@ -6,9 +6,9 @@ Only peek view uses accent border as a design element.
 
 from typing import override
 
-from core.tcol import TCol
-from palette.theme import Theme
-from ui.protocol import UISection
+from theme_gen.core.tcol import TCol
+from theme_gen.palette.theme import Theme
+from theme_gen.ui.protocol import UISection
 
 
 class WidgetSection(UISection):
@@ -86,12 +86,9 @@ class WidgetSection(UISection):
             "settings.textInputBorder": p.border,
             "settings.modifiedItemIndicator": e.widgets.settings_modified,
             "settings.rowHoverBackground": p.hover_bg_neutral,
-            # Welcome page -- hover must provide visible feedback relative to
-            # the resting tile. On light: darken (sunken < panel_bg in lightness).
-            # On dark: lighten (elevated > panel_bg in lightness). Both directions
-            # signal "interactive, you're hovering" without looking like a press.
+            # Welcome page
             "welcomePage.tileBackground": p.panel_bg,
-            "welcomePage.tileHoverBackground": p.surface_elevated if p.is_dark else p.surface_sunken,
+            "welcomePage.tileHoverBackground": p.welcome_tile_hover,
             # Action bar
             "actionBar.toggledBackground": p.border_subtle,
         }

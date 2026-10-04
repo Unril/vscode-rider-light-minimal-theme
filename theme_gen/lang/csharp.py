@@ -11,9 +11,9 @@ the server emits only standard types, but color correctly when available.
 
 from typing import override
 
-from core.font_style import FontStyle
-from lang.protocol import BaseLanguage, SemanticTokenStyle, SemanticTokenValue, TokenColorRule, tcr
-from palette.theme import Theme
+from theme_gen.core.font_style import FontStyle
+from theme_gen.lang.protocol import BaseLanguage, SemanticTokenStyle, SemanticTokenValue, TokenColorRule, tcr
+from theme_gen.palette.theme import Theme
 
 
 class CSharpLang(BaseLanguage):
@@ -64,9 +64,7 @@ class CSharpLang(BaseLanguage):
     def semantic_token_overrides(self, theme: Theme) -> dict[str, SemanticTokenValue]:
         """C#-scoped semantic token overrides.
 
-        These target Roslyn LSP token types that some configurations emit.
-        Standard types (class, struct, interface, method, property, etc.)
-        are already handled by GlobalSemanticTokens.
+        These target Roslyn LSP token types that some configurations emit. Standard types (class, struct, interface, method, property, etc.) are already handled by GlobalSemanticTokens.
         """
         s = theme.syntax
         return {

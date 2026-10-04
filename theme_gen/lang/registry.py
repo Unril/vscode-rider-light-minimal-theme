@@ -11,16 +11,16 @@ Aggregation order invariant (TextMate last-match-wins for font-style):
   4. Style reset (MUST be last)
 """
 
-from core.font_style import FontStyle
-from core.tcol import TCol
-from lang.protocol import (
+from theme_gen.core.font_style import FontStyle
+from theme_gen.core.tcol import TCol
+from theme_gen.lang.protocol import (
     Language,
     SemanticTokenValue,
     TokenColorRule,
     tcr,
 )
-from lang.semantic import GlobalSemanticTokens
-from palette.theme import Theme
+from theme_gen.lang.semantic import GlobalSemanticTokens
+from theme_gen.palette.theme import Theme
 
 
 class LanguageRegistry:

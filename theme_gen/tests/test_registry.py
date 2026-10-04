@@ -1,29 +1,27 @@
 """Tests for LanguageRegistry and per-language classes."""
 
-# pylint: disable=redefined-outer-name
-
 from collections.abc import Callable
 from typing import override
 
 import pytest
 
-from core.tcol import TCol
-from lang.base import BaseSyntax
-from lang.css import CssLang
-from lang.html import HtmlLang
-from lang.java import JavaLang
-from lang.js import JavaScriptLang
-from lang.json_lang import JsonLang
-from lang.kotlin import KotlinLang
-from lang.markdown import MarkdownLang
-from lang.protocol import BaseLanguage, SemanticTokenValue, TokenColorRule
-from lang.python import PythonLang
-from lang.registry import LanguageRegistry
-from lang.script import ScriptLang
-from lang.semantic import GlobalSemanticTokens
-from lang.ts import TypeScriptLang
-from lang.yaml import YamlLang
-from palette.theme import Theme
+from theme_gen.core.tcol import TCol
+from theme_gen.lang.base import BaseSyntax
+from theme_gen.lang.css import CssLang
+from theme_gen.lang.html import HtmlLang
+from theme_gen.lang.java import JavaLang
+from theme_gen.lang.js import JavaScriptLang
+from theme_gen.lang.json_lang import JsonLang
+from theme_gen.lang.kotlin import KotlinLang
+from theme_gen.lang.markdown import MarkdownLang
+from theme_gen.lang.protocol import BaseLanguage, SemanticTokenValue, TokenColorRule
+from theme_gen.lang.python import PythonLang
+from theme_gen.lang.registry import LanguageRegistry
+from theme_gen.lang.script import ScriptLang
+from theme_gen.lang.semantic import GlobalSemanticTokens
+from theme_gen.lang.ts import TypeScriptLang
+from theme_gen.lang.yaml import YamlLang
+from theme_gen.palette.theme import Theme
 
 
 @pytest.fixture

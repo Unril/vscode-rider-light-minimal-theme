@@ -1,7 +1,5 @@
 """Structural validation test -- verifies the full generation pipeline produces valid output."""
 
-# pylint: disable=redefined-outer-name
-
 import json
 import re
 from typing import cast

@@ -21,7 +21,6 @@ node_modules
 references/
 scripts_old
 Thumbs.db
-uv.lock
 venv
 work/
 workspace.json

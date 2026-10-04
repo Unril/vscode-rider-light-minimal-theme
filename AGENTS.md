@@ -6,7 +6,7 @@ Guidance for AI coding agents working in this repo. Covers what the product is, 
 
 Rider light minimal is a light + dark color theme extension for VS Code, inspired by JetBrains Rider.
 
-Published to the VS Code Marketplace and Open VSX as `NikolaiFedorov.vscode-rider-light-minimal-theme`.
+Not currently published. The VS Code Marketplace and Open VSX listings were withdrawn after the Kiro team objected to the word "kiro" in the extension name and elsewhere; do not reintroduce it in names, keywords, or docs. The extension is distributed as a locally built `.vsix` (see Packaging).
 
 ### Goals
 
@@ -35,7 +35,7 @@ Published to the VS Code Marketplace and Open VSX as `NikolaiFedorov.vscode-ride
 ### Extension package
 
 - Format: VS Code color theme extension (`package.json` with `contributes.themes`)
-- Engine: VS Code `^1.90.0`
+- Engine: VS Code `^1.110.0`
 - Entry: `src/extension.js` (registers a markdown-it plugin that wraps the preview when `rider-light-minimal.markdownPreview.enabled` is true)
 - Activation: `extensionDependencies: ["vscode.markdown-language-features"]` + empty `activationEvents`. The markdown engine discovers the plugin via the `'api'` pattern (same as `markdown-math` and `markdown-mermaid`). Using `onLanguage:markdown` causes a race where the engine initializes before the plugin registers.
 - Outputs (generated, not hand-edited):
@@ -45,42 +45,28 @@ Published to the VS Code Marketplace and Open VSX as `NikolaiFedorov.vscode-ride
 
 ### Theme generator (`theme_gen/`)
 
-- Language: Python 3.13 (pinned in `theme_gen/.python-version`)
-- Package manager: `uv` (lockfile `theme_gen/uv.lock`, venv `theme_gen/.venv/`)
-- Key runtime dependencies:
+- Language: Python 3.14 (pinned in the root `.python-version`)
+- Project: the root `pyproject.toml`; `theme_gen/` is a flat-layout package (`uv_build`) installed editable into the root `.venv/`, so `theme_gen.*` imports resolve the same way for basedpyright, pytest, and the CLI -- no `PYTHONPATH`, `extraPaths`, or `cwd`
+- Package manager: `uv` (lockfile `uv.lock`, committed). `dev` and `test` are default groups, so a plain `uv sync` builds the full environment
+- Runtime dependencies:
   - `coloraide` -- OKLCH color math and gamut mapping
   - `scipy` -- contrast optimization (`with_min_contrast`)
-  - `pyjson5` -- JSON5 parsing for reference files
-  - `structlog` -- structured logging
-- Linter/formatter: `ruff` (line length 120, target py313, `ALL` rules minus `D EM T20 S TRY003 COM812 ERA001`)
-- Type checker: `mypy` (strict) + `basedpyright` (configured via `pyrightconfig.json` at the workspace root)
-- Test runner: `pytest`
+- Linter/formatter: `ruff` (line length 120, target py314, `ALL` rules minus the `ignore` list in `pyproject.toml`) and `docformatter` (docstring reflow at 256)
+- Type checker: `basedpyright` (configured in `[tool.basedpyright]`; existing warnings recorded in `.basedpyright/baseline.json`, so only new ones fail). In VS Code it runs through the basedpyright extension (`detachhead.basedpyright`); the Python extension's own language server is off in `.vscode/settings.json`
+- Test runner: `pytest` (`[tool.pytest]`: importlib import mode, `strict`, warnings are errors)
+- TOML formatter: `taplo` (scope in `.taplo.toml`)
 
 ### Common commands
 
-All `theme_gen` commands run from `theme_gen/` (use `cwd: "theme_gen"` when dispatching via tooling).
+Run from the repo root. `just` lists every recipe; the `uv` equivalents are in the `justfile`.
 
 ```bash
-# Regenerate both theme JSONs and the markdown-variables CSS
-uv run main.py
-# or
-uv run ./theme_gen/main.py
-
-# Run the test suite
-uv run -m pytest
-
-# Lint
-uv run ruff check .
-
-# Type check
-uv run mypy .
-
-# Sync dependencies (after pyproject.toml changes)
-uv sync --all-groups
-
-# Format
-uv run ruff check --fix .
-uv run ruff format .
+just gen  # Regenerate both theme JSONs and the markdown-variables CSS (uv run -m theme_gen)
+just py-verify  # Lint + type-check (new diagnostics fail) + tests -- the gate after Python changes
+just py-test  # Tests only; extra args pass through
+just fmt  # taplo, then docformatter + ruff check --fix + ruff format
+just py-update  # Upgrade uv.lock and sync; review the uv.lock diff, then run just py-verify
+uv run -m theme_gen.token_query FILE SNIPPET  # Query an exported .tokens.yaml (or FILE --scope PATTERN)
 ```
 
 ### Testing the extension locally
@@ -93,7 +79,7 @@ uv run ruff format .
 
 ```bash
 npm install -g @vscode/vsce  # once
-vsce package
+just package  # py-verify + gen + vsce package -> vscode-rider-light-minimal-theme-{version}.vsix
 ```
 
 ## Project structure
@@ -101,7 +87,12 @@ vsce package
 ```text
 vscode-rider-light-minimal-theme/
   package.json  # Extension manifest (themes, markdown preview, config)
-  pyrightconfig.json  # basedpyright config for theme_gen/
+  pyproject.toml  # Python project: deps, uv/ruff/basedpyright/pytest/docformatter config
+  uv.lock  # Pinned lockfile (commit this)
+  .python-version  # 3.14
+  justfile  # gen / py-verify / fmt recipes
+  .taplo.toml  # TOML formatter scope and width
+  .basedpyright/baseline.json  # Recorded type-check debt; plain runs shrink it as debt is paid -- commit that diff
   src/
     extension.js  # Extension entry (markdown-it preview wrapper)
   styles/
@@ -111,10 +102,10 @@ vscode-rider-light-minimal-theme/
   themes/
     Rider Light Minimal-color-theme.json  # Generated -- do not edit by hand
     Rider Light Minimal Dark-color-theme.json  # Generated -- do not edit by hand
-  theme_gen/  # Python generator (source of truth for theme colors)
-    main.py  # Assembles Light + Dark JSONs and markdown CSS
-    pyproject.toml  # Dependencies, ruff/mypy/pylint config
-    uv.lock  # Pinned lockfile (commit this)
+  theme_gen/  # Python generator package (source of truth for theme colors)
+    __main__.py  # `uv run -m theme_gen`: writes themes/*.json and styles/markdown-variables.css
+    pipeline.py  # build_theme_document(): the one generation path, shared by __main__ and tests
+    token_query.py  # CLI: query exported .tokens.yaml files
     core/
       tcol.py  # TCol: OKLCH color type with contrast/alpha/mix helpers
       font_style.py  # FontStyle enum (bold, italic, underline)
@@ -123,6 +114,7 @@ vscode-rider-light-minimal-theme/
       palette.py  # Palette dataclass: seed + derived colors for a variant
       syntax.py  # SyntaxPalette: 17 named syntax roles + hue_shifted series
       editor.py  # EditorPalette helpers (tints, overlays)
+      ansi.py  # AnsiColors: 16 terminal colors per variant (EditorPalette.ansi)
       theme.py  # Theme: composes Palette + SyntaxPalette (light or dark)
     lang/
       protocol.py  # Language protocol + TokenColorRule + SemanticTokenStyle
@@ -141,11 +133,11 @@ vscode-rider-light-minimal-theme/
     tests/
       conftest.py
       test_tcol.py, test_palette.py, test_theme.py, test_lang.py,
-      test_registry.py, test_ui.py, test_css.py, test_generate_theme.py,
+      test_registry.py, test_ui.py, test_css.py, test_generate_theme.py, test_token_query.py,
       test_snapshot.py  # Snapshot regression test against fixtures/
-      fixtures/  # Snapshot JSONs -- regenerate on intentional changes
+      fixtures/  # Snapshot JSONs -- copies of themes/*.json (see Conventions)
   examples/  # Sample source files for screenshot/visual testing
-    src/main/{java,kotlin,py,ts,js,other}/...
+    src/main/{csharp,java,kotlin,py,ts,js,other}/...  # each sample has a *.tokens.yaml export beside it (token_query input)
     build.gradle.kts, settings.gradle.kts, gradlew{,.bat}
   references/  # Upstream docs (VS Code theme colors, scope naming, etc.)
   scripts_old/  # Legacy extraction scripts -- NOT part of the build
@@ -154,10 +146,11 @@ vscode-rider-light-minimal-theme/
 
 ## Conventions
 
-- `themes/*.json` and `styles/markdown-variables.css` are always regenerated by `uv run main.py` from `theme_gen/`. Never edit these files by hand -- change the Python source, regenerate, commit both.
+- `themes/*.json` and `styles/markdown-variables.css` are always regenerated by `just gen`. Never edit these files by hand -- change the Python source, regenerate, commit both.
+- Docstrings are written for LLM readers that search with `rg`: one paragraph is one line, never hand-wrapped; code stays at 120. The line limit is 256 columns including indentation -- docformatter wraps a longer paragraph mid-sentence, so split it into separate paragraphs (blank line between) at a sentence boundary instead. `just fmt` reflows plain-prose docstrings, but leaves docstrings it reads as lists, tables, or indented blocks alone -- write those paragraphs on one line by hand.
 - All color values flow through `TCol` (OKLCH). Never hardcode hex strings in generator code; derive from `Palette` or `SyntaxPalette`.
 - Each language module in `theme_gen/lang/` implements `BaseLanguage` (TextMate rules) and optionally overrides `semantic_token_overrides`.
 - Each UI section in `theme_gen/ui/` implements the `UISection` protocol: `build(theme) -> dict[str, TCol]`.
-- Dark-variant overrides live inside the palette and editor modules via `is_dark` branching and the `with_min_contrast` / `mix` / `_tint` / `_overlay` helpers -- keep them in one place, do not spread conditionals through UI sections.
-- Tests include a snapshot test (`test_snapshot.py`); regenerate fixtures when output changes are intentional.
+- All light/dark branching lives in `theme_gen/palette/` (`is_dark` plus the `with_min_contrast` / `mix` / `_tint` / `_overlay` helpers). UI sections and the CSS emitter read ready-made fields (`palette.git_added`, `editor.ansi`, `syntax.hue_shifted_quote`) and never test the variant -- a new dark-only tweak is a new palette field, not an `if` in a section.
+- Tests include a snapshot test (`test_snapshot.py`) against `theme_gen/tests/fixtures/`. After an intentional output change: `just gen`, review the `themes/` diff, then copy `themes/Rider Light Minimal-color-theme.json` to `theme_gen/tests/fixtures/rider-light-minimal.snapshot.json` and `themes/Rider Light Minimal Dark-color-theme.json` to `theme_gen/tests/fixtures/rider-light-minimal-dark.snapshot.json`.
 - `scripts_old/` is archived reference material; do not add new scripts there. Put throwaway exploration scripts under `work/scripts/`.
