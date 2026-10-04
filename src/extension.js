@@ -14,21 +14,18 @@ function isEnabled() {
 function refreshMarkdownPreview() {
     // Guard against rejection during activation or when the command isn't
     // registered (Web extensions, restricted-mode environments).
-    vscode.commands.executeCommand('markdown.preview.refresh').then(
-        undefined,
-        () => {}
-    );
+    vscode.commands.executeCommand('markdown.preview.refresh').then(undefined, () => {});
 }
 
 exports.activate = function (/** @type {vscode.ExtensionContext} */ ctx) {
     ctx.subscriptions.push(
-        vscode.workspace.onDidChangeConfiguration(e => {
+        vscode.workspace.onDidChangeConfiguration((e) => {
             // Narrow to the exact setting so future keys don't trigger
             // needless preview refreshes.
             if (e.affectsConfiguration(fullKey)) {
                 refreshMarkdownPreview();
             }
-        })
+        }),
     );
 
     return {

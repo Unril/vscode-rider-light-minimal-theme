@@ -90,7 +90,7 @@
 
 .rlm-preview blockquote {
     border-left: 4px solid var(--rlm-h1-quote);
-    color: var(--rlm-quote-fg);
+    color: var(--rlm-muted);
     background-color: initial;
 }
 
@@ -203,10 +203,10 @@
     background: var(--rlm-panel);
 }
 
-/* ── Horizontal rules ── */
+/* ── Horizontal rules: VS Code's markdown.css draws hr as a 1px border-bottom ── */
 
 .rlm-preview hr {
-    border-top-color: var(--rlm-border);
+    border-bottom-color: var(--rlm-border);
 }
 
 /* ── Images ── */
@@ -238,19 +238,26 @@
     list-style-type: none;
 }
 
-/* Primary: :has() targets the li itself when its checkbox is checked.
-   Works in modern Chromium (VS Code Electron). Handles bare text
-   nodes that aren't wrapped in a span. */
-.rlm-preview .task-list-item:has(input[type="checkbox"]:checked) {
+/* Fade an item when its OWN checkbox is checked. markdown-it-task-lists puts the checkbox directly in the li or in
+   a label (label option), and in loose lists either one sits inside the li's first p. The child combinators keep a
+   checked sub-item from fading its parent. */
+.rlm-preview .task-list-item:has(
+    > input[type="checkbox"]:checked,
+    > label > input[type="checkbox"]:checked,
+    > p:first-child > input[type="checkbox"]:checked,
+    > p:first-child > label > input[type="checkbox"]:checked
+) {
     opacity: 0.6;
     text-decoration: line-through;
 }
 
-/* Fallback: for markdown-it plugins that wrap task text in elements. */
-.rlm-preview .task-list-item input[type="checkbox"]:checked+span,
-.rlm-preview .task-list-item input[type="checkbox"]:checked~* {
-    opacity: 0.6;
-    text-decoration: line-through;
+/* Opacity applies to the whole li, so sub-items of a faded item are already at 0.6; a checked sub-item's own 0.6
+   would compound to 0.36, far below AA. Same :has() list, plus one class, so this always outranks the rule above. */
+.rlm-preview .task-list-item:has(
+    > input[type="checkbox"]:checked,
+    > label > input[type="checkbox"]:checked,
+    > p:first-child > input[type="checkbox"]:checked,
+    > p:first-child > label > input[type="checkbox"]:checked
+) .task-list-item {
+    opacity: 1;
 }
-
-/* ── Nested blockquotes: handled above in blockquote section ── */

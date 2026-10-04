@@ -18,6 +18,7 @@ Both theme JSON files and the markdown-preview CSS variables are generated from 
 uv sync  # once: creates .venv from uv.lock, with theme_gen installed editable
 just gen  # regenerate (same as uv run -m theme_gen)
 just py-verify  # lint, type-check, test
+just test  # everything: py-verify, the JS format check, then the extension tests (needs Node)
 ```
 
 `just gen` writes:
@@ -34,6 +35,8 @@ Never edit those outputs by hand. Change the Python source and regenerate.
 2. Press `F5` to launch the Extension Development Host
 3. `Cmd+K Cmd+T` and select "Rider Light Minimal" or "Rider Light Minimal Dark"
 
+`just js-test` runs the behavior tests for `src/extension.js` (needs Node; it installs `test/`'s dev dependencies from the lockfile first). The contract tests that keep `src/extension.js`, `package.json`, `.vscodeignore` and the preview CSS in agreement run under `just py-verify`.
+
 ## Build the extension
 
 Packaging the extension as a `.vsix` requires [`vsce`](https://github.com/microsoft/vscode-vsce) (the VS Code Extension Manager).
@@ -47,7 +50,7 @@ npm install -g @vscode/vsce
 From the repo root:
 
 ```bash
-# Verify the generator, regenerate the outputs, and package -- writes vscode-rider-light-minimal-theme-{version}.vsix
+# Verify the generator and the extension, regenerate the outputs, and package -- writes vscode-rider-light-minimal-theme-{version}.vsix
 just package
 ```
 

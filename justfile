@@ -55,9 +55,29 @@ py-update:
     uv lock --upgrade
     uv sync --locked
 
-# Release build: verify the generator, regenerate themes/ and styles/, then package the .vsix (needs `npm install -g @vscode/vsce`)
+# Install test/'s JS dev dependencies (markdown-it, prettier) from its lockfile
+[private]
+_js-deps:
+    npm --prefix test ci --no-audit --no-fund
+
+# Run the extension behavior tests (node:test)
 [group('extension')]
-package: py-verify gen
+js-test: _js-deps
+    node --test test/extension.test.js
+
+# Check the extension's JS formatting without writing; the read-only half of js-fmt
+[group('extension')]
+js-lint: _js-deps
+    test/node_modules/.bin/prettier --check 'src/**/*.js' 'test/*.js'
+
+# Format the extension's JS with prettier (.prettierrc.json; indent and width come from .editorconfig)
+[group('extension')]
+js-fmt: _js-deps
+    test/node_modules/.bin/prettier --write 'src/**/*.js' 'test/*.js'
+
+# Release build: run every test, regenerate themes/ and styles/, then package the .vsix (needs `npm install -g @vscode/vsce`)
+[group('extension')]
+package: test gen
     vsce package
 
 # Format TOML files (taplo; scope in .taplo.toml)
@@ -65,5 +85,8 @@ package: py-verify gen
 config-fmt:
     uv run taplo fmt
 
-# Format everything: TOML, then Python
-fmt: config-fmt py-fmt
+# Format everything: TOML, then Python, then JS
+fmt: config-fmt py-fmt js-fmt
+
+# Run every check: the Python gate (lint, type-check, tests), the JS format check, then the extension behavior tests
+test: py-verify js-lint js-test

@@ -1,0 +1,8 @@
+{
+  "overrides": [
+    {
+      "files": ["*.js", "*.cjs", "*.mjs"],
+      "options": { "singleQuote": true }
+    }
+  ]
+}

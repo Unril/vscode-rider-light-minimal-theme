@@ -38,13 +38,12 @@ body.vscode-high-contrast-light {
     --rlm-h4-quote: #D0CCE9;
     --rlm-h5-quote: #DBC9E3;
     --rlm-h6-quote: #E3C7D9;
-    --rlm-quote-fg: #686868;
 }
 
 /* Dark variant */
 
 body.vscode-dark,
-body.vscode-high-contrast {
+body.vscode-high-contrast:not(.vscode-high-contrast-light) {
     --rlm-fg: #C7C7C7;
     --rlm-accent: #7CA4ED;
     --rlm-border: #3F3A30;
@@ -75,5 +74,4 @@ body.vscode-high-contrast {
     --rlm-h4-quote: #322E44;
     --rlm-h5-quote: #392B3F;
     --rlm-h6-quote: #3F2938;
-    --rlm-quote-fg: #A4A4A4;
 }

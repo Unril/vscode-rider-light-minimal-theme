@@ -166,6 +166,7 @@
 /* ── Diff: theme-aware backgrounds ──
  * Light mode uses 5% mix (15% drops diff text below AA 4.5:1).
  * Dark mode uses 15% mix (dark backgrounds need stronger tint to register).
+ * VS Code also gives high contrast light the vscode-high-contrast class, hence the :not().
  */
 
 body.vscode-light .rlm-preview .hljs-addition,
@@ -181,13 +182,13 @@ body.vscode-high-contrast-light .rlm-preview .hljs-deletion {
 }
 
 body.vscode-dark .rlm-preview .hljs-addition,
-body.vscode-high-contrast .rlm-preview .hljs-addition {
+body.vscode-high-contrast:not(.vscode-high-contrast-light) .rlm-preview .hljs-addition {
     color: var(--rlm-success);
     background-color: color-mix(in srgb, var(--rlm-success) 15%, transparent);
 }
 
 body.vscode-dark .rlm-preview .hljs-deletion,
-body.vscode-high-contrast .rlm-preview .hljs-deletion {
+body.vscode-high-contrast:not(.vscode-high-contrast-light) .rlm-preview .hljs-deletion {
     color: var(--rlm-error);
     background-color: color-mix(in srgb, var(--rlm-error) 15%, transparent);
 }

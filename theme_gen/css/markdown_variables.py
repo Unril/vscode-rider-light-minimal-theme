@@ -49,8 +49,6 @@ def _extract_vars(theme: Theme) -> list[str]:
         # Headings + quote variants: same hue-shifted series
         *((f"h{i}", c) for i, c in enumerate(s.hue_shifted, start=1)),
         *((f"h{i}-quote", c) for i, c in enumerate(s.hue_shifted_quote, start=1)),
-        # Blockquote / list chrome
-        ("quote-fg", p.fg_muted),
     ]
     return [f"    --rlm-{name}: {col.hex};" for name, col in pairs]
 
@@ -69,5 +67,7 @@ def build_css() -> str:
         f"   doesn't break when users switch to accessibility themes. */\n\n"
         f"body.vscode-light,\nbody.vscode-high-contrast-light {{\n{light_vars}\n}}\n\n"
         f"/* Dark variant */\n\n"
-        f"body.vscode-dark,\nbody.vscode-high-contrast {{\n{dark_vars}\n}}\n"
+        # VS Code also gives high contrast light the vscode-high-contrast class; without the :not() this later,
+        # equally specific rule would win there.
+        f"body.vscode-dark,\nbody.vscode-high-contrast:not(.vscode-high-contrast-light) {{\n{dark_vars}\n}}\n"
     )

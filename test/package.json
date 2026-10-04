@@ -1,0 +1,8 @@
+{
+  "private": true,
+  "description": "Dev dependencies for the extension's JS tooling (just js-test, just js-fmt). The extension itself ships with none, so they live here instead of the root manifest.",
+  "devDependencies": {
+    "markdown-it": "^14.3.2",
+    "prettier": "^3.9.9"
+  }
+}
