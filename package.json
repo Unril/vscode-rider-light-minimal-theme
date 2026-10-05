@@ -2,7 +2,7 @@
   "name": "vscode-rider-light-minimal-theme",
   "displayName": "Rider Light Minimal",
   "description": "Light and dark color themes for VS Code. Consistent syntax highlighting across languages with a themed markdown preview style. Inspired by JetBrains Rider.",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "publisher": "NikolaiFedorov",
   "repository": {
     "type": "git",
@@ -12,12 +12,20 @@
     "url": "https://github.com/Unril/vscode-rider-light-minimal-theme/issues"
   },
   "homepage": "https://github.com/Unril/vscode-rider-light-minimal-theme",
+  "qna": "https://github.com/Unril/vscode-rider-light-minimal-theme/discussions",
   "license": "MIT",
   "icon": "img/icon.png",
   "galleryBanner": {
     "color": "#F2F2F2",
     "theme": "light"
   },
+  "badges": [
+    {
+      "url": "https://github.com/Unril/vscode-rider-light-minimal-theme/actions/workflows/ci.yml/badge.svg?branch=master",
+      "href": "https://github.com/Unril/vscode-rider-light-minimal-theme/actions/workflows/ci.yml",
+      "description": "CI"
+    }
+  ],
   "engines": {
     "vscode": "^1.110.0"
   },

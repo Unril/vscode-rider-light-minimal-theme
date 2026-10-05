@@ -4,6 +4,17 @@ All notable changes to the "vscode-rider-light-minimal-theme" extension will be 
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.4.1] - 2026-10-05
+
+### Added
+
+- Published to the VS Code Marketplace as well as Open VSX
+- Marketplace listing: a Q&A link to GitHub Discussions and a CI status badge
+
+### Changed
+
+- Releases are published automatically from GitHub Actions to both registries, without stored tokens, and each version gets a GitHub release with its `.vsix` and these notes
+
 ## [0.4.0] - 2026-10-05
 
 ### Fixed

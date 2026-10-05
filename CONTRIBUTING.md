@@ -67,7 +67,7 @@ To release:
 2. Add a `CHANGELOG.md` entry under a new `## [x.y.z] - YYYY-MM-DD` heading (a contract test fails without it)
 3. Run `just test`, then commit and push to `master`
 
-If a release run fails and the fix does not touch `package.json`, start Publish by hand from the Actions tab on `master`. Re-running the failed run would reuse its old commit, and the fixing push does not trigger the workflow. Both publish jobs skip a version their registry already has, so a registry that accepted the version keeps that build: if the fix changes anything that ships in the `.vsix`, or `master` has moved past the release commit, bump the version instead. Published GitHub releases are immutable, so a bad release is fixed with a new version, not by replacing its `.vsix` or moving its tag.
+If a release run fails for a reason outside the repository (registry setup, a network error), use "Re-run failed jobs" on that run: it reuses the `.vsix` it already built. If the fix is a commit and does not touch `package.json`, start Publish by hand from the Actions tab on `master`. Re-running the failed run would reuse its old commit, and the fixing push does not trigger the workflow. Both publish jobs skip a version their registry already has, so a registry that accepted the version keeps that build: if the fix changes anything that ships in the `.vsix`, or `master` has moved past the release commit, bump the version instead. Published GitHub releases are immutable, so a bad release is fixed with a new version, not by replacing its `.vsix` or moving its tag.
 
 Set up each registry once, before its first release. Until a registry is set up, its publish job fails, and no tag or GitHub release is created.
 
