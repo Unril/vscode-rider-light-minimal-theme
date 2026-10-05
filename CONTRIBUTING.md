@@ -4,11 +4,7 @@ Pull requests are welcome; they need the CI check `test` to pass before merging.
 
 ## Installation
 
-The extension is not currently published to the VS Code Marketplace or Open VSX. Build the `.vsix` (see [Build the extension](#build-the-extension)) and install it directly:
-
-```bash
-code --install-extension vscode-rider-light-minimal-theme-{version}.vsix
-```
+Install the released extension from the [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=NikolaiFedorov.vscode-rider-light-minimal-theme) or [Open VSX](https://open-vsx.org/extension/NikolaiFedorov/vscode-rider-light-minimal-theme). To try a local build instead, see [Build the extension](#build-the-extension).
 
 ## Generator
 
@@ -57,7 +53,7 @@ Reload the editor window (`Cmd+Shift+P` -> `Developer: Reload Window`) and selec
 
 ### Publishing
 
-The listings under the previous name were withdrawn (see [Installation](#installation)); never publish under that name.
+The listings under the previous name were withdrawn; never publish under that name.
 
 A push to `master` that changes `version` in `package.json` publishes that version, unless the tag `v{version}` already exists. `.github/workflows/publish.yml` runs every check and packages the `.vsix`. It then publishes the `.vsix` to Open VSX through [trusted publishing](https://github.com/eclipse-openvsx/openvsx/wiki/Trusted-Publishing) and to the VS Code Marketplace with a Microsoft Entra ID token (see the [vsce publishing guide](https://code.visualstudio.com/api/working-with-extensions/publishing-extension)). When both succeed, it creates the GitHub release `v{version}` with the matching `CHANGELOG.md` section as its notes. The repository stores no registry token.
 

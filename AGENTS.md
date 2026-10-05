@@ -6,7 +6,7 @@ Guidance for AI coding agents working in this repo: what the product is, how the
 
 Rider Light Minimal is a light + dark color theme extension for VS Code, inspired by JetBrains Rider.
 
-Not currently published. The VS Code Marketplace and Open VSX listings were withdrawn after the owner of another product objected to its name appearing in the extension name and elsewhere. Do not add another product's name to the extension's name, display name, description, keywords, or docs. The existing references are deliberate: JetBrains Rider (the inspiration, also in the name) and the languages and tools the theme supports. The extension is distributed as a locally built `.vsix` (see [Package](#package)).
+Published to the VS Code Marketplace and Open VSX as `NikolaiFedorov.vscode-rider-light-minimal-theme` by `publish.yml` (see [CI and release](#ci-and-release)). Earlier listings under a previous name were withdrawn after the owner of another product objected to its name appearing in the extension name and elsewhere. Do not add another product's name to the extension's name, display name, description, keywords, or docs. The existing references are deliberate: JetBrains Rider (the inspiration, also in the name) and the languages and tools the theme supports.
 
 ### Goals
 

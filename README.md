@@ -1,4 +1,8 @@
-# Rider light minimal
+# Rider Light Minimal
+
+[![CI](https://github.com/Unril/vscode-rider-light-minimal-theme/actions/workflows/ci.yml/badge.svg?branch=master)][ci] [![VS Code Marketplace](https://img.shields.io/badge/VS_Code_Marketplace-install-007ACC)][marketplace] [![Open VSX](https://img.shields.io/open-vsx/v/NikolaiFedorov/vscode-rider-light-minimal-theme)][open-vsx] [![License: MIT](https://img.shields.io/github/license/Unril/vscode-rider-light-minimal-theme)][license]
+
+<img src="https://raw.githubusercontent.com/Unril/vscode-rider-light-minimal-theme/master/img/social_preview.jpg" alt="Rider Light Minimal: light and dark VS Code themes with consistent syntax colors across languages, inspired by JetBrains Rider" width="960">
 
 Light and dark color themes for VS Code, inspired by JetBrains Rider.
 
@@ -91,7 +95,13 @@ Nested lists with colored markers, styled blockquotes, and depth-adapted colorin
 
 ## Installation
 
-The extension is not currently published to the VS Code Marketplace or Open VSX. Build the `.vsix` and install it locally; see [CONTRIBUTING.md][contributing].
+Install Rider Light Minimal from the [VS Code Marketplace][marketplace], or from [Open VSX][open-vsx] in editors that install extensions from there, such as VSCodium. From the command line:
+
+```bash
+code --install-extension NikolaiFedorov.vscode-rider-light-minimal-theme
+```
+
+Then pick `Rider Light Minimal` or `Rider Light Minimal Dark` with `Preferences: Color Theme` (`Ctrl+K Ctrl+T`, or `Cmd+K Cmd+T` on macOS).
 
 ## Settings
 
@@ -109,8 +119,12 @@ See [CONTRIBUTING.md][contributing] for generator usage, local testing, and deve
 
 ## License
 
-MIT
+[MIT][license]
 
+[ci]: https://github.com/Unril/vscode-rider-light-minimal-theme/actions/workflows/ci.yml
 [contributing]: https://github.com/Unril/vscode-rider-light-minimal-theme/blob/master/CONTRIBUTING.md
+[license]: https://github.com/Unril/vscode-rider-light-minimal-theme/blob/master/LICENSE.md
+[marketplace]: https://marketplace.visualstudio.com/items?itemName=NikolaiFedorov.vscode-rider-light-minimal-theme
+[open-vsx]: https://open-vsx.org/extension/NikolaiFedorov/vscode-rider-light-minimal-theme
 [kotlin-lsp]: https://github.com/Kotlin/kotlin-lsp
 [basedpyright]: https://github.com/detachhead/basedpyright
