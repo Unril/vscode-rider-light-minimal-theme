@@ -1,6 +1,6 @@
 # Contributing
 
-Pull requests are welcome. Repository: [github.com/Unril/vscode-rider-light-minimal-theme](https://github.com/Unril/vscode-rider-light-minimal-theme)
+Pull requests are welcome; they need the CI check `test` to pass before merging. Repository: [github.com/Unril/vscode-rider-light-minimal-theme](https://github.com/Unril/vscode-rider-light-minimal-theme). To report a vulnerability, see [SECURITY.md](SECURITY.md).
 
 ## Installation
 
@@ -67,7 +67,7 @@ To release:
 2. Add a `CHANGELOG.md` entry under a new `## [x.y.z] - YYYY-MM-DD` heading (a contract test fails without it)
 3. Run `just test`, then commit and push to `master`
 
-If a release run fails and the fix does not touch `package.json`, start Publish by hand from the Actions tab on `master`. Re-running the failed run would reuse its old commit, and the fixing push does not trigger the workflow.
+If a release run fails and the fix does not touch `package.json`, start Publish by hand from the Actions tab on `master`. Re-running the failed run would reuse its old commit, and the fixing push does not trigger the workflow. Published GitHub releases are immutable, so a bad release is fixed with a new version, not by replacing its `.vsix` or moving its tag.
 
 Set up once, before the first release:
 

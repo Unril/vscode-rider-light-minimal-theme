@@ -59,6 +59,7 @@ Not currently published. The VS Code Marketplace and Open VSX listings were with
 - `.github/workflows/ci.yml` runs `just package` (every check, regeneration, and `vsce package`) on pushes and pull requests, then `git diff --exit-code`, so generated files that were not regenerated fail the build. It runs on `ubuntu-slim`, whose jobs are cut off at 15 minutes.
 - `.github/workflows/publish.yml` runs when `package.json` changes on `master`. If the tag `v{version}` does not exist, it runs `just package`, publishes to Open VSX through trusted publishing, then creates the tag and GitHub release. Open VSX matches the workflow file name and the `open-vsx` environment name, so renaming either breaks publishing. `test_extension_contract.py` checks that `CHANGELOG.md` has a section for the current version, because the release notes come from it.
 - Every action is pinned to a full commit SHA with its version in a trailing comment. `.github/dependabot.yml` keeps the actions, the `test/` npm packages, and the uv dependencies current.
+- GitHub settings the workflows depend on: the `master` ruleset requires the check named `test` (the CI job id) on pull requests, so renaming that job blocks merges. Repository admins bypass the ruleset, so direct pushes to `master` still work. `v*` tags cannot be deleted or force-moved, and published releases are immutable: fix a bad release with a new version, not by replacing its `.vsix`.
 
 ### Other folders
 
