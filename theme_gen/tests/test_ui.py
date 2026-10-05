@@ -136,6 +136,13 @@ class TestColorMapComposition:
             assert key in colors, f"Missing required key: {key}"
 
 
+class TestMarkdownAllInOneCodeSpan:
+    @pytest.mark.parametrize("is_dark", [False, True], ids=["light", "dark"])
+    def test_code_span_border_is_fully_transparent(self, composition: ColorMapComposition, *, is_dark: bool) -> None:
+        colors = composition.build(Theme.create(is_dark=is_dark))
+        assert colors["markdown.extension.editor.codeSpan.border"].a == 0.0
+
+
 class TestTerminalDark:
     def test_terminal_section_builds_with_dark_theme(self) -> None:
         dark_theme = Theme.create(is_dark=True)

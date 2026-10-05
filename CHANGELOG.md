@@ -4,10 +4,13 @@ All notable changes to the "vscode-rider-light-minimal-theme" extension will be 
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
-## [Unreleased]
+## [0.4.0] - 2026-10-05
 
 ### Fixed
 
+- **High Contrast Light preview**: uses the light palette and light diff tints. VS Code also gives that theme the `vscode-high-contrast` class, so the dark rules were winning
+- **Preview horizontal rules**: now colored `--rlm-border`. The override set the top border, but VS Code draws `hr` as a bottom border
+- **Preview task lists**: an item fades only when its own checkbox is checked, so a checked sub-item no longer fades its parent. Loose lists and the `label` option of markdown-it-task-lists are covered, and a checked sub-item under a checked parent stays at 60% opacity instead of 36%
 - **Diff editor stacking**: line and text backgrounds now use different alpha levels (5%/15% light, 10%/25% dark) so word-level diffs pop above the row wash instead of compounding into a dark blob
 - **Word highlight read/write distinction**: `editor.wordHighlightBackground` (18%) and `editor.wordHighlightStrongBackground` (28%) are no longer identical, restoring the refactoring-relevant signal
 - **Active link feedback**: `textLink.activeForeground` now uses the darker accent hover color, providing visible press/click feedback
@@ -31,6 +34,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ### Added
 
+- C# support: TextMate rules and Roslyn semantic token styles, so C# uses the same role colors as the other languages
+- `markdown.extension.editor.codeSpan.border` set to transparent, removing the box Markdown All in One draws around inline code in the Markdown editor
 - `inputValidation.errorForeground`, `warningForeground`, `infoForeground` (completes the validation color set)
 - `editorSuggestWidget.selectedForeground` (defensive against VS Code fallback inversion)
 - `menu.background` and `menu.foreground` (prevents OS dark-mode fallback on Windows/Linux)
@@ -45,19 +50,27 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ### Changed
 
+- Renamed the extension to Rider Light Minimal (ID `NikolaiFedorov.vscode-rider-light-minimal-theme`). The themes are now "Rider Light Minimal" and "Rider Light Minimal Dark", and the preview setting is `rider-light-minimal.markdownPreview.enabled`. After upgrading, reselect the theme and set the preview setting again
+- Requires VS Code 1.110 or later (was 1.90)
 - Markdown preview code blocks use `--rlm-code-bg` (editor bg) instead of `--rlm-panel` for better syntax contrast
 - Markdown preview HTML/XML tags now use `--rlm-type` (purple) to match editor semantics
 - Markdown preview CSS selectors now use `--rlm-type` (purple) to match editor semantics
 - Markdown preview `::marker` scoped to `li::marker` (no longer colors `<details>` triangles)
 - Markdown preview table striping scoped to `tbody tr` (no longer counts header row)
-- Markdown preview table has `display: block; overflow-x: auto` for wide-table scrolling
 - Markdown preview heading borders use explicit shorthand (more robust than partial overrides)
 - Removed `min-width: 200px` from preview layout (prevented narrow split-pane usage)
-- Removed dead `code.hljs { padding: 3px 5px }` rule (specificity-safe but confusing)
+- `code.hljs { padding: 3px 5px }` scoped to inline code (`:not(pre)>code.hljs`); code blocks already overrode it
 - Terminal ANSI white decision documented as intentional tradeoff in source code
 - Markdown preview refresh on setting change is now guarded against rejection (Web extensions, restricted-mode)
 - Configuration listener narrowed to the exact `rider-light-minimal.markdownPreview.enabled` key
 - Markdown-it plugin now guards against double-wrapping if applied to the same renderer twice
+- Theme generator is an installable uv project at the repo root; `just` recipes cover generating, testing, formatting, and packaging
+- Automated extension tests: pytest contract tests (`extension.js`, `package.json`, `.vscodeignore`, and the preview CSS agree) and `node:test` behavior tests
+
+### Removed
+
+- `--rlm-bg` and `--rlm-warning` CSS variables (no stylesheet used them)
+- `--rlm-quote-fg` CSS variable (same color as `--rlm-muted`, which blockquotes now use)
 
 ## [0.3.2] - 2026-05-13
 

@@ -2,7 +2,7 @@
   "name": "vscode-rider-light-minimal-theme",
   "displayName": "Rider Light Minimal",
   "description": "Light and dark color themes for VS Code. Consistent syntax highlighting across languages with a themed markdown preview style. Inspired by JetBrains Rider.",
-  "version": "0.3.2",
+  "version": "0.4.0",
   "publisher": "NikolaiFedorov",
   "repository": {
     "type": "git",

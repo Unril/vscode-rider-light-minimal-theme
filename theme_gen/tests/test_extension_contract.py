@@ -47,6 +47,7 @@ class _Manifest(TypedDict):
     main: str
     browser: str
     icon: str
+    activationEvents: list[str]
     extensionDependencies: list[str]
     contributes: _Contributes
 
@@ -147,8 +148,11 @@ class TestManifestWiring:
     def test_registers_a_markdown_it_plugin(self) -> None:
         assert _manifest()["contributes"]["markdown.markdownItPlugins"] is True
 
+    # This test and the next pin the 0.3.2 activation fix; why: AGENTS.md, Code layout > Extension > Activation.
+    def test_declares_no_activation_events(self) -> None:
+        assert _manifest()["activationEvents"] == []
+
     def test_depends_on_the_built_in_markdown_extension(self) -> None:
-        # Why the manifest pins it: AGENTS.md, Tech stack > Activation.
         assert "vscode.markdown-language-features" in _manifest()["extensionDependencies"]
 
     @pytest.mark.parametrize("path", _files_the_manifest_references())

@@ -183,6 +183,7 @@
     "editorGutter.commentGlyphForeground": "#C99D47",
     "editorGutter.commentUnresolvedGlyphForeground": "#C99D47",
     "editorGutter.commentDraftGlyphForeground": "#C99D4780",
+    "markdown.extension.editor.codeSpan.border": "#C7C7C700",
     "editorGroup.border": "#2D281F",
     "editorGroup.dropBackground": "#7CA4ED40",
     "editorGroup.focusedEmptyBorder": "#7CA4ED",

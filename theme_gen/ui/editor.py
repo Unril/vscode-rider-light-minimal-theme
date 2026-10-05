@@ -1,4 +1,4 @@
-"""EditorSection -- editor core, line numbers, brackets, gutter, inlay hints, overview ruler."""
+"""EditorSection -- editor core, line numbers, brackets, gutter, inlay hints, overview ruler, Markdown All in One code spans."""
 
 from typing import override
 
@@ -100,4 +100,7 @@ class EditorSection(UISection):
             "editorGutter.commentGlyphForeground": p.secondary,
             "editorGutter.commentUnresolvedGlyphForeground": p.secondary,
             "editorGutter.commentDraftGlyphForeground": p.secondary.a50,
+            # Markdown All in One outlines inline code in the Markdown editor; its border defaults to
+            # editor.selectionBackground. Inline code already stands out through its color.
+            "markdown.extension.editor.codeSpan.border": fg.with_alpha(0.0),
         }

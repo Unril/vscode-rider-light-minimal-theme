@@ -44,7 +44,7 @@ Nested lists with colored markers, styled blockquotes, and depth-adapted colorin
 - Consistent colors across Kotlin, Java, TypeScript, JavaScript, Python, Markdown, YAML, JSON, HTML, and CSS
 - Dedicated scopes for [Kotlin LSP][kotlin-lsp] and [basedpyright][basedpyright]
 - 17 syntax roles from an OKLCH harmony wheel, all passing WCAG AA (4.5:1)
-- 523 UI colors covering editor, terminal, debug, testing, VCS, and more
+- 500+ UI colors covering editor, terminal, debug, testing, VCS, and more
 - Themed markdown preview with colored headings, code blocks, tables, blockquotes, and lists
 - Python-based generator for easy customization
 
