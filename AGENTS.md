@@ -6,7 +6,7 @@ Guidance for AI coding agents working in this repo: what the product is, how the
 
 Rider Light Minimal is a light + dark color theme extension for VS Code, inspired by JetBrains Rider.
 
-Not currently published. The VS Code Marketplace and Open VSX listings were withdrawn after the owner of another product objected to its name appearing in the extension name and elsewhere. Do not use another product's name to brand the extension (name, display name, description, keywords, or docs); naming JetBrains Rider as the inspiration and the languages and tools the theme supports is fine. The extension is distributed as a locally built `.vsix` (see [Package](#package)).
+Not currently published. The VS Code Marketplace and Open VSX listings were withdrawn after the owner of another product objected to its name appearing in the extension name and elsewhere. Do not add another product's name to the extension's name, display name, description, keywords, or docs. The existing references are deliberate: JetBrains Rider (the inspiration, also in the name) and the languages and tools the theme supports. The extension is distributed as a locally built `.vsix` (see [Package](#package)).
 
 ### Goals
 
@@ -52,7 +52,13 @@ Not currently published. The VS Code Marketplace and Open VSX listings were with
 ### Tests
 
 - `theme_gen/tests/` (pytest): generator behavior, a snapshot test against `fixtures/`, and contract tests that keep `src/extension.js`, `package.json`, `.vscodeignore`, and the preview CSS in agreement
-- `test/extension.test.js` (`node --test`): runs `src/extension.js` against a fake `vscode` module and a real markdown-it. `test/` has its own `package.json` (markdown-it, kept on the major version VS Code's markdown extension bundles; prettier) so the root manifest stays free of dev dependencies, and sits outside `src/` because `src/**` ships in the `.vsix`
+- `test/extension.test.js` (`node --test`): runs `src/extension.js` against a fake `vscode` module and a real markdown-it. `test/` has its own `package.json` (markdown-it, prettier, and the vsce and ovsx release tools) so the root manifest stays free of dev dependencies, and sits outside `src/` because `src/**` ships in the `.vsix`
+
+### CI and release
+
+- `.github/workflows/ci.yml` runs `just package` (every check, regeneration, and `vsce package`) on pushes and pull requests, then `git diff --exit-code`, so generated files that were not regenerated fail the build. It runs on `ubuntu-slim`, whose jobs are cut off at 15 minutes.
+- `.github/workflows/publish.yml` runs when `package.json` changes on `master`. If the tag `v{version}` does not exist, it runs `just package`, publishes to Open VSX through trusted publishing, then creates the tag and GitHub release. Open VSX matches the workflow file name and the `open-vsx` environment name, so renaming either breaks publishing. `test_extension_contract.py` checks that `CHANGELOG.md` has a section for the current version, because the release notes come from it.
+- Every action is pinned to a full commit SHA with its version in a trailing comment. `.github/dependabot.yml` keeps the actions, the `test/` npm packages, and the uv dependencies current.
 
 ### Other folders
 
@@ -72,7 +78,7 @@ just test  # Every check -- the gate after any change
 just py-verify  # Python gate only: lint, type-check, tests
 just js-test  # Extension behavior tests only
 just fmt  # Format TOML, Python, and JS
-just py-update  # Upgrade uv.lock and sync; review the diff, then run just test
+just update  # Upgrade uv.lock and test/package-lock.json; review the diffs, then run just test
 uv run -m theme_gen.token_query FILE SNIPPET  # Query a .tokens.yaml export (or FILE --scope PATTERN)
 ```
 
@@ -87,11 +93,10 @@ Type checking fails only on diagnostics missing from `.basedpyright/baseline.jso
 ### Package
 
 ```bash
-npm install -g @vscode/vsce  # once
 just package  # test + gen + vsce package -> vscode-rider-light-minimal-theme-{version}.vsix
 ```
 
-Release steps (version bump, CHANGELOG entry, re-including `CHANGELOG.md` in the `.vsix`) are in [CONTRIBUTING.md](CONTRIBUTING.md#publishing).
+`publish.yml` cuts releases. Release steps (version bump, CHANGELOG entry) and the one-time setup (the first upload, the trusted publisher) are in [CONTRIBUTING.md](CONTRIBUTING.md#publishing).
 
 ## Conventions
 

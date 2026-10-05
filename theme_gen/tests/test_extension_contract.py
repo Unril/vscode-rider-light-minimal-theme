@@ -1,6 +1,6 @@
-"""Contracts between src/extension.js, package.json, .vscodeignore and the hand-written preview stylesheets.
+"""Contracts between src/extension.js, package.json, .vscodeignore, CHANGELOG.md and the hand-written preview stylesheets.
 
-Each value lives in two hand-maintained places, so a rename in only one of them breaks the preview without any error; these tests catch it instead.
+Each value lives in two hand-maintained places, so a change in only one of them breaks the preview or the release without any error; these tests catch it instead.
 """
 
 import json
@@ -44,6 +44,7 @@ _Contributes = TypedDict(
 
 
 class _Manifest(TypedDict):
+    version: str
     main: str
     browser: str
     icon: str
@@ -163,3 +164,12 @@ class TestManifestWiring:
     def test_referenced_file_is_reincluded_by_the_vscodeignore_allowlist(self, path: str) -> None:
         # .vscodeignore starts with `**`, so a file ships only if a `!` pattern re-includes it.
         assert any(PurePosixPath(path).full_match(pattern) for pattern in _vscodeignore_reincludes())
+
+
+class TestReleaseNotes:
+    """The publish workflow (.github/workflows/publish.yml) cuts the release notes from the CHANGELOG.md section headed `## [<version>]`, so a version bump without that section would fail the release after merging."""
+
+    def test_changelog_has_a_section_for_the_manifest_version(self) -> None:
+        heading = f"## [{_manifest()['version']}]"
+        changelog_lines = (_REPO_ROOT / "CHANGELOG.md").read_text().splitlines()
+        assert any(line.startswith(heading) for line in changelog_lines)

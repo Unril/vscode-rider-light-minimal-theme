@@ -55,10 +55,10 @@ py-update:
     uv lock --upgrade
     uv sync --locked
 
-# Install test/'s JS dev dependencies (markdown-it, prettier) from its lockfile
+# Install test/'s JS dev dependencies (markdown-it, prettier, vsce, ovsx) from its lockfile, without install scripts
 [private]
 _js-deps:
-    npm --prefix test ci --no-audit --no-fund
+    npm --prefix test ci --ignore-scripts --no-audit --no-fund
 
 # Run the extension behavior tests (node:test)
 [group('extension')]
@@ -75,10 +75,15 @@ js-lint: _js-deps
 js-fmt: _js-deps
     test/node_modules/.bin/prettier --write 'src/**/*.js' 'test/*.js'
 
-# Release build: run every test, regenerate themes/ and styles/, then package the .vsix (needs `npm install -g @vscode/vsce`)
+# Upgrade test/package-lock.json within the package.json ranges; does NOT verify -- review the diff, then run test
+[group('extension')]
+js-update:
+    npm --prefix test update --ignore-scripts --no-audit --no-fund
+
+# Release build: run every test, regenerate themes/ and styles/, then package the .vsix
 [group('extension')]
 package: test gen
-    vsce package
+    test/node_modules/.bin/vsce package
 
 # Format TOML files (taplo; scope in .taplo.toml)
 [group('config')]
@@ -90,3 +95,6 @@ fmt: config-fmt py-fmt js-fmt
 
 # Run every check: the Python gate (lint, type-check, tests), the JS format check, then the extension behavior tests
 test: py-verify js-lint js-test
+
+# Upgrade every locked dependency, Python then JS; does NOT verify -- review the lockfile diffs, then run test
+update: py-update js-update

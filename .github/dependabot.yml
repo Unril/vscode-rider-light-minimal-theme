@@ -1,0 +1,41 @@
+version: 2
+
+# Each ecosystem gets one weekly pull request for minor and patch updates; major updates arrive one by one.
+# The cooldown holds back releases younger than a week, so a freshly compromised release is not proposed.
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 7
+    commit-message:
+      prefix: 'chore(deps)'
+    groups:
+      actions:
+        update-types: [minor, patch]
+
+  # test/ holds every JS tool: markdown-it, prettier, vsce, ovsx. The root package.json has no dependencies.
+  - package-ecosystem: npm
+    directory: /test
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 7
+    commit-message:
+      prefix: 'chore(deps)'
+    groups:
+      npm:
+        update-types: [minor, patch]
+
+  - package-ecosystem: uv
+    directory: /
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 7
+    commit-message:
+      prefix: 'chore(deps)'
+    groups:
+      python:
+        update-types: [minor, patch]

@@ -1,8 +1,10 @@
 {
   "private": true,
-  "description": "Dev dependencies for the extension's JS tooling (just js-test, just js-fmt). The extension itself ships with none, so they live here instead of the root manifest.",
+  "description": "Dev dependencies for the extension's JS tooling (just js-test, js-fmt, package; the publish workflow runs ovsx from here). The extension itself ships with none, so they live here instead of the root manifest.",
   "devDependencies": {
-    "markdown-it": "^14.3.2",
+    "@vscode/vsce": "^4.0.0",
+    "markdown-it": "^15.0.2",
+    "ovsx": "^1.2.0",
     "prettier": "^3.9.9"
   }
 }

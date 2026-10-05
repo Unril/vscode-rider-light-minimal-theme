@@ -39,15 +39,7 @@ Never edit those outputs by hand. Change the Python source and regenerate.
 
 ## Build the extension
 
-Packaging the extension as a `.vsix` requires [`vsce`](https://github.com/microsoft/vscode-vsce) (the VS Code Extension Manager).
-
-Install `vsce` once:
-
-```bash
-npm install -g @vscode/vsce
-```
-
-From the repo root:
+Packaging the extension as a `.vsix` uses [`vsce`](https://github.com/microsoft/vscode-vsce) (the VS Code Extension Manager), which `just package` installs from `test/package-lock.json`. From the repo root:
 
 ```bash
 # Verify the generator and the extension, regenerate the outputs, and package -- writes vscode-rider-light-minimal-theme-{version}.vsix
@@ -65,12 +57,22 @@ Reload the editor window (`Cmd+Shift+P` -> `Developer: Reload Window`) and selec
 
 ### Publishing
 
-The extension is currently withdrawn from both registries (see [Installation](#installation)); do not republish under the old name. Publishing to a registry is a separate step. See the [vsce publishing guide](https://code.visualstudio.com/api/working-with-extensions/publishing-extension) for the marketplace; Open VSX uses [`ovsx`](https://github.com/eclipse/openvsx/wiki/Publishing-Extensions).
+The extension is not published yet under its current name. The listings under the previous name were withdrawn (see [Installation](#installation)); never publish under that name.
 
-Before publishing:
+A push to `master` that changes `version` in `package.json` publishes that version to Open VSX, unless the tag `v{version}` already exists. `.github/workflows/publish.yml` runs every check, packages the `.vsix`, publishes it through [trusted publishing](https://github.com/eclipse-openvsx/openvsx/wiki/Trusted-Publishing), then creates the GitHub release `v{version}` with the matching `CHANGELOG.md` section as its notes. The VS Code Marketplace is published by hand with `test/node_modules/.bin/vsce publish` (see the [vsce publishing guide](https://code.visualstudio.com/api/working-with-extensions/publishing-extension)).
+
+To release:
 
 1. Bump `version` in `package.json`
-2. Add a `CHANGELOG.md` entry under a new `## [x.y.z] - YYYY-MM-DD` heading, and re-add `!CHANGELOG.md` to `.vscodeignore` (it is left out of the `.vsix` while the extension is unpublished)
-3. Run `just package` (verifies, regenerates theme outputs, and produces the final `.vsix`)
-4. Commit and tag the release
-5. Publish via `vsce publish` (marketplace) and/or `ovsx publish "vscode-rider-light-minimal-theme-$(jq -r .version package.json).vsix"` (Open VSX)
+2. Add a `CHANGELOG.md` entry under a new `## [x.y.z] - YYYY-MM-DD` heading (a contract test fails without it)
+3. Run `just test`, then commit and push to `master`
+
+If a release run fails and the fix does not touch `package.json`, start Publish by hand from the Actions tab on `master`. Re-running the failed run would reuse its old commit, and the fixing push does not trigger the workflow.
+
+Set up once, before the first release:
+
+1. Upload the first version by hand, because Open VSX registers a trusted publisher only for an extension that already has an active version. Run `just package`, then `OVSX_PAT={token} test/node_modules/.bin/ovsx publish vscode-rider-light-minimal-theme-{version}.vsix` with a token from [open-vsx.org/user-settings/tokens](https://open-vsx.org/user-settings/tokens), and delete the token afterwards
+2. Register the trusted publisher at [open-vsx.org/user-settings/trusted-publishers](https://open-vsx.org/user-settings/trusted-publishers): provider GitHub Actions, owner `Unril`, repository `vscode-rider-light-minimal-theme`, workflow `publish.yml`, environment `open-vsx`
+3. Create the `open-vsx` environment under the repository's Settings > Environments and limit its deployment branches to `master`; that rule is the only thing stopping a branch from publishing
+
+Until step 2 is done, a version bump on `master` fails in the `publish-open-vsx` job, and no tag or GitHub release is created.

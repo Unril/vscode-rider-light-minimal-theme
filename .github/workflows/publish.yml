@@ -1,0 +1,137 @@
+# Publishes the version package.json declares when a push to master changes package.json (or on a manual run from
+# master) and the tag v{version} does not exist yet.
+#
+# Open VSX authenticates through trusted publishing, so no token is stored. The registry matches this workflow by file
+# name and the job by environment name: publish.yml and open-vsx must stay as registered at
+# https://open-vsx.org/user-settings/trusted-publishers.
+name: Publish
+
+on:
+  push:
+    branches: [master]
+    paths: [package.json]
+  workflow_dispatch:
+
+concurrency:
+  group: publish
+  cancel-in-progress: false
+
+# Each job asks for what it needs.
+permissions: {}
+
+env:
+  UV_LOCKED: '1'
+
+jobs:
+  check:
+    # A manual run from another branch must not publish.
+    if: github.ref == 'refs/heads/master'
+    runs-on: ubuntu-slim
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    outputs:
+      version: ${{ steps.release.outputs.version }}
+      publish: ${{ steps.release.outputs.publish }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-tags: true
+          persist-credentials: false
+      # The tag is created last (see the release job), so it marks a version as fully published.
+      - name: Check whether this version is released
+        id: release
+        run: |
+          version=$(jq -r .version package.json)
+          echo "version=${version}" >> "$GITHUB_OUTPUT"
+          if git rev-parse --verify --quiet "refs/tags/v${version}" > /dev/null; then
+            echo "publish=false" >> "$GITHUB_OUTPUT"
+            echo "v${version} is already released; nothing to publish."
+          else
+            echo "publish=true" >> "$GITHUB_OUTPUT"
+          fi
+
+  build:
+    needs: check
+    if: needs.check.outputs.publish == 'true'
+    runs-on: ubuntu-slim
+    timeout-minutes: 12
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      # No cache: the .vsix is built from what this run installs, not from a restored cache.
+      - uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
+        with:
+          enable-cache: false
+      - uses: extractions/setup-just@53165ef7e734c5c07cb06b3c8e7b647c5aa16db3 # v4.0.0
+        with:
+          just-version: '^1.58'
+      - name: Test, regenerate and package
+        run: just package
+      - name: Check the working tree is unchanged
+        run: git diff --exit-code
+      # The release notes are the CHANGELOG.md section for this version. A missing section fails here, before anything
+      # is published.
+      - name: Extract the release notes
+        env:
+          VERSION: ${{ needs.check.outputs.version }}
+        run: |
+          awk -v header="## [${VERSION}]" \
+            'index($0, header) == 1 { found = 1; next } /^## \[/ { found = 0 } found' \
+            CHANGELOG.md > release-notes.md
+          if [ ! -s release-notes.md ]; then
+            echo "::error::CHANGELOG.md has no section headed '## [${VERSION}]'"
+            exit 1
+          fi
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: release
+          path: |
+            *.vsix
+            release-notes.md
+          if-no-files-found: error
+
+  publish-open-vsx:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment: open-vsx
+    permissions:
+      contents: read
+      # The OIDC token is what Open VSX exchanges for a short-lived publish token.
+      id-token: write
+    steps:
+      # Only test/ is needed: its lockfile pins ovsx.
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          sparse-checkout: test
+          persist-credentials: false
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: release
+      # --ignore-scripts: this job can mint publish tokens, so no dependency may run an install script in it.
+      - run: npm --prefix test ci --ignore-scripts --no-audit --no-fund
+      # --skip-duplicate makes re-running the whole workflow safe after a later job failed.
+      - run: test/node_modules/.bin/ovsx publish --trusted-publishing --skip-duplicate *.vsix
+
+  release:
+    needs: [check, publish-open-vsx]
+    runs-on: ubuntu-slim
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: release
+      - name: Create the tag and GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          VERSION: ${{ needs.check.outputs.version }}
+        run: |
+          gh release create "v${VERSION}" *.vsix \
+            --title "v${VERSION}" --notes-file release-notes.md --target "$GITHUB_SHA"
