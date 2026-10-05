@@ -4,6 +4,12 @@ All notable changes to the "vscode-rider-light-minimal-theme" extension will be 
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.4.2] - 2026-10-06
+
+### Changed
+
+- Extension page (README): a banner, badges for CI, the VS Code Marketplace, Open VSX and the license, and installation steps for both registries
+
 ## [0.4.1] - 2026-10-05
 
 ### Added
