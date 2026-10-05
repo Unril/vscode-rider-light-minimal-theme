@@ -1,9 +1,11 @@
 # Publishes the version package.json declares when a push to master changes package.json (or on a manual run from
 # master) and the tag v{version} does not exist yet.
 #
-# Open VSX authenticates through trusted publishing, so no token is stored. The registry matches this workflow by file
-# name and the job by environment name: publish.yml and open-vsx must stay as registered at
-# https://open-vsx.org/user-settings/trusted-publishers.
+# No registry token is stored. Open VSX authenticates through trusted publishing and matches this workflow by file name
+# and the job by environment name: publish.yml and open-vsx must stay as registered at
+# https://open-vsx.org/user-settings/trusted-publishers. The VS Code Marketplace accepts a Microsoft Entra ID token for
+# an app registration whose federated credential trusts the vs-marketplace environment of this repository, so renaming
+# that environment breaks publishing too.
 name: Publish
 
 on:
@@ -114,11 +116,42 @@ jobs:
           name: release
       # --ignore-scripts: this job can mint publish tokens, so no dependency may run an install script in it.
       - run: npm --prefix test ci --ignore-scripts --no-audit --no-fund
-      # --skip-duplicate makes re-running the whole workflow safe after a later job failed.
+      # --skip-duplicate lets a re-run pass a version Open VSX already has. That build stays, so a re-run is only
+      # consistent if it rebuilds the same .vsix (see CONTRIBUTING.md, Publishing).
       - run: test/node_modules/.bin/ovsx publish --trusted-publishing --skip-duplicate *.vsix
 
+  publish-marketplace:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment: vs-marketplace
+    permissions:
+      contents: read
+      # The OIDC token is what Microsoft Entra ID exchanges for the app registration's Marketplace access token.
+      id-token: write
+    steps:
+      # Only test/ is needed: its lockfile pins vsce.
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          sparse-checkout: test
+          persist-credentials: false
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: release
+      # --ignore-scripts: this job can mint publish tokens, so no dependency may run an install script in it.
+      - run: npm --prefix test ci --ignore-scripts --no-audit --no-fund
+      # The app registration has no Azure role, so it signs in to the tenant without a subscription.
+      - uses: azure/login@a641126d1b8aa4d1fa005f4f92df94a3a4c4c906 # v3.1.0
+        with:
+          client-id: ${{ vars.AZURE_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
+          allow-no-subscriptions: true
+      # --azure-credential takes the token from the Azure CLI session azure/login opened. --skip-duplicate works as in
+      # publish-open-vsx: the Marketplace keeps a version it already has.
+      - run: test/node_modules/.bin/vsce publish --azure-credential --skip-duplicate --packagePath *.vsix
+
   release:
-    needs: [check, publish-open-vsx]
+    needs: [check, publish-open-vsx, publish-marketplace]
     runs-on: ubuntu-slim
     timeout-minutes: 5
     permissions:
